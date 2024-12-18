@@ -1,0 +1,540 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+
+<meta name="csrf-token" content="<%= csrfToken %>">
+
+<style>
+   .card{
+      border-top: 4px solid #39444e;
+    border-bottom: 4px solid #39444e;
+}
+</style>
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <!-- <li><a href="#"> / Owner Managements </a></li> -->
+                            <li class="active"> / View Vehical </li>        
+                          </ol>
+                    </div>
+                </div>
+                <!--   <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User View User </h4>
+                     </div>
+                </div>
+             </div> -->
+                    
+            </div>
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "> <i class="fa fa-arrow-circle-o-left"></i>  View Vehical </h6>
+                 </div>
+                    <div class="heads-rights">
+                     <!-- <a class="btn btn-success waves-effect waves-light " href="vehical_add_vehical.html"><i class="fa fa-user  mr-1"></i> Add Vehical  </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+                              <!-- alert msgs -->
+                              <% if ( output.includes('successfully') ) { %>
+                                <p class="success-text"><%= output %></p>
+                          <% } else { %>
+                                <p class="error-text"><%= output %></p>
+                          <% } %>
+                    <!-- /alert msgs -->  
+                     <div class="table-reponsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                          <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                        <thead>
+                             <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 15.0781px;">Id</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">Vehical name</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Gross: activate to sort column ascending" style="width: 50.922px;">Owner Name</th>
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Gross: activate to sort column ascending" style="width: 50.922px;">Make Name</th> -->
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="5%: activate to sort column ascending" style="width: 50.1719px;">Fuel Type </th>
+                                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 45.5625px;">Vehical Images</th>
+
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 50.5625px;">Status</th>
+                               
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 80.156px;">Action</th>
+                            </tr>
+                        </thead>
+                           <div class="table-responsive">
+                              </div>
+
+
+                              <tbody>
+                                <% vehicles.forEach((vehicle, index) => { %>
+                                <tr>
+                                    <td><%= index + 1 %></td>
+
+                                    <td><%= vehicle.vehicle_name %></td>
+                                    <td> Owner Name  </td>
+                                    <td> <%= vehicle.vehicle_make %> </td>
+                                    <!-- <td> <%= vehicle.fuel_type %> </td> -->
+                                    
+                             
+                               
+                                    <td>
+                                        <% if (vehicle.vehicle_images) { 
+                                            let images = vehicle.vehicle_images.split(','); // Split the comma-separated images
+                                        %>
+                                            <!-- Show only the first image in the table -->
+                                            <a href="javascript:void(0);" onclick="openImageSlideshow('<%= images.join(',') %>')">
+                                                <img class="img-circle" src="/images/vehicleUploads/<%= images[0] %>" alt="make image" style="width:50px; height:50px;">
+                                            </a>
+                                        <% } else { %>
+                                            No image
+                                        <% } %>
+                                    </td>
+
+                                                                   
+
+
+                                    <td class="status-container" data-user-id="<%=  vehicle.vehicle_id %>" data-user-status="<%= vehicle.status %>">
+                                        <div >
+                                          <% if (vehicle.status == 'Active') { %>
+                                            <img src="../images/icons/active.png" class="status-image" style="width:30px;height:30px;">
+                                            <% } else if (vehicle.status == 'Pending') { %>
+                                              <!-- Add an image for Pending status here -->
+                                              <img src="../images/icons/pending.png" class="status-image" style="width:30px;height:30px;">
+                                          <% } else { %>
+                                            <img src="../images/icons/inactive.png" class="status-image" style="width:30px;height:30px;">
+                                          <% } %>
+                                          <div class="status-overlay"></div>
+                                        </div>
+                                                           
+                                      
+                                        <% if (vehicle.status == 'Active') { %>
+                                           <p id="msg<%=  vehicle.vehicle_id %>" style="color: rgb(255, 58, 9);"></p>
+                                           <p class="kilstatus" style="color: green;"> Activated</p>
+                                           <% } else if (vehicle.status == 'Pending') { %>
+                                            <p id="msg<%=  vehicle.vehicle_id %>" style="color: green !important;"></p>
+                                            <p class="kilstatus" style="color: #a6ad96;"> Pending</p>
+                                           <% } else { %>
+                                             <p id="msg<%=  vehicle.vehicle_id %>" style="color: green;"></p>
+                                             <p class="kilstatus" style="color: red;"> Deactivated</p>
+                 
+                                             <% } %>                    
+                                    
+                
+                                      </td> 
+                                      
+                                      
+
+                                    <td>
+                                     <!-- <a href="javascript:void(0)" onclick="viewEditVehicle('<%= vehicle.vehicle_id %>', '<%= vehicle.vehicle_name %>', '<%= vehicle.type_insurance_price %>',  '<%= vehicle.type_security_deposits %>')" title="Update">
+                                         <i class="fa fa-edit icon-2"></i>
+                                     </a> -->
+
+
+                                     
+                                    <!-- <a href="javascript:void(0)"  data-vehicle='<%= JSON.stringify(vehicle).replace(/'/g, '&#39;') %>' onclick="viewVehicleDetails(this)" title="View Details">
+                                        <i class="fa fa-eye icon-view"></i>
+                                    </a> -->
+
+                                    <a href="javascript:void(0)"  class="icon-view"  data-vehicle='<%= JSON.stringify(vehicle).replace(/'/g, '&#39;') %>' onclick="viewVehicleDetails(this)" title="View Details">
+                                        <i class="fa fa-eye icon-view"></i>
+                                     </a>
+
+                                     <a href="javascript:void(0)" onclick="deleteVehicle('<%= vehicle.vehicle_id  %>', '<%= vehicle.vehicle_name  %>')" title="Delete" >
+                                         <i class="fa fa-trash icon-5"></i>
+                                     </a>
+
+                                     <% if (vehicle.status === 'Active') { %>
+                                      
+                                        <a href="javascript:void(0)" onclick="changeVehicleStatus('<%= vehicle.vehicle_id  %>', 'Inactive', '<%= vehicle.vehicle_name %>')"  title="Make Inactive" >
+                                         
+                                            <i class="fa fa-times icon-4"></i>
+                                        </a>
+                                      <% } else { %>
+                                      
+                                        <a href="javascript:void(0)" onclick="changeVehicleStatus('<%= vehicle.vehicle_id  %>', 'Active', '<%= vehicle.vehicle_name %>')" title="Make Active" >
+                                            <i class="fa fa-check-square-o icon-3"></i>
+                                        </a>
+                                      <% } %>
+                                 </td>
+                                 
+                                </tr>
+                                <% }) %>
+                            </tbody>
+
+                            </table>
+                        </div>
+                      </div>
+                  </div>
+                   </div>
+                 </div> 
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+             <!-- row start  -->
+            
+                <!-- ROW END -->
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+
+<!-- VIEW Details Modal POPUP CODE START -->
+
+<div id="popup1" class="popup">
+  <div class="view-header">
+      <a href="#" class="close">&times;</a>
+  <h4>View Table</h4>
+  </div>
+  <p class="view-lists">
+      <table class="table">
+     <tbody>
+              <tr>
+                  <td>Owner Name</td>
+                   <td>John</td>
+              </tr>
+               <tr>
+                  <td>Vehical Name</td>
+                   <td>Mercedez</td>
+              </tr>
+               <tr>
+                  <td>Vehical Make</td>
+                   <td>Make 1</td>
+              </tr>
+               <tr>
+                  <td>Vehical Type</td>
+                   <td>Vehical 1</td>
+              </tr>
+                <tr>
+                  <td>Price Per day</td>
+                   <td>$ 1309</td>
+              </tr>
+
+                <tr>
+                  <td>Seat availavel</td>
+                   <td>3</td>
+              </tr>
+                <tr>
+                  <td>Trim</td>
+                <td> auto </td>
+              </tr>
+               <tr>
+                  <td>Gearbox Number</td>
+                <td> Auto </td>
+              </tr>
+               <tr>
+                  <td> Image</td>
+                <td> <img src="../assets/images/avatar-1.png" style="width:30px;"> </td>
+              </tr>
+     </tbody>
+      </table>
+       <button type="submit" class="btn btn-primary pt-2 pb-2 btn-block">Save Changes</button>
+  </p>
+</div>
+<a href="#" class="close-popup"></a>
+
+<!-- VIEW BUTTON POPUP CSS SSTART  -->
+
+<%- include ("superfooter.ejs") %>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_type_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+// Function to open the SweetAlert slideshow
+function openImageSlideshow(imagesString) {
+    const images = imagesString.split(','); // Split the images by comma
+    let currentIndex = 0;
+
+    // Function to update the content inside SweetAlert
+    function updateImage(index) {
+        const totalImages = images.length;
+        const imgSrc = `/images/vehicleUploads/${images[index].trim()}`;
+        const imageTag = `<img src="${imgSrc}" style="width:100%; height:auto;" />`;
+        const navigationText = `${index + 1} of ${totalImages} Images`;
+
+        // Display SweetAlert
+        Swal.fire({
+            title: navigationText, // Display image count
+            html: imageTag,
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Next',
+            cancelButtonText: 'Previous',
+            allowOutsideClick: false,
+            showCloseButton: true,
+            preConfirm: () => {
+                if (currentIndex < totalImages - 1) {
+                    currentIndex++;
+                    updateImage(currentIndex); // Go to next image
+                }
+            },
+            preCancel: () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateImage(currentIndex); // Go to previous image
+                }
+            }
+        });
+    }
+
+    // Start slideshow with the first image
+    updateImage(currentIndex);
+}
+
+
+
+//============= ======= Change Type Status  ============= 
+
+
+function changeVehicleStatus(vehicle_id, newStatus,vehicle_name ) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+  event.preventDefault(); 
+  var action;
+if(newStatus== 'Inactive'){
+  action = 'deactivated'
+}else{
+  action = 'activated '
+}
+ 
+
+  const userStatusElement = document.getElementById(`userStatus${vehicle_id}`);
+  const pmsgElement  = document.getElementById(`msg${vehicle_id}`);
+
+    $.ajax({
+        url: '/superadmin/changeVehicleStatus',
+        type: 'POST',
+        data: { id: vehicle_id, status: newStatus, _csrf: csrfToken },
+        beforeSend: function() {
+            // Hide the kilstatus paragraph before the request
+            $('.kilstatus').hide();
+        },
+        success: function(response) {  
+           console.log(response)       
+           
+                    if (response.success == true) {
+               
+                                                      $('[data-user-id="' + vehicle_id + '"]').attr('data-user-status', newStatus);
+
+                                // Update image source and tooltip based on new status
+                                var imgSrc = (newStatus === 'Active') ? '../images/icons/active.png' : '../images/icons/inactive.png';
+                                $('[data-user-id="' + vehicle_id + '"] .status-image').attr('src', imgSrc);
+                                $('[data-user-id="' + vehicle_id + '"] .status-tooltip').attr('title', (newStatus === 'Active') ? 'deactive' : 'Active');
+
+                                // Add fade in overlay and change background color based on new status
+                                var bgColor = (newStatus === 'Active') ? 'rgba(163,209,121,0.5)' : 'rgba(227 99 99 / 50%)';
+                                var textColor = (newStatus === 'Approve') ? '#3c763d' : '#ffffff'; // White font for non-Approve status
+                                // $('[data-user-id="' + vehicle_id + '"] .status-overlay').css('background-color', bgColor).fadeIn();
+
+                                $('[data-user-id="' + vehicle_id + '"] .status-overlay').css({
+                                    'background-color': bgColor,
+                                    'color': textColor + ' !important', // Force the font color change
+                                  
+                                }).fadeIn();
+
+                                pmsgElement.innerHTML = response.msg;
+                                var msg = 'Vehicle '+vehicle_name+' '+action+' successfully'
+                                document.cookie = `rental_msg=${msg}`;
+
+                                // Fade out the overlay after a delay
+                                setTimeout(function() {
+                                 
+                                    $('[data-user-id="' + vehicle_id + '"] .status-overlay').fadeOut();
+                                    window.location.href = '/superadmin/viewVehicles'
+                                }, 1500);
+
+                                // $('.kilstatus').show();
+
+
+              } else {
+                  console.error('Error:', response.msg);
+                  $("#errorMessage").removeClass("d-none");
+                  $("#successMessage").addClass("d-none");
+              }
+
+
+        },
+        error: function(error) { alert("ajax error")
+          console.error('Error:', error);
+          $("#errorMessage").text('Ajax Error');
+    $("#errorMessage").removeClass("d-none");
+    $("#successMessage").addClass("d-none");
+        }
+    });
+}
+
+
+
+
+
+//============= Delete  Popup start  ======================
+
+
+function deleteVehicle(vehicle_id,vehicle_name) {
+
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+// Use SweetAlert2 for a stylish confirmation
+Swal.fire({
+          title: 'Are you sure?',
+          html: `<span style="color: red;">All the Models & Data Related to Vechicle Type : <span style="font-weight: bold; color: red; background-color: yellow;">${vehicle_name}</span> Will be Permanently Deleted from all Records.</span>`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete Vehicle'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Make an AJAX request to delete the user
+                                  $.ajax({
+                          url: '/superadmin/deleteVehicle',
+                          type: 'POST',
+                          data: { id: vehicle_id, _csrf: csrfToken },
+                          success: function(response) {
+                            if (response.success == true) {
+                              document.cookie = `rental_msg=${response.msg}`;
+                              window.location.href = '/superadmin/viewVehicles'
+                            }else{
+                             // alert(response.msg)
+                               document.cookie = `rental_msg=${response.msg}`;
+                            window.location.href = '/superadmin/viewVehicles'
+                            }
+                          },
+                          error: function(error) {
+                              console.error('Error:', error);
+                          }
+                      });
+          }
+      });
+
+
+
+}
+
+
+
+//=============== Delete Poupu end ====================
+
+
+//============ view Details ========================= 
+<!-- Script Section -->
+       // Function to generate vehicle images HTML (handles multiple images)
+        function getVehicleImagesHTML(images) {
+            // Split the comma-separated string into an array of image names
+            const imageArray = images.split(',');
+
+            // Generate HTML for each image
+            return imageArray.map(image => `
+                <a href="/images/vehicleUploads/${image.trim()}" target="_blank">
+                    <img src="/images/vehicleUploads/${image.trim()}" style="width: 50px; height: 50px; margin-right: 5px;" />
+                </a>
+            `).join('');
+        }
+
+        // Function to display vehicle details
+        function viewVehicleDetails(element) {
+            // Parse vehicle data from data-vehicle attribute
+            const vehicleData = element.getAttribute('data-vehicle');
+            const vehicle = JSON.parse(vehicleData);
+
+            console.log('Vehicle Details:', vehicle);
+
+            // Create vehicle details table
+            const vehicleDetails = `
+                <table class="table" style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td><b>Vehicle Name:</b></td>
+                        <td>${vehicle.vehicle_name}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Make:</b></td>
+                        <td>${vehicle.vehicle_make}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Model:</b></td>
+                        <td>${vehicle.vehicle_model}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Fuel Type:</b></td>
+                        <td>${vehicle.fuel_type}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Price Per Day:</b></td>
+                        <td>${vehicle.price_per_day} ${vehicle.currency}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Daily Distance:</b></td>
+                        <td>${vehicle.daily_distance} km</td>
+                    </tr>
+                    <tr>
+                        <td><b>Current Location:</b></td>
+                        <td>${vehicle.current_location}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Features:</b></td>
+                        <td>${vehicle.features}</td>
+                    </tr>
+                    <tr>
+                        <td><b>No. of Seats:</b></td>
+                        <td>${vehicle.no_of_seats}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Transmission:</b></td>
+                        <td>${vehicle.transmission}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Pets Allowed:</b></td>
+                        <td>${vehicle.pets === 'Allowed' ? 'Yes' : 'No'}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Smoking Allowed:</b></td>
+                        <td>${vehicle.smoking === 'Allowed' ? 'Yes' : 'No'}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Insurance Image:</b></td>
+                        <td>
+                            <a href="/images/vehicleUploads/${vehicle.vehicle_insurance_images}" target="_blank">
+                                <img src="/images/vehicleUploads/${vehicle.vehicle_insurance_images}" style="width: 50px; height: 50px;" />
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Vehicle Images:</b></td>
+                        <td>${getVehicleImagesHTML(vehicle.vehicle_images)}</td>
+                    </tr>
+                </table>
+            `;
+
+            // Use SweetAlert2 to display vehicle details
+            Swal.fire({
+                title: 'Vehicle Details',
+                html: vehicleDetails,
+                width: '700px',
+                showCloseButton: true,
+                confirmButtonText: 'Close',
+                customClass: {
+                    popup: 'vehicle-details-popup',
+                }
+            });
+        }
+    </script>
+</script>

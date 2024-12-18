@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title> Rental Car home page</title>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+   <!-- Favicon icon -->
+   <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- Google font-->
+   <!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet"> -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&amp;display=swap" rel="stylesheet">
+
+   <!-- themify -->
+   <link rel="stylesheet" type="text/css" href="../assets/icon/themify-icons/themify-icons.css">
+
+   <!-- iconfont -->
+   <link rel="stylesheet" type="text/css" href="../assets/icon/icofont/css/icofont.css">
+
+   <!-- simple line icon -->
+   <link rel="stylesheet" type="text/css" href="../assets/icon/simple-line-icons/css/simple-line-icons.css">
+
+   <!-- Required Fremwork -->
+   <link rel="stylesheet" type="text/css" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+
+   <!-- Chartlist chart css -->
+   <link rel="stylesheet" href="../assets/plugins/chartist/dist/chartist.css" type="text/css" media="all">
+
+   <!-- Weather css -->
+   <link href="../assets/css/svg-weather.css" rel="stylesheet">
+
+
+   <!-- Style.css -->
+   <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+
+   <!-- Responsive.css-->
+   <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+   <style>
+       .card {
+    border-top: 0px solid #98a5b1 !important;
+    border-bottom: 0px solid #98a5b1 !important;
+}
+   </style>
+</head>
+
+<body class="sidebar-mini fixed">
+   <div class="loader-bg">
+      <div class="loader-bar">
+      </div>
+   </div>
+   <div class="wrapper">
+      <!-- Navbar-->
+      <header class="main-header-top hidden-print">
+         <a href="/superadmin" class="logo"><img class="img-fluid able-logo" src="../assets/images/logo.png" alt="Theme-logo"></a>
+         <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#!" data-toggle="offcanvas" class="sidebar-toggle"></a>
+            <ul class="top-nav lft-nav">               
+               <li class="dropdown pc-rheader-submenu message-notification search-toggle">
+                  <a href="#!" id="morphsearch-search" class="drop icon-circle txt-white">
+                     <i class="ti-search"></i>
+                  </a>
+               </li>
+            </ul>
+            <!-- Navbar Right Menu-->
+            <div class="navbar-custom-menu f-right">
+
+               <ul class="top-nav">
+                  <!--Notification Menu-->
+                    
+                  <li class="dropdown notification-menu">
+                     <a href="#!" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
+                        <i class="icon-bell"></i>
+                        <span class="badge badge-danger header-badge">9</span>
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li class="not-head">You have <b class="text-primary">4</b> new notifications.</li>
+                        <li class="bell-notification">
+                           <a href="javascript:;" class="media"><span class="media-left media-icon">
+                    <img class="img-circle" src="../assets/images/avatar-3.png" alt="User Image">
+                  </span>
+                     <div class="media-body"><span class="block">Transaction xyz complete</span><span class="text-muted block-time">3 hours ago</span></div></a>
+                        </li>
+                        <li class="not-footer">
+                           <a href="#!">See all notifications.</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <!-- chat dropdown -->
+
+                  <!-- User Menu-->
+                  <li class="dropdown">
+                     <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image">
+                        <span><img class="img-circle " src="../assets/images/avatar-1.png" style="width:40px;" alt="User Image"></span>
+                        <span>John <b>Doe</b> <i class=" icofont icofont-simple-down"></i></span>
+
+                     </a>
+                     <ul class="dropdown-menu settings-menu">
+                        <li><a href="profile.html"><i class="icon-user"></i> Profile</a></li>
+                        
+                        <li class="p-0">
+                           <div class="dropdown-divider m-0"></div>
+                        </li>
+                        <li><a href="login.html"><i class="icon-logout"></i> Logout</a></li>
+
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+      <!-- Side-Nav-->
+<aside class="main-sidebar hidden-print ">
+     <section class="sidebar" id="sidebar-scroll" style="background:transparent;background-position: center;background-repeat: no-repeat;background-size: cover;">
+    <!-- Sidebar Menu-->
+    <ul class="sidebar-menu">
+        <li class="active treeview">
+            <a class="waves-effect waves-dark" href="/superadmin">
+                <!-- <i class="fa fa-tachometer yellow_color" ></i> -->
+                <img src="../assets/images/sidebar-icon/sidebar-1.png">
+                <span> Dashboard</span>
+            </a>                
+        </li>
+
+<!-- SIDEBAR LIST TAG END  -->
+
+        <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-user green_color"></i> --> <img src="../assets/images/sidebar-icon/sidebar-2.png">
+          <span>User Management</span><i class="icon-arrow-down "></i></a>
+          <ul class="treeview-menu">
+              <li><a class="waves-effect waves-dark" href="user_addUser.html"><i class="icon-arrow-right"></i> Add User </a></li>
+              <li><a class="waves-effect waves-dark" href="user_viewUser.html"><i class="icon-arrow-right"></i> View User </a></li>
+               <li><a class="waves-effect waves-dark" href="user_Withdrawl_Report.html"><i class="icon-arrow-right"></i> User Withdrawl Report </a></li>
+                <li class="treeview"><a class="waves-effect waves-dark" href="User_Data_Verification.html">
+             <i class="icon-arrow-right"></i>
+             <span> User Data Verification </span></a>
+        </li>
+            <li class="treeview"><a class="waves-effect waves-dark" href="User_Documents_mgmt.html">
+             <i class="icon-arrow-right"></i>
+             <span> User Documents Mgmt </span></a>
+        </li>
+            <li class="treeview"><a class="waves-effect waves-dark" href="User_Transaction_history.html">
+         <i class="icon-arrow-right"></i>
+             <span> User Transaction history </span></a>
+        </li>
+          <li class="treeview"><a class="waves-effect waves-dark" href="User_Add_Amount.html">
+             <i class="icon-arrow-right"></i>
+             <span> User Add Amount </span></a>
+        </li>
+          </ul>
+      </li>
+
+<!-- SIDEBAR LIST TAG END  -->
+
+        <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-briefcase purple_color"></i> --> <img src="../assets/images/sidebar-icon/sidebar-3.png">
+          <span> Owner Management </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+                <li><a class="waves-effect waves-dark" href="Owner_add_Owner.html"><i class="icon-arrow-right"></i> Add Owner </a></li>
+                <li><a class="waves-effect waves-dark" href="Owner_view_Owner.html"><i class="icon-arrow-right"></i> View Owner </a></li>
+                <li><a class="waves-effect waves-dark" href="Owner_Withdrawl_Report.html"><i class="icon-arrow-right"></i> Owner Withdrawl Report </a></li>
+                  <li><a class="waves-effect waves-dark" href="owner_Documents_mgmt.html">
+             <i class="icon-arrow-right"></i>
+             <span> Owner Documents Mgmt </span></a>
+        </li>
+          <li class="treeview"><a class="waves-effect waves-dark" href="Owner_Transaction_history.html">
+         <i class="icon-arrow-right"></i>
+             <span> Owner Transaction history </span></a>
+        </li>
+          <li class="treeview"><a class="waves-effect waves-dark" href="Owner_Add_Amount.html">
+             <i class="icon-arrow-right"></i>
+             <span> Owner Add Amount </span></a>
+        </li>
+            </ul>
+        </li>
+
+<!-- SIDEBAR LIST TAG END  -->
+
+        <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-4.png">
+          <span> Report </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="report_Pending_Report.html"><i class="icon-arrow-right"></i> 
+            Pending Report </a></li>
+            <li><a class="waves-effect waves-dark" href="report_Confirm_Report.html"><i class="icon-arrow-right"></i> Confirm Report </a></li>
+             <li><a class="waves-effect waves-dark" href="report_Ongoing_Report.html"><i class="icon-arrow-right"></i> Ongoing Report </a></li>
+            <li><a class="waves-effect waves-dark" href="report_Complete_Report.html"><i class="icon-arrow-right"></i> Complete Report </a></li>
+             <li><a class="waves-effect waves-dark" href="report_Cancel_Report.html"><i class="icon-arrow-right"></i> Cancel Report </a></li>
+
+            </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+        <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-briefcase purple_color"></i> --> <img src="../assets/images/sidebar-icon/sidebar-3.png">
+          <span> Vehical Management </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+          <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_Category_make.html">
+          <!-- <i class="fa fa-cubes blue2_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-6.png">
+          <span> Vehical Category / Make </span> </a>
+        </li>
+        <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_Model.html">
+             <!-- <i class="fa fa-credit-card-alt purple_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-29.png">
+             <span> Vehical Model </span></a>
+        </li>
+        <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_Type_Vehical.html">
+          <!-- <i class="fa fa-bandcamp yellow_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-7.png">
+          <span> Vehical Type </span></a>
+        </li>
+        <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_Features.html">
+        <!-- <i class="fa fa-calendar orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-8.png">
+        <span> Vehical Features </span></a>
+        </li>
+           <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_View_Vehical.html">
+             <!-- <i class="fa fa-car purple_color2"></i> --><img src="../assets/images/sidebar-icon/sidebar-9.png">
+            <span> View Vehical </span></a>
+        </li>
+        <li class="treeview">
+            <a class="waves-effect waves-dark" href="Vehial_Promotion_Details.html">
+                <!-- <i class="fa fa-building green_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-16.png">
+                <span> Vehial Promotion Details </span>
+            </a>                
+        </li>
+         </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+          <li class="treeview"><a class="waves-effect waves-dark" href="Create_Subadmin.html">
+          <!-- <i class="fa fa-bandcamp yellow_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-4.png">
+          <span> Create Subadmin </span></a>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+          <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-briefcase purple_color"></i> --> <img src="../assets/images/sidebar-icon/sidebar-3.png">
+          <span> Settings </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li class="treeview"><a class="waves-effect waves-dark" href="Country_Add_Country.html">
+             <!-- <i class="fa fa-cogs green_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-10.png">
+             <span> Add Country </span></a>
+        </li>
+        <li class="treeview">
+            <a class="waves-effect waves-dark" href="Multi_Currency.html">
+        <!-- <i class="fa fa-money purple_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-11.png">
+         <span> Multi Currency </span>
+            </a>                
+        </li>
+           <li class="treeview">
+        <a class="waves-effect waves-dark" href="Setting_page.html">
+        <!-- <i class="fa fa-cogs blue2_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-12.png">
+         <span> General Setting </span>
+            </a>                
+        </li>
+        <li class="treeview">
+            <a class="waves-effect waves-dark" href="Slide_Add_App_Slider.html">
+            <!-- <i class="fa fa-weibo blue2_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-15.png">
+             <span> Add App Slider   </span>
+            </a>                
+        </li>
+        <li class="treeview">
+            <a class="waves-effect waves-dark" href="Video_add_Video.html">
+            <!-- <i class="fa fa-video-camera purple_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-5.png">
+         <span> Add Video </span>
+            </a>                
+        </li>
+         </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+           <li class="treeview"><a class="waves-effect waves-dark" href="Notification.html">
+             <!-- <i class="fa fa-edit orange_color2"></i> --><img src="../assets/images/sidebar-icon/sidebar-13.png">
+             <span> Notification </span></a>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+         <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-star orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-17.png">
+          <span> Ratings Managements  </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+                <li><a class="waves-effect waves-dark" href="Rating_user_Rating.html"><i class="icon-arrow-right"></i> User Rating </a></li>
+                <li><a class="waves-effect waves-dark" href="Rating_owner_Rating.html"><i class="icon-arrow-right"></i> Owner Rating </a></li>
+            </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+          <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-star orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-15.png">
+          <span> Afflications </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li class="treeview"><a class="waves-effect waves-dark" href="Refer_Amount_Details.html">
+             <!-- <i class="fa fa-credit-card-alt purple_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-24.png">
+             <span> Afflications </span></a>
+          </li>
+            <li class="treeview"><a class="waves-effect waves-dark" href="Invitation_Amount_Details.html">
+          <!-- <i class="fa fa-envelope blue2_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-18.png">
+          <span> Invitation Amount Details </span></a>
+        </li>
+            <li class="treeview"><a class="waves-effect waves-dark" href="Deposits_Fee_Details.html">
+             <!-- <i class="fa fa-credit-card-alt purple_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-19.png">
+             <span> Deposits Fee Details </span></a>
+        </li>
+            </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+         <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-4.png">
+          <span> Cms Setting </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+                <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-20.png">
+          <span> Faq </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="faq_user_faq.html"><i class="icon-arrow-right"></i> User Faq </a></li>
+            <li><a class="waves-effect waves-dark" href="faq_owner_faq.html"><i class="icon-arrow-right"></i> Owner Faq </a></li>
+            </ul>
+        </li>
+         <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-21.png">
+          <span> Privacy & Policy </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="Privacy_policy_user.html"><i class="icon-arrow-right"></i> User Privacy & Policy </a></li>
+            <li><a class="waves-effect waves-dark" href="Privacy_policy_owner.html"><i class="icon-arrow-right"></i> Owner Privacy & Policy </a></li>
+            </ul>
+        </li>
+           <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-22.png">
+          <span> Terms And Condition </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="Terms_Condition_user.html"><i class="icon-arrow-right"></i> User Terms & Condition </a></li>
+            <li><a class="waves-effect waves-dark" href="Terms_Condition_owner.html"><i class="icon-arrow-right"></i> Owner Terms & Condition </a></li>
+            </ul>
+        </li>
+         <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-23.png">
+          <span> Support Call Center </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="Support_Inquiry.html"><i class="icon-arrow-right"></i> Inquiry </a></li>
+            <li><a class="waves-effect waves-dark" href="Support_About.html"><i class="icon-arrow-right"></i> About </a></li>
+             <li><a class="waves-effect waves-dark" href="Support_Contact.html"><i class="icon-arrow-right"></i> Contact Support </a></li>
+            </ul>
+        </li> 
+            </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+               <li class="treeview"><a class="waves-effect waves-dark" href="Add_coupan_code.html">
+             <!-- <i class="fa fa-credit-card-alt purple_color"></i> --><img src="../assets/images/sidebar-icon/sidebar-25.png">
+             <span> Add coupan code </span></a>
+        </li>
+<!-- SIDEBAR LIST TAG END  --> 
+    </ul>
+ </section>
+</aside>
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+            <div class="row">
+               <div class="main-header">
+                  <h4>Dashboard</h4>
+               </div>
+            </div>
+            <!-- Ro Start  -->
+            <!-- 4-blocks row start -->
+          <div class="row">
+       <div class="col-lg-6">
+            <div class="header-boxes card">
+              <div class="heading">
+                <h3> <i class="fa fa-bar-chart"></i> Site Statistics </h3>
+             </div>
+             <div class="heade-center">
+                 <div class="row">
+                     <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-user text-success border-success"></i> -->
+                                    <img src="../assets/images/dash-icon/dash-icon-1.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Total User</div>
+                                    <div class="stat-digit">1,012</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-user text-primary border-primary"></i> -->
+                                    <img src="../assets/images/dash-icon/dash-icon-2.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Total Owner</div>
+                                    <div class="stat-digit">961</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                 <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-money text-danger border-danger"></i> -->
+                                    <img src="../assets/images/dash-icon/dash-icon-3.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Total Earnings</div>
+                                    <div class="stat-digit">Rs 99861</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-money text-danger border-danger"></i> -->
+                                    <img src="../assets/images/dash-icon/dash-icon-8.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Admin Earnings</div>
+                                    <div class="stat-digit">Rs 60861</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+           </div>
+       </div>
+       <!-- col 6 -->
+     <div class="col-lg-6">
+            <div class="header-boxes card">
+              <div class="heading">
+                <h3> <i class="fa fa-bar-chart"></i> Ride Statistics </h3>
+             </div>
+             <div class="heade-center">
+                 <div class="row">
+                     <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-user text-success border-success"></i> -->
+                                    <img src="../assets/images/dash-icon/dash-icon-4.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Total Rides</div>
+                                    <div class="stat-digit">1,012</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-user text-primary border-primary"></i> --><img src="../assets/images/dash-icon/dash-icon-5.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Total Car</div>
+                                    <div class="stat-digit">961</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                      <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-money text-danger border-danger"></i> --><img src="../assets/images/dash-icon/dash-icon-9.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Pending Rides</div>
+                                    <div class="stat-digit">Rs 99</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-money text-info border-danger"></i> -->
+                                    <img src="../assets/images/dash-icon/dash-icon-10.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Ongoing Rides</div>
+                                    <div class="stat-digit">Rs 61</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                 <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-money text-danger border-danger"></i> --><img src="../assets/images/dash-icon/dash-icon-6.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Cancel Rides</div>
+                                    <div class="stat-digit">Rs 99861</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-money text-info border-danger"></i> -->
+                                    <img src="../assets/images/dash-icon/dash-icon-7.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <div class="stat-text">Complete Rides</div>
+                                    <div class="stat-digit">Rs 99861</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 </div>
+             </div>
+           </div>
+       </div>
+       <!-- col 6 -->
+            </div>
+            <!-- 4-blocks row end -->
+
+
+<!-- row -->
+          <div class="row">
+       <div class="col-lg-6">
+            <div class="header-boxes card">
+              <div class="heading">
+                <h3> <i class="fa fa-bar-chart"></i> Rides </h3>
+             </div>
+             <div class="heade-center">
+                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+             </div>
+           </div>
+       </div>
+       <!-- col-6 -->
+        <div class="col-lg-6">
+            <div class="header-boxes card">
+              <div class="heading">
+                <h3> <i class="fa fa-bar-chart"></i> Owners </h3>
+             </div>
+             <div class="heade-center">
+               <canvas id="chart-doughnut" style="height: 300px; width: 100%;"></canvas>
+             </div>
+           </div>
+       </div>
+       <!--  -->
+            </div>
+            <!-- Row end -->
+<!-- row -->
+            <!-- 1-3-block row start -->
+           <!--  <div class="row">
+               <div class="col-lg-12">
+                  <div class="card">
+                     <div class="card-header" style="
+                     background: #000000;color: white;">
+                        <h5 class="card-header-text">Bar chart</h5>
+                     </div>
+                     <div class="card-block">
+                        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                         <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+                     </div>
+                  </div>
+               </div>
+            </div> --> 
+            <!-- 1-3-block row end -->
+
+             <!-- row start  -->
+                  <div class="row">
+               <div class="col-lg-12">
+                 <div class="card footers">
+                     <div class="card-header footer text-center">
+                         © Copyright 2024 <strong><span>Demo</span></strong>.
+                          All Rights Reserved   Designed & Developed by 
+                          <a href="https://cyberimpulses.com/" target="_blank">CISS</a>
+                       </div>
+                  </div>
+               </div>
+            </div>
+                <!-- ROW END -->
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+   <!-- Required Jqurey -->
+   <script src="../assets/plugins/Jquery/dist/jquery.min.js"></script>
+   <script src="../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+   <script src="../assets/plugins/tether/dist/js/tether.min.js"></script>
+
+   <!-- Required Fremwork -->
+   <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+   <!-- Scrollbar JS-->
+   <script src="../assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+   <script src="../assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+
+   <!--classic JS-->
+   <script src="../assets/plugins/classie/classie.js"></script>
+
+   <!-- notification -->
+   <script src="../assets/plugins/notification/js/bootstrap-growl.min.js"></script>
+
+   <!-- Sparkline charts -->
+   <script src="../assets/plugins/jquery-sparkline/dist/jquery.sparkline.js"></script>
+
+   <!-- Counter js  -->
+   <script src="../assets/plugins/waypoints/jquery.waypoints.min.js"></script>
+   <script src="../assets/plugins/countdown/js/jquery.counterup.js"></script>
+
+   <!-- Echart js -->
+<!--    <script src="../assets/plugins/charts/echarts/js/echarts-all.js"></script>
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+   <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
+
+   <!-- custom js -->
+   <script type="text/javascript" src="../assets/js/main.min.js"></script>
+   <script type="text/javascript" src="../assets/pages/dashboard.js"></script>
+   <script type="text/javascript" src="../assets/pages/elements.js"></script>
+   <script src="../assets/js/menu.min.js"></script>
+<script>
+var $window = $(window);
+var nav = $('.fixed-button');
+$window.scroll(function(){
+    if ($window.scrollTop() >= 200) {
+       nav.addClass('active');
+    }
+    else {
+       nav.removeClass('active');
+    }
+});
+</script>
+<!--CHART CSS START  -->
+<script src="../assets/js/rides_chart.js"></script>
+<!-- RIGHT CHART SCRIPT START  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="../assets/js/owners_chart.js"></script>
+</body>
+
+</html>

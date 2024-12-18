@@ -1,0 +1,252 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+  
+<meta name="csrf-token" content="<%= csrfToken %>">
+<style>
+   .card{
+      border-top: 4px solid #39444e;
+    border-bottom: 4px solid #39444e;
+}
+
+.icon-4 {
+    background-color: #fc1e13b8;
+    color: #fcfcff;
+    padding: 5px 6px;
+    border-radius: 5px;
+    font-size: 12px;
+    border: 1px solid #fefefe;
+    box-shadow: 0px 2px 20px rgb(0 0 0 / 20%);
+}
+
+</style>
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li><a href="#"> / Owner/Branch Managements </a></li>
+                            <li class="active"> / View Owner/Branch Withdraw List </li>        
+                          </ol>
+                    </div>
+                </div>
+                    
+            </div>
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "> <i class="fa fa-arrow-circle-o-left"></i>  View Withdraw Requests </h6>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="/superadmin/OwnerWithdrawRequest"><i class="fa fa-user  mr-1"></i> Add Owner  </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+
+                            <!-- alert msgs -->
+                            <% if ( output.includes('successfully') ) { %>
+                              <p class="success-text"><%= output %></p>
+                        <% } else { %>
+                              <p class="error-text"><%= output %></p>
+                        <% } %>
+                  <!-- /alert msgs -->  
+
+                     <div class="table-reponsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                          <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                        <thead>
+                             <tr role="row">
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: auto">S.No</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 70px">Owner's Name</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Gross: activate to sort column ascending" style="width: 60px">Withdraw Amount</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 50px">Closing Balance</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: auto">Status</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 190px">Action</th>
+                            </tr>
+                        </thead>
+                           <div class="table-responsive">
+                              </div>
+
+                         
+                              <tbody>
+                                <% owners.forEach((owner,index) => { %>
+                                <tr>
+                                    <td><%= index + 1 %></td>
+                                    <td><%= owner.first_name %> <%= owner.last_name %></td>
+                                    <td> <%= owner.withdrawal_amount	 %> </td>
+                                    <td><%= owner.current_wallet_amount	 %> </td>
+                                    <td class="status-container" data-user-id="<%=  owner.transaction_id  %>" data-user-status="<%= owner.status %>">
+                                        <div >
+                                    
+                                          <% if (owner.status == 'Accepted') { %>
+                                            <img src="../images/icons/active.png" class="status-image" style="width:30px;height:30px;">
+                                        <% } else if (owner.status == 'Pending') { %>
+                                            <!-- Add an image for Pending status here -->
+                                            <img src="../images/icons/pending.png" class="status-image" style="width:30px;height:30px;">
+                                        <% } else { %>
+                                            <img src="../images/icons/inactive.png" class="status-image" style="width:30px;height:30px;">
+                                        <% } %>
+
+                                          <div class="status-overlay"></div>
+                                        </div>
+                                                           
+                                      
+                                        <% if (owner.status == 'Accepted') { %>
+                                          <p id="msg<%=  owner.transaction_id  %>" style="color: orange;"></p>
+                                          <p class="kilstatus" style="color: green;"> Accepted</p>
+                                        <% } else if (owner.status == 'Pending') { %>
+                                          <p id="msg<%=  owner.transaction_id  %>" style="color: green !important;"></p>
+                                          <p class="kilstatus" style="color: #a6ad96;"> Pending</p>
+                                        <% } else { %>
+                                          <p id="msg<%=  owner.transaction_id  %>" style="color: green !important;"></p>
+                                          <p class="kilstatus" style="color: red;"> Rejected</p>
+                                        <% } %>                   
+                                    
+                
+                                    </td> 
+                                    <td>
+
+                                     <% if (owner.status === 'Pending') { %>
+                                        <a href="javascript:void(0)" onclick="changeOwnerWithdrawStatus('<%= owner.transaction_id   %>', 'Accepted', '<%= owner.first_name %>')"  title="Make Accepted"  >
+                                          <i class="fa fa-check-square-o icon-3"></i> 
+                                        </a>
+                                      <% } %>
+                                      <% if (owner.status === 'Pending') { %>
+                                        <a href="javascript:void(0)" onclick="changeOwnerWithdrawStatus('<%= owner.transaction_id   %>', 'Rejected', '<%= owner.first_name %>')" title="Make Rejected" >
+                                          <i class="fa fa-times icon-4"></i>
+                                        </a>
+                                      <% } %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+
+                            </table>
+                        </div>
+                      </div>
+                  </div>
+                   </div>
+                 </div> 
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+             <!-- row start  -->
+            
+                <!-- ROW END -->
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+<!--  -->
+
+<!-- VIEW BUTTON POPUP CSS SSTART  -->
+
+ <%- include ("superfooter.ejs") %>
+
+<script>
+      document.addEventListener("DOMContentLoaded", function() {
+      document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+      document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'rental_user'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+      document.cookie = 'rental_user'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      
+      document.cookie = 'rental_transaction_id '+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+  //================== start Update Status =========================
+
+  function changeOwnerWithdrawStatus(transaction_id , newStatus,username ) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+   
+    event.preventDefault(); 
+    var action;
+    if(newStatus== 'Rejecte'){
+      action = 'Rejected'
+    }else{
+      action = 'Accepted '
+    }
+
+    const userStatusElement = document.getElementById(`userStatus${transaction_id }`);
+    const pmsgElement  = document.getElementById(`msg${transaction_id }`);
+    $.ajax({
+          url: '/superadmin/changeOwnerWithdrawStatus',
+          type: 'POST',
+          data: { id: transaction_id , status: newStatus ,  _csrf: csrfToken },
+          beforeSend: function() {
+              // Hide the kilstatus paragraph before the request
+              $('.kilstatus').hide();
+          },
+          success: function(response) {  
+            console.log(response)       
+            
+                      if (response.success == true) {
+                
+                    $('[data-user-id="' + transaction_id  + '"]').attr('data-user-status', newStatus);
+                    // Update image source and tooltip based on new status
+                    var imgSrc = (newStatus === 'Accepted') ? '../images/icons/active.png' : '../images/icons/inactive.png';
+                    $('[data-user-id="' + transaction_id  + '"] .status-image').attr('src', imgSrc);
+                    $('[data-user-id="' + transaction_id  + '"] .status-tooltip').attr('title', (newStatus === 'Accepted') ? 'deactive' : 'active');
+
+                    // Add fade in overlay and change background color based on new status
+                    var bgColor = (newStatus === 'Accepted') ? 'rgba(163,209,121,0.5)' : 'rgba(227 99 99 / 50%)';
+
+                    var textColor = (newStatus === 'Accepted') ? '#3c763d' : '#ffffff'; // White font for non-Accepted status
+                    
+                    $('[data-user-id="' + transaction_id  + '"] .status-overlay').css({
+                        'background-color': bgColor,
+                        'color': textColor + ' !important', // Force the font color change
+                      
+                    }).fadeIn();
+
+
+                    pmsgElement.innerHTML = response.msg;
+                    var msg = 'Owner ('+username+'s) Withdrawal request '+action+' successfully'
+                    document.cookie = `rental_msg=${msg}`;
+
+                    // Fade out the overlay after a delay
+                    setTimeout(function() {
+                    
+                        $('[data-user-id="' + transaction_id  + '"] .status-overlay').fadeOut();
+                        window.location.href = '/superadmin/OwnerWithdrawRequest'
+                    }, 1500);
+
+                    // $('.kilstatus').show();
+                } else {
+                    console.error('Error:', response.msg);
+                    $("#errorMessage").removeClass("d-none");
+                    $("#successMessage").addClass("d-none");
+                }
+
+
+          },
+          error: function(error) { alert("ajax error")
+            console.error('Error:', error);
+            $("#errorMessage").text('Ajax Error');
+      $("#errorMessage").removeClass("d-none");
+      $("#successMessage").addClass("d-none");
+          }
+      });
+  }
+
+</script>
+
+
+
+
+
+
+
+
+

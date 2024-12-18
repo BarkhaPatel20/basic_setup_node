@@ -1,0 +1,263 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+  
+
+<style>
+   .card{
+      border-top: 4px solid #39444e;
+    border-bottom: 4px solid #39444e;
+}
+
+
+/* ------------- popup submit button start ----------- */
+.button-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+
+.button-container button {
+  flex: 1 !important;
+  margin: 0 10px !important; /* add some margin between buttons */
+  width: 45% !important; /* set a fixed width for each button */
+}
+
+
+
+/* Style for the image modal */
+.image-popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Modal content (the images) */
+.image-popup .modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* The close button */
+.image-popup .close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Add some animation to the modal */
+.image-popup .modal-content {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+
+</style>
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li><a href="#"> / Notification Managements </a></li>
+                            <li class="active"> / View Notification Management </li>        
+                          </ol>
+                    </div>
+                </div>
+                <!--   <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  Notification View User </h4>
+                     </div>
+                </div>
+             </div> -->
+                    
+            </div>
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "> <i class="fa fa-arrow-circle-o-left"></i>  View Notifications </h6>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light" href="/superadmin/addUser"><i class="fa fa-user  mr-1"></i> Add User  </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+
+
+
+
+           <!-- alert msgs -->
+           <% if ( output.includes('successfully') ) { %>
+            <p class="success-text"><%= output %></p>
+              <% } else { %>
+                    <p class="error-text"><%= output %></p>
+              <% } %>
+          <!-- /alert msgs -->  
+
+
+
+
+                    
+                     <div class="table-reponsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                          <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                        <thead>
+                             <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: auto">S.No</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 70px">Title</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Gross: activate to sort column ascending" style="width: 60px">Message</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 50px">Notification Type</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: auto">Date / Time</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 190px">Action</th>
+                            </tr>
+                        </thead>
+                           <div class="table-responsive">
+                              </div>
+                         
+
+                              <tbody>
+                                <% notifications.forEach((notification, index) => { %>
+                                <tr>
+                                    <td><%= index + 1 %></td>
+                                    <td> <%= notification.title	 %> </td>
+                                    <td> <%= notification.message	 %> </td>
+                                    <td> <%= notification.notification_type	 %> </td>
+                                    <td><%= notification.date %> <%= notification.time %></td>
+                                    <td>
+
+                                     <a href="javascript:void(0)" onclick="deleteNotification('<%= notification.notification_id %>')"  title="Delete" >
+                                         <i class="fa fa-trash icon-5"></i>
+                                     </a>
+
+                                 </td>
+                                 
+                                </tr>
+                                <% }) %>
+                            </tbody>
+
+
+
+                            </table>
+                        </div>
+                      </div>
+                  </div>
+                   </div>
+                 </div> 
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+             <!-- row start  -->
+             
+                <!-- ROW END -->
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+<!--  -->
+
+
+ <%- include ("superfooter.ejs") %>
+  
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_type_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+</script>
+
+<script>
+
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_user'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_user'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            
+            document.cookie = 'rental_user_id '+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+//============ delete User ================
+
+function deleteNotification(notification_id) {
+
+// Use SweetAlert2 for a stylish confirmation
+Swal.fire({
+          title: 'Are you sure?',
+          html: `<span style="color: red;">Data related to  Notification : <span style="font-weight: bold; color: red; background-color: yellow;">${notification_id}</span> Will be Permanently Deleted from your Records.</span>`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete Notification'
+      }).then((result) => {
+          if (result.isConfirmed) {
+            console.log("result-->.isConfirmed")
+              // Make an AJAX request to delete the Notification
+            $.ajax({
+                url: '/superadmin/deleteNotification',
+                type: 'POST',
+                data: { id: notification_id },
+                success: function(response) {
+                if (response.success == true) {
+                    document.cookie = `rental_msg=${response.msg}`;
+                    window.location.href = '/superadmin/showNotifications'
+                }else{
+                    // alert(response.msg)
+                    document.cookie = `rental_msg=${response.msg}`;
+                window.location.href = '/superadmin/showNotifications'
+                }
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+          }
+      });
+
+}
+
+</script>
+
+
+
+
+
+
+

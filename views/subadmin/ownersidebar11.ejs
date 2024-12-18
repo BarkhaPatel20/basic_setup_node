@@ -1,0 +1,48 @@
+<ul class="sidebar-menu">
+    <li class="active treeview">
+        <a class="waves-effect waves-dark" href="/subadmin/dashboard">
+            <img src="../assets//images/sidebar-icon/sidebar-1.png">
+            <span> Dashboard</span>
+        </a>                
+    </li>
+
+    <% if (permissions.includes('view_users')) { %>
+    <li class="treeview">
+        <a class="waves-effect waves-dark" href="#!">
+            <img src="../assets//images/sidebar-icon/sidebar-2.png">
+            <span>User Management</span><i class="icon-arrow-down "></i>
+        </a>
+        <ul class="treeview-menu">
+            <% if (permissions.includes('add_users')) { %>
+            <li><a class="waves-effect waves-dark" href="/subadmin/addUser "><img src="../assets//images/sidebar-icon/user-1.png"> Add User </a></li>
+            <% } %>
+            <li><a class="waves-effect waves-dark" href="/subadmin/viewUsers"><img src="../assets//images/sidebar-icon/user-2.png"> View User </a></li>
+        </ul>
+    </li>
+    <% } %>
+
+    <% if (permissions.includes('view_reports')) { %>
+    <li class="treeview">
+        <a class="waves-effect waves-dark" href="#!">
+            <img src="../assets//images/sidebar-icon/sidebar-4.png">
+            <span> Report </span><i class="icon-arrow-down "></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="/subadmin/pending_bookings"><img src="../assets//images/sidebar-icon/report-4.png"> Pending Report </a></li>
+            <li><a class="waves-effect waves-dark" href="/subadmin/confirmed_bookings"><img src="../assets//images/sidebar-icon/report-4.png"> Confirm Report </a></li>
+        </ul>
+    </li>
+    <% } %>
+
+    <% if (permissions.includes('manage_vehicles')) { %>
+    <li class="treeview">
+        <a class="waves-effect waves-dark" href="#!">
+            <img src="../assets//images/sidebar-icon/sidebar-3.png">
+            <span> Vehicle Management </span><i class="icon-arrow-down "></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="/subadmin/viewVehicles"><img src="../assets//images/sidebar-icon/sidebar-9.png"> View Vehicles </a></li>
+        </ul>
+    </li>
+    <% } %>
+</ul>

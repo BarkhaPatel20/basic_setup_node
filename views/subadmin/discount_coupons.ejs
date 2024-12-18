@@ -1,0 +1,769 @@
+
+
+      
+      
+   <%- include ("superheader.ejs") %>
+   <%- include ("supersidebar.ejs") %>
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li class="active"><a href="#"> /  Add Coupon Code </a></li>
+                            <!-- <li class="active"> / Add Video </li>         -->
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->       
+            </div>
+
+            <!-- 1-3-block row start -->
+            <div class="row pt-3">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+                <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                 <a href="#">  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i>  Add Coupon Code </h6> </a>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="Owner_view_Owner.html"><i class="fa fa-user  mr-1"></i> View Owner   </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+
+
+            <form id="kilfrom" method="post" action="/superadmin/discount_coupons" >
+
+                  <div class="form-group row users-foarms">
+                       <div class="form-group col-md-4">
+                        <i class="fa fa-code icon-set"></i>
+                           <label for="exampleInputEmail" class="form-control-label"> Coupon Code </label>
+                           <input  onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" name="coupon_code" type="text" class="form-control" id="kilcheck" placeholder="Enter Coupon Code" required>
+                           <div id="kilError" style="color: red;"></div>
+                        </div>
+               
+
+                           <div class="form-group col-md-4">
+                        <i class="fa fa-money icon-set"></i>
+                           <label for="exampleInputEmail" class="form-control-label">  Coupon Max Amount </label>
+                           <input type="text"  onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" name="coupon_max_amount" class="form-control" id="exampleInputfirst" placeholder="Enter Coupon Max Amount" required>
+                        </div>
+
+
+                          <div class="form-group col-md-4">
+                        <i class="fa fa-money icon-set"></i>
+                           <label  id="kil" for="exampleInputEmail" class="form-control-label">  Discount (In Percentage) </label>
+                           <input type="number"  onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" name="discount_rate" class="form-control" id="exampleInputfirst" placeholder="Enter Discount (In Percentage)" required>
+                        </div>
+
+
+                     
+
+                         <div class="form-group col-md-4">
+                           <!-- <i class="fa fa-bandcamp icon-set"></i> -->
+                           <label for="exampleInputEmail" class="form-control-label"> Start Date</label>
+                       <input type="date"  onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" name="start_date" class="form-control" id="exampleInputdate" placeholder="Enter Add Referral By Amount" required>
+                        </div>
+
+                         <div class="form-group col-md-4">
+                           <!-- <i class="fa fa-bandcamp icon-set"></i> -->
+                           <label for="exampleInputEmail" class="form-control-label"> End Date</label>
+                       <input type="date"  onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" name="end_date" class="form-control" id="exampleInputdate" placeholder="Enter Add Referral By Amount" required>
+                        </div>
+
+                     <div class="form-group col-md-12">
+                        <i class="fa fa-money icon-set"></i>
+                           <label for="exampleInputEmail" class="form-control-label">  Title </label>
+                           <input  onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" type="text" name="coupon_title" class="form-control" id="exampleInputfirst" placeholder="Enter  Title " required>
+                     </div>
+
+
+                        <div class="form-group col-md-12">
+                        <button type="submit" onclick="validateForm('#kilfrom')" class="btn btn-success waves-effect waves-light m-r-30">Submit</button>
+                        </div>
+                  </div>
+
+               </form>
+
+
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left"></i> View Coupon Code </h6>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="user_addUser.html"><i class="fa fa-user  mr-1"></i> Add User  </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+                     <div class="table-reponsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                          <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                        <thead>
+                             <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 15.0781px;">S.no</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">Coupon Title</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">Coupon Code</th>
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;"> Discount % </th>
+                                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;"> Start/End Date  </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;"> Status </th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 80.156px;">Action</th>
+                            </tr>
+                        </thead>
+                           <div class="table-responsive">
+                              </div>
+
+
+                              <tbody>
+                                 <% coupons.forEach((coupon, index) => { %>
+                                 <tr>
+                                     <td><%= index + 1 %></td>
+                                     <td><%= coupon.coupon_title %></td>
+                                     <td><%= coupon.coupon_code %></td>
+                                     <td><%= coupon.discount_rate %> % ( Max <%= coupon.coupon_max_amount %> <%= currency %> ) </td>
+                                     <td> <%= coupon.start_date %> To <%= coupon.end_date %> </td>
+                                                        
+     
+                                                                    
+
+
+                                     <td class="status-container" data-user-id="<%=  coupon.coupon_id %>" data-user-status="<%= coupon.status %>">
+                                         <div >
+                                           <% if (coupon.status == 'Active') { %>
+                                             <img src="../images/icons/active.png" class="status-image" style="width:30px;height:30px;">
+                                           <% } else { %>
+                                             <img src="../images/icons/inactive.png" class="status-image" style="width:30px;height:30px;">
+                                           <% } %>
+                                           <div class="status-overlay"></div>
+                                         </div>
+                                                            
+                                       
+                                         <% if (coupon.status == 'Active') { %>
+                                            <p id="msg<%=  coupon.coupon_id %>" style="color: rgb(255, 58, 9);"></p>
+                                            <p class="kilstatus" style="color: green;"> Activated</p>
+                                            <% } else { %>
+                                              <p id="msg<%=  coupon.coupon_id %>" style="color: green;"></p>
+                                              <p class="kilstatus" style="color: red;"> Deactivated</p>
+                  
+                                              <% } %>                    
+                                     
+                 
+                                       </td> 
+                                       
+                                       
+
+                                     <td>
+                                      <!-- <a href="javascript:void(0)" onclick="editVehicleType('<%= coupon.coupon_id %>', '<%= coupon.coupon_title %>', '<%= coupon.type_insurance_price %>',  '<%= coupon.type_security_deposits %>')">
+                                          <i class="fa fa-edit icon-2"></i>
+                                      </a> -->
+
+
+                                      <a href="javascript:void(0)" onclick="deleteCoupon('<%= coupon.coupon_id  %>', '<%= coupon.coupon_title  %>')"  title="Delete">
+                                          <i class="fa fa-trash icon-5"></i>
+                                      </a>
+
+
+
+                                      <% if (coupon.status === 'Active') { %>
+                                       
+                                         <a href="javascript:void(0)" onclick="changeCouponStatus('<%= coupon.coupon_id  %>', 'Inactive', '<%= coupon.coupon_title %>')"   title="Make Inactive" >
+                                          
+                                             <i class="fa fa-times icon-4"></i>
+                                         </a>
+                                       <% } else { %>
+                                       
+                                         <a href="javascript:void(0)" onclick="changeCouponStatus('<%= coupon.coupon_id  %>', 'Active', '<%= coupon.coupon_title %>')"  title="Make Active" >
+                                             <i class="fa fa-check-square-o icon-3"></i>
+                                         </a>
+                                       <% } %>
+
+                                    
+                                  </td>
+                                  
+                                 </tr>
+                                 <% }) %>
+                             </tbody>
+
+
+
+                            </table>
+                        </div>
+                      </div>
+                  </div>
+                   </div>
+                 </div> 
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+      
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+   <%- include ("superfooter.ejs") %>
+
+
+   
+
+<script>
+
+
+   //-------------- Comman Kilvish Function for input validation start ---------------------
+   
+   
+   
+   
+   function validateRequiredFields(kil) {
+
+       const form = document.querySelector(`${kil}`); 
+       const inputs = form.querySelectorAll('input[required], select[required], textarea[required]'); // Get only required inputs
+       let isValid = true;
+   
+       
+   
+       // Remove previous error messages and borders
+       form.querySelectorAll('.error-message').forEach(errorMsg => errorMsg.remove());
+       inputs.forEach(input => {
+           input.style.border = ''; // Reset borders
+       });
+   
+       inputs.forEach(input => {
+           if (!input.value.trim()) {  // If the required field is empty
+               isValid = false;
+               input.style.border = '2px solid red'; // Set border to red for empty required fields
+               addErrorMessage(input.parentNode, "This Field is Required."); // Add error message
+           }
+       });
+   
+       return isValid;
+   }
+
+   // Add real-time validation for each required field
+function addRealTimeValidation(kil) {
+    const form = document.querySelector(`${kil}`); 
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+
+    inputs.forEach(input => {
+        // Listen for 'input' and 'change' events on required fields
+        input.addEventListener('input', function () {
+            if (input.value.trim()) {
+                // If the input is filled, remove red border and error message
+                input.style.border = '';
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
+            }
+        });
+        input.addEventListener('change', function () {
+            if (input.value.trim()) {
+                // For select fields, check if an option is selected
+                input.style.border = '';
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
+            }
+        });
+    });
+}
+
+   
+   
+   
+   // Combined validation function
+   function validateForm(kil) {
+   
+      if(!validateRequiredFields(kil)){
+         event.preventDefault();
+      }
+   }
+
+   // Add real-time validation once the document is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    addRealTimeValidation('#kilfrom');  // Activate real-time validation
+});
+   
+   
+   function validateKilvishInput(event) {
+       const inputField = event.target;
+   
+       // General valid character sets
+       // let validCharacters = /^[a-zA-Z0-9@,._\s-]*$/;
+   
+       let validCharacters = /^[a-zA-Z\s]*$/; // only char, no special char no numbers 
+   
+       // Define allowed image file types
+       const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp', 'image/svg+xml'];
+   
+       // Use parentNode for regular inputs, container for checkboxes
+       const container = inputField.closest('.col-lg-12') || inputField.closest('.form-group') || inputField.closest('div');
+       const inputParent = inputField.parentNode;
+   
+       // Remove previous error message and border
+       let errorMessage = inputParent.querySelector('.error-message');
+       if (errorMessage) errorMessage.remove();
+       inputField.style.border = ''; // Reset border
+   
+       // Custom validations based on input name
+       if (inputField.name === 'description') {
+           validCharacters = /^[a-zA-Z0-9@,._\s-'"*]*$/;
+   
+           // Check length limit
+           if (inputField.value.length > 400) {
+               addErrorMessage(inputParent, 'Input exceeds the maximum length of 400 characters!');
+               inputField.style.border = '2px solid red';
+               inputField.value = inputField.value.substring(0, 400); // Truncate the input
+               return;
+           }
+       } else if (inputField.name === 'coupon_max_amount') {
+         validCharacters = /^\d{0,7}$/;
+         const inputValue = inputField.value; 
+
+                     const numericValue = parseInt(inputValue, 10);
+
+                        if (inputValue.length > 4) {                        
+                           addErrorMessage(inputParent, 'Coupon Max Amount cannot be exceed 4 digits');
+                           inputField.style.border = '2px solid red'; 
+
+                           if (event.type === 'change') {
+                              inputField.value = ''; 
+                           }    
+                           return;
+                        } 
+
+
+                        inputField.style.border = '';
+
+
+       } else if (inputField.name === 'discount_rate') {
+         validCharacters = /^\d{0,7}$/;
+         const inputValue = inputField.value; 
+
+                     const numericValue = parseInt(inputValue, 10);
+
+                        if (inputValue.length > 3 || numericValue > 100) {                        
+                           addErrorMessage(inputParent, 'Discount Rate can not be more than 100 %');
+                           inputField.style.border = '2px solid red'; 
+
+                           if (event.type === 'change') {
+                              inputField.value = ''; 
+                           }    
+                           return;
+                        } 
+
+
+                        inputField.style.border = '';
+
+                                 var h = `Discount <span id="kil1">(${inputValue}%)</span>*` 
+                                 document.getElementById('kil').innerHTML = h;
+                                 document.getElementById('kil1').style.color = 'green';
+
+       }       
+       else if (inputField.name === 'start_date' || inputField.name === 'end_date' ) {
+
+          validCharacters = /^(?:\d{4}[-\/]\d{2}[-\/]\d{2})$/; 
+        
+                  const inputValue = inputField.value.trim();
+          
+
+                                       const inputDate = new Date(inputValue.replace(/[-\/]/g, '/'));
+                                 const today = new Date();
+                                 today.setHours(0, 0, 0, 0); // Set to midnight for comparison
+
+                                                // Check if the date is in the past
+                                 if (inputDate < today) {
+                                    addErrorMessage(inputParent, 'The date cannot be in the past.');
+                                    inputField.style.border = '2px solid red';
+                                    
+                                    if (event.type === 'change') {
+                                          inputField.value = ''; // Clear the input field on change
+                                    }
+                                    
+                                    return; // Exit the function after handling the error
+                                 }
+
+
+                        inputField.style.border = '';
+
+
+               }else if (inputField.name === 'coupon_code') {
+                  validCharacters = /^[a-zA-Z0-9]{0,20}$/; // only alphabates and numbers min 4 max 20
+
+               }else if(inputField.type ==='email'){
+                  validCharacters = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email pattern
+               }else if(inputField.type ==='password'){
+   
+                               const hasSequentialChars = (password) => {
+                                    console.log("passworddddddd -", password)
+                                    const length = password.length;
+                                    
+                                    // Check for ascending sequences (e.g., "123", "abc")
+                                    for (let i = 0; i < length - 3; i++) {
+                                       if (password.charCodeAt(i + 1) === password.charCodeAt(i) + 1 &&
+                                             password.charCodeAt(i + 2) === password.charCodeAt(i) + 2 &&
+                                             password.charCodeAt(i + 3) === password.charCodeAt(i) + 3) {
+                                             return true; // Ascending sequence found
+                                       }
+                                    }
+   
+                                    // Check for descending sequences (e.g., "321", "cba")
+                                    for (let i = 0; i < length - 3; i++) {
+                                       if (password.charCodeAt(i + 1) === password.charCodeAt(i) - 1 &&
+                                             password.charCodeAt(i + 2) === password.charCodeAt(i) - 2 &&
+                                             password.charCodeAt(i + 3) === password.charCodeAt(i) - 3) {
+                                             return true; // Descending sequence found
+                                       }
+                                    }
+                                    
+                                    return false; // No sequential characters
+                                 };
+   
+                  
+   
+                  validCharacters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
+   
+   
+                                             // Check if password meets the required pattern
+                              if (!validCharacters.test(inputField.value)) {
+                                 addErrorMessage(inputParent, 'Password must be at least 12 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.');
+                                 inputField.style.border = '2px solid red';
+                                 if (event.type === 'change') {   inputField.value = '';  }
+                                 return; // Stop further validation
+                              }
+   
+                              // Check for sequential characters
+                              if (hasSequentialChars(inputField.value)) {
+                                 addErrorMessage(inputParent, 'Password should not contain sequential characters.');
+                                 inputField.style.border = '2px solid red';
+                                    if (event.type === 'change') {   inputField.value = '';  }
+                                 return; // Stop further validation
+                              }
+   
+   
+                              // Function to check for sequential characters in the password
+                    
+                                                      
+   
+   
+   
+               }
+                 
+   
+               
+   
+   
+   
+       // Handle file input validation
+       if (inputField.type === 'file') {
+           const file = inputField.files[0];
+           if (file && !validImageTypes.includes(file.type)) {
+               addErrorMessage(inputParent, 'Please select a valid image file (JPEG, PNG, etc.)');
+               inputField.value = ''; // Clear the file input field
+               inputField.style.border = '2px solid red';
+               return;
+           }
+       } else {
+           // For normal text/number input validation
+           if (event.type === 'keyup') {
+               if (!validCharacters.test(inputField.value)) {
+                   addErrorMessage(inputParent, 'Invalid character entered!');
+                   inputField.style.border = '2px solid red';
+                   
+               }
+           }
+   
+           if (event.type === 'change') {
+               if (!validCharacters.test(inputField.value)) {
+                   // On invalid input during change event, clear the field and show an error
+                   inputField.value = ''; // Clear invalid input
+                   addErrorMessage(inputParent, 'Invalid character or format!');
+                   inputField.style.border = '2px solid red';
+               } else {
+                   // Clear error when value is corrected
+                   inputField.style.border = '';
+                   if (errorMessage) errorMessage.remove();
+               }
+           }
+       }
+   }
+   
+   // Function to display error messages under the input field or container for checkboxes
+   function addErrorMessage(parent, message) {
+       if (!parent.querySelector('.error-message')) {
+           const errorMessage = document.createElement('div');
+           errorMessage.className = 'error-message';
+           errorMessage.style.color = 'red';
+           errorMessage.style.fontSize = '12px';
+           errorMessage.innerText = message;
+           parent.appendChild(errorMessage);
+       }
+   }
+   
+   
+   
+   
+   
+   //-------------- Comman Kilvish Function for input validation End ---------------------
+
+
+</script>
+
+<script>
+
+//====================   kilcheck Uniqeness  ================ -> 
+$(document).ready(function() 
+{
+
+
+    $('#kilcheck').on('change', function()
+    {  
+        var coupon_code = $(this).val();
+        var typeInput = document.getElementById('kilcheck');
+        $.ajax({
+            type: 'POST',
+            url: '/superadmin/checkCoupanCode',
+            data: { coupon_code: coupon_code },
+            success: function(data) 
+            {
+             
+                if (data.exists == true)
+                {
+                    $('#kilError').text("A record with the given Coupan Code ( "+ coupon_code + " ) is already exist, Enter another unnique code and try again.");
+                  
+                    typeInput.value = "";
+                } 
+                else
+                {
+                  if( typeInput.value == ""){
+                  
+                    $('#kilError').text("");
+                  }else{
+                  
+                    $('#kilError').text("");
+                  }
+                     
+                }
+            }
+        });
+    });
+
+
+    
+});
+
+
+$(document).ready(function() 
+{
+
+
+    $('#kilcheckupdate').on('change', function()
+    {  
+        var coupon_code = $(this).val();
+        var typeInput = document.getElementById('kilcheckupdate');
+        $.ajax({
+            type: 'POST',
+            url: '/superadmin/checkCoupanCode',
+            data: { coupon_code: coupon_code },
+            success: function(data) 
+            {
+             
+                if (data.exists == true)
+                {
+                    $('#kilErrorupdate').text("A record with the given coupon_code ( "+ coupon_code + " ) already exist, Enter another unnique coupon_code and try again.");
+                  
+                    typeInput.value = "";
+                } 
+                else
+                {
+                  if( typeInput.value == ""){
+                  
+                    $('#kilErrorupdate').text("");
+                  }else{
+                  
+                    $('#kilErrorupdate').text("");
+                  }
+                     
+                }
+            }
+        });
+    });
+
+
+    
+});
+
+
+
+
+
+
+
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_type_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+
+
+//============= ======= Change Type Status  ============= 
+
+
+function changeCouponStatus(coupon_id, newStatus,type_name ) {
+  event.preventDefault(); 
+  var action;
+if(newStatus== 'Inactive'){
+  action = 'deactivated'
+}else{
+  action = 'activated '
+}
+ 
+
+  const userStatusElement = document.getElementById(`userStatus${coupon_id}`);
+  const pmsgElement  = document.getElementById(`msg${coupon_id}`);
+
+    $.ajax({
+        url: '/superadmin/changeCouponStatus',
+        type: 'POST',
+        data: { id: coupon_id, status: newStatus },
+        beforeSend: function() {
+            // Hide the kilstatus paragraph before the request
+            $('.kilstatus').hide();
+        },
+        success: function(response) {  
+           console.log(response)       
+           
+                    if (response.success == true) {
+               
+                                                      $('[data-user-id="' + coupon_id + '"]').attr('data-user-status', newStatus);
+
+                                // Update image source and tooltip based on new status
+                                var imgSrc = (newStatus === 'Active') ? '../images/icons/active.png' : '../images/icons/inactive.png';
+                                $('[data-user-id="' + coupon_id + '"] .status-image').attr('src', imgSrc);
+                                $('[data-user-id="' + coupon_id + '"] .status-tooltip').attr('title', (newStatus === 'Active') ? 'deactive' : 'Active');
+
+                                // Add fade in overlay and change background color based on new status
+                                var bgColor = (newStatus === 'Active') ? 'rgba(163,209,121,0.5)' : 'rgba(227 99 99 / 50%)';
+                                var textColor = (newStatus === 'Approve') ? '#3c763d' : '#ffffff'; // White font for non-Approve status
+                                // $('[data-user-id="' + coupon_id + '"] .status-overlay').css('background-color', bgColor).fadeIn();
+
+                                $('[data-user-id="' + coupon_id + '"] .status-overlay').css({
+                                    'background-color': bgColor,
+                                    'color': textColor + ' !important', // Force the font color change
+                                  
+                                }).fadeIn();
+
+                                pmsgElement.innerHTML = response.msg;
+                                var msg = 'Coupon '+type_name+' '+action+' successfully'
+                                document.cookie = `rental_msg=${msg}`;
+
+                                // Fade out the overlay after a delay
+                                setTimeout(function() {
+                                 
+                                    $('[data-user-id="' + coupon_id + '"] .status-overlay').fadeOut();
+                                    window.location.href = '/superadmin/discount_coupons'
+                                }, 1500);
+
+                                // $('.kilstatus').show();
+
+
+              } else {
+                  console.error('Error:', response.msg);
+                  $("#errorMessage").removeClass("d-none");
+                  $("#successMessage").addClass("d-none");
+              }
+
+
+        },
+        error: function(error) { alert("ajax error")
+          console.error('Error:', error);
+          $("#errorMessage").text('Ajax Error');
+    $("#errorMessage").removeClass("d-none");
+    $("#successMessage").addClass("d-none");
+        }
+    });
+}
+
+
+
+
+
+//============= Delete  Popup start  ======================
+
+
+function deleteCoupon(coupon_id,type_name) {
+
+// Use SweetAlert2 for a stylish confirmation
+Swal.fire({
+          title: 'Are you sure?',
+          html: `<span style="color: red;">All the Models & Data Related to Vechicle Type : <span style="font-weight: bold; color: red; background-color: yellow;">${type_name}</span> Will be Permanently Deleted from all Records.</span>`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete Coupon'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Make an AJAX request to delete the user
+                                  $.ajax({
+                          url: '/superadmin/deleteCoupon',
+                          type: 'POST',
+                          data: { id: coupon_id },
+                          success: function(response) {
+                            if (response.success == true) {
+                              document.cookie = `rental_msg=${response.msg}`;
+                              window.location.href = '/superadmin/discount_coupons'
+                            }else{
+                             // alert(response.msg)
+                               document.cookie = `rental_msg=${response.msg}`;
+                            window.location.href = '/superadmin/discount_coupons'
+                            }
+                          },
+                          error: function(error) {
+                              console.error('Error:', error);
+                          }
+                      });
+          }
+      });
+
+
+
+}
+
+
+
+
+
+
+</script>

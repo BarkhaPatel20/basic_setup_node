@@ -1,0 +1,492 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+<meta name="csrf-token" content="<%= csrfToken %>">
+<style>
+   .card{
+      border-top: 4px solid #39444e;
+    border-bottom: 4px solid #39444e;
+}
+
+.bg-red {
+    background-color: red !important;
+    color: white; /* Optional: to make text readable */
+}
+
+.bg-orange {
+    background-color: orange !important;
+    color: white; /* Optional: to make text readable */
+}
+
+</style>
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li class="active"><a href="#"> /   Owner/Branch Managements </a></li>
+                            <!-- <li class="active"> / Owner Document Mgmt </li>         -->
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->       
+            </div>
+
+
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left"></i> View  Owner/Branch Documents Managements </h6>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="user_addUser.html"><i class="fa fa-user  mr-1"></i> Add User  </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+
+
+                    <div class="table-reponsive box">
+                      <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                        <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                      <thead>
+                     
+                        <tr role="row">
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 15.0781px;">S.no</th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">User Name</th>                 
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;"> Document Image </th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;"> Expiary Date</th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;"> Document Verification Status </th>
+                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 80.156px;">Action</th>
+                      </tr>
+                      </thead>
+                         <div class="table-responsive">
+                            </div>
+                      
+
+
+                            <tbody>
+                              <% owners.forEach((owner, index) => { %>
+                              <tr>
+                                  <td><%= index + 1 %></td>
+                                  <td><%= owner.first_name %> <%= owner.last_name %></td>
+                               
+                                 
+                           
+                             
+                                  <td>
+                                      <% if (owner.owner_document_images) { 
+                                          let images = owner.owner_document_images.split(','); // Split the comma-separated images
+                                      %>
+                                          <!-- Show only the first image in the table -->
+                                          <a href="javascript:void(0);" onclick="openImageSlideshow('<%= images.join(',') %>')">
+                                              <img class="img-circle" src="../images/docUploads/<%= images[0] %>" alt="Image" style="width:50px; height:50px;">
+                                          </a>
+                                      <% } else { %>
+                                          No image
+                                      <% } %>
+                                  </td>
+
+                                  <td class="<%= owner.daysUntilDocExpiry < 0 ? 'bg-red' : (owner.daysUntilDocExpiry <= 30 ? 'bg-orange' : '') %>">
+                                    
+                                    <%= owner.owner_doc_expiry_date %> 
+                                    <br>
+                                    <%= owner.daysUntilDocExpiry < 0 ? 'Expired' : owner.daysUntilDocExpiry + ' days remaining' %>
+                                  
+                                  </td>   
+ 
+
+
+                                  <td class="status-container" data-user-id="<%=  owner.user_id %>" data-user-status="<%= owner.license_status %>">
+                                      <div >
+                                  
+                                        <% if (owner.owner_doc_status == 'Verified') { %>
+                                          <img src="../images/icons/active.png" class="status-image" style="width:30px;height:30px;">
+                                      <% } else if (owner.owner_doc_status == 'Pending') { %>
+                                         
+                                          <img src="../images/icons/pending.png" class="status-image" style="width:30px;height:30px;">
+                                      <% } else { %>
+                                          <img src="../images/icons/inactive.png" class="status-image" style="width:30px;height:30px;">
+                                      <% } %>
+
+                                        <div class="status-overlay"></div>
+                                      </div>
+                                                         
+                                    
+                                      <% if (owner.owner_doc_status == 'Verified') { %>
+                                        <p id="msg<%=  owner.user_id %>" style="color: orange;"></p>
+                                        <p class="kilstatus" style="color: green;"> Verified</p>
+                                      <% } else if (owner.owner_doc_status == 'Pending') { %>
+                                        <p id="msg<%=  owner.user_id %>" style="color: green !important;"></p>
+                                        <p class="kilstatus" style="color: #a6ad96;"> Pending</p>
+                                      <% } else { %>
+                                        <p id="msg<%=  owner.user_id %>" style="color: green !important;"></p>
+                                        <p class="kilstatus" style="color: red;"> Unverified</p>
+                                      <% } %>                   
+                                  
+              
+                                    </td> 
+                                    
+                                    
+
+                                  <td>
+
+                                  <a href="javascript:void(0)" onclick="senddocNotification('<%= owner.user_id %>', '<%= owner.owner_doc_expiry_date %>')">
+                                      <i class="fa fa-send icon-2"></i>
+                                  </a>
+
+
+                                   <% if (owner.owner_doc_status === 'Verified') { %>
+                                    
+                                      <a href="javascript:void(0)" onclick="changeOwnerDocStatus('<%= owner.user_id  %>', 'Unverified', '<%= owner.first_name %>')"   >
+                                       
+                                          <i class="fa fa-times icon-4"></i>
+                                      </a>
+                                    <% } else { %>
+                                    
+                                      <a href="javascript:void(0)" onclick="changeOwnerDocStatus('<%= owner.user_id  %>', 'Verified', '<%= owner.first_name %>')"  >
+                                          <i class="fa fa-check-square-o icon-3"></i>
+                                      </a>
+                                    <% } %> 
+
+                                   
+
+                                 
+                               </td>
+                               
+                              </tr>
+                              <% }) %>
+                          </tbody>
+
+
+
+
+
+
+
+                          </table>
+                      </div>
+                    </div>
+                </div>
+
+
+                  
+                   </div>
+                 </div> 
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+             <!-- row start  -->
+             
+                <!-- ROW END -->
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+  
+   <%- include ("superfooter.ejs") %>
+  
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+
+
+<script>
+
+
+
+document.addEventListener("DOMContentLoaded", function() { 
+        document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+        document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'rental_location_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    
+});
+
+
+//=====================  send notification start ========================= 
+function changeOwnerDocStatus(user_id, newStatus,username ) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    event.preventDefault(); 
+    var action;
+    if(newStatus== 'Unverified'){
+    action = 'unverified'
+    }else{
+    action = 'verified '
+    }
+
+
+    const userStatusElement = document.getElementById(`userStatus${user_id}`);
+    const pmsgElement  = document.getElementById(`msg${user_id}`);
+
+  $.ajax({
+      url: '/superadmin/changeOwnerDocStatus',
+      type: 'POST',
+      data: { id: user_id, status: newStatus , _csrf: csrfToken},
+      beforeSend: function() {
+          // Hide the kilstatus paragraph before the request
+          $('.kilstatus').hide();
+      },
+      success: function(response) {  
+         console.log(response)       
+         
+                  if (response.success == true) {
+             
+                                                    $('[data-user-id="' + user_id + '"]').attr('data-user-status', newStatus);
+
+                              // Update image source and tooltip based on new status
+                              var imgSrc = (newStatus === 'Verified') ? '../images/icons/active.png' : '../images/icons/inactive.png';
+                              $('[data-user-id="' + user_id + '"] .status-image').attr('src', imgSrc);
+                              $('[data-user-id="' + user_id + '"] .status-tooltip').attr('title', (newStatus === 'Verified') ? 'deactive' : 'active');
+
+                              // Add fade in overlay and change background color based on new status
+                              var bgColor = (newStatus === 'Verified') ? 'rgba(163,209,121,0.5)' : 'rgba(227 99 99 / 50%)';
+
+                              var textColor = (newStatus === 'Verified') ? '#3c763d' : '#ffffff'; // White font for non-Approve status
+                              // var textColor = (newStatus === 'Verified') ? 'rgba(163,209,121,0.5)' : 'rgba(227 99 99 / 50%)';
+                              // $('[data-user-id="' + user_id + '"] .status-overlay').css('background-color', bgColor).fadeIn();
+
+
+
+                              $('[data-user-id="' + user_id + '"] .status-overlay').css({
+                                  'background-color': bgColor,
+                                  'color': textColor + ' !important', // Force the font color change
+                                
+                              }).fadeIn();
+
+
+                              pmsgElement.innerHTML = response.msg;
+                              var msg = 'Document ('+username+') '+action+' successfully'
+                              document.cookie = `rental_msg=${msg}`;
+
+                              // Fade out the overlay after a delay
+                              setTimeout(function() {
+                               
+                                  $('[data-user-id="' + user_id + '"] .status-overlay').fadeOut();
+                                  window.location.href = '/superadmin/Owner_document_management'
+                              }, 1500);
+
+                              // $('.kilstatus').show();
+
+
+            } else {
+                console.error('Error:', response.msg);
+                $("#errorMessage").removeClass("d-none");
+                $("#successMessage").addClass("d-none");
+            }
+
+
+      },
+      error: function(error) { alert("ajax error")
+        console.error('Error:', error);
+        $("#errorMessage").text('Ajax Error');
+  $("#errorMessage").removeClass("d-none");
+  $("#successMessage").addClass("d-none");
+      }
+  });
+}
+
+
+
+
+function senddocNotification(userId, userDocExpiry, licenseExpiry) {
+
+  const today = new Date();
+const userDocExpiryDate = new Date(userDocExpiry);
+const thirtyDaysFromNow = new Date();
+thirtyDaysFromNow.setDate(today.getDate() + 30);
+
+
+let expiredDocs = [];
+
+// Check if user document is expiring within the next 30 days
+if (userDocExpiryDate < thirtyDaysFromNow && userDocExpiryDate >= today) {
+    expiredDocs.push('Owner Document (Expiring in next 30 days)');
+} else if (userDocExpiryDate < today) {
+    expiredDocs.push('Owner Document (Already Expired)');
+}
+
+
+    // If no documents are about to expire or have expired
+    if (expiredDocs.length === 0) {
+        Swal.fire({
+            title: 'No Document Expired or Expiring Soon!',
+            text: 'Both the user document and license are valid.',
+            icon: 'info'
+        });
+    } else {
+        let message = `The following document(s) are expiring or have expired: ${expiredDocs.join(', ')}.`;
+
+        // Show SweetAlert with checkbox options for notifications
+        Swal.fire({
+            title: 'Select Notification Type',
+            html: `
+                <div>
+                    <input type="checkbox" id="emailNotification" checked>
+                    <label for="emailNotification">Send Email Notification</label><br>
+                    <input type="checkbox" id="inAppNotification" checked>
+                    <label for="inAppNotification">Send In-App Notification</label>
+                </div>
+            `,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Send Notification',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const sendEmail = document.getElementById('emailNotification').checked;
+                const sendInApp = document.getElementById('inAppNotification').checked;
+
+                // Check if at least one option is selected
+                if (!sendEmail && !sendInApp) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'You must select at least one option to send a notification.',
+                        icon: 'error'
+                    });
+                } else {
+                    // Show loading spinner
+                    Swal.fire({
+                        title: 'Sending...',
+                        text: 'Please wait while we send the notification.',
+                        allowOutsideClick: false,
+                        onBeforeOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Make an API call to the backend to send the email and in-app notification
+                    sendExpiryNotificationToServer(userId, expiredDocs, sendEmail, sendInApp)
+                        .then((response) => {
+                            Swal.fire('Notification Sent!', 'The expiry notification has been sent successfully.', 'success');
+                        })
+                        .catch((error) => {
+                            Swal.fire('Error!', `${error.message}`, 'error');
+                        });
+                }
+            }
+        });
+    }
+}
+
+function senddocNotification11(userId, userDocExpiry) {
+
+
+
+const today = new Date();
+const userDocExpiryDate = new Date(userDocExpiry);
+const thirtyDaysFromNow = new Date();
+thirtyDaysFromNow.setDate(today.getDate() + 30);
+
+
+let expiredDocs = [];
+
+// Check if user document is expiring within the next 30 days
+if (userDocExpiryDate < thirtyDaysFromNow && userDocExpiryDate >= today) {
+    expiredDocs.push('Owner Document (Expiring in next 30 days)');
+} else if (userDocExpiryDate < today) {
+    expiredDocs.push('Owner Document (Already Expired)');
+}
+
+
+if (expiredDocs.length === 0) {
+    Swal.fire({
+        title: 'No Document Expired!',
+        text: 'Both the user document and license are valid.',
+        icon: 'info'
+    });
+} else {
+    let message = `The following document(s) have expired: ${expiredDocs.join(', ')}.`;
+    
+    // Show SweetAlert with checkbox options
+    Swal.fire({
+        title: 'Select Notification Type',
+        html: `
+            <div>
+                <input type="checkbox" id="emailNotification" checked>
+                <label for="emailNotification">Send Email Notification</label><br>
+                <input type="checkbox" id="inAppNotification" checked>
+                <label for="inAppNotification">Send In-App Notification</label>
+            </div>
+        `,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Send Notification',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const sendEmail = document.getElementById('emailNotification').checked;
+            const sendInApp = document.getElementById('inAppNotification').checked;
+
+            // Show loading spinner
+            Swal.fire({
+                title: 'Sending...',
+                text: 'Please wait while we send the notification.',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            // Make an API call to the backend to send the email and in-app notification
+            sendExpiryNotificationToServer(userId, expiredDocs, sendEmail, sendInApp)
+                .then((response) => {
+                    Swal.fire('Notification Sent!', 'The expiry notification has been sent successfully.', 'success');
+                })
+                .catch((error) => {
+                    Swal.fire('Error!', `${error.message}`, 'error');
+                });
+        }
+    });
+}
+}
+
+function sendExpiryNotificationToServer(userId, expiredDocs, sendEmail, sendInApp) {
+const userTimezone = moment.tz.guess();
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+return fetch('/superadmin/senddocNotificationOwner', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        userId: userId,
+        expiredDocs: expiredDocs,
+        sendEmail: sendEmail,
+        sendInApp: sendInApp,
+        userTimezone:userTimezone,
+          _csrf: csrfToken
+    })
+}).then((response) => {
+    if (!response.ok) {
+        return response.json().then((errorData) => {
+            throw new Error(errorData.message || 'Failed to send notification.');
+        });
+    }
+    return response.json();
+});
+}
+
+
+
+
+</script>

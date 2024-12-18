@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>Car Rental Owner Add Amount Details home page</title>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+   <!-- Favicon icon -->
+   <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- Google font-->
+   <!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet"> -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&amp;display=swap" rel="stylesheet">
+
+   <!-- themify -->
+   <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+
+   <!-- iconfont -->
+   <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
+
+   <!-- simple line icon -->
+   <link rel="stylesheet" type="text/css" href="assets/icon/simple-line-icons/css/simple-line-icons.css">
+
+   <!-- Required Fremwork -->
+   <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+
+   <!-- Chartlist chart css -->
+   <link rel="stylesheet" href="assets/plugins/chartist/dist/chartist.css" type="text/css" media="all">
+
+   <!-- Weather css -->
+   <link href="assets/css/svg-weather.css" rel="stylesheet">
+
+   <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.4/dt-1.10.13/fc-3.2.2/fh-3.1.2/r-2.1.0/sc-1.4.2/datatables.min.css" />
+
+   <!-- Style.css -->
+   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+   <!-- Responsive.css-->
+   <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+<style>
+   .card{
+      border-top: 4px solid #39444e;
+    border-bottom: 4px solid #39444e;
+}
+</style>
+</head>
+
+<body class="sidebar-mini fixed">
+   <div class="loader-bg">
+      <div class="loader-bar">
+      </div>
+   </div>
+   <div class="wrapper">
+      <!-- Navbar-->
+     <header class="main-header-top hidden-print">
+        
+         <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#!" data-toggle="offcanvas" class="sidebar-toggle"></a>
+            <ul class="top-nav lft-nav">               
+               <li class="dropdown pc-rheader-submenu message-notification search-toggle">
+                  <a href="#!" id="morphsearch-search" class="drop icon-circle txt-white">
+                     <i class="ti-search"></i>
+                  </a>
+               </li>
+            </ul>
+            <!-- Navbar Right Menu-->
+            <div class="navbar-custom-menu f-right">
+
+               <ul class="top-nav">
+                  <!--Notification Menu-->
+                    
+                  <li class="dropdown notification-menu">
+                     <a href="#!" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
+                        <i class="icon-bell"></i>
+                        <span class="badge badge-danger header-badge">9</span>
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li class="not-head">You have <b class="text-primary">4</b> new notifications.</li>
+                        <li class="bell-notification">
+                           <a href="javascript:;" class="media"><span class="media-left media-icon">
+                    <img class="img-circle" src="assets/images/avatar-3.png" alt="User Image">
+                  </span>
+                     <div class="media-body"><span class="block">Transaction xyz complete</span><span class="text-muted block-time">3 hours ago</span></div></a>
+                        </li>
+                        <li class="not-footer">
+                           <a href="#!">See all notifications.</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <!-- chat dropdown -->
+
+                  <!-- User Menu-->
+                  <li class="dropdown">
+                     <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image">
+                        <span><img class="img-circle " src="assets/images/avatar-1.png" style="width:40px;" alt="User Image"></span>
+                        <span>John <b>Doe</b> <i class=" icofont icofont-simple-down"></i></span>
+
+                     </a>
+                     <ul class="dropdown-menu settings-menu">
+                       <li><a href="profile.html"> <i class="icon-user"></i> Profile </a></li>
+                        
+                        <li class="p-0">
+                           <div class="dropdown-divider m-0"></div>
+                        </li>
+                        <li><a href="login.html"><i class="icon-logout"></i> Logout</a></li>
+
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+      <!-- Side-Nav-->
+<aside class="main-sidebar hidden-print ">
+     <section class="sidebar" id="sidebar-scroll" style="background:transparent;background-position: center;background-repeat: no-repeat;background-size: cover; height: 656px !important;">
+         <a href="index.html" class="logo"><img class="img-fluid able-logo" src="assets/images/logo.png" alt="Theme-logo"></a>
+    <!-- Sidebar Menu-->
+    <ul class="sidebar-menu">
+        <li class="active treeview">
+            <a class="waves-effect waves-dark" href="index.html">
+                <!-- <i class="fa fa-tachometer yellow_color" ></i> -->
+                <img src="assets/images/sidebar-icon/sidebar-1.png">
+                <span> Dashboard</span>
+            </a>                
+        </li>
+
+<!-- SIDEBAR LIST TAG END  -->
+
+        <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-user green_color"></i> --> <img src="assets/images/sidebar-icon/sidebar-2.png">
+          <span>User Management</span><i class="icon-arrow-down "></i></a>
+          <ul class="treeview-menu">
+              <li><a class="waves-effect waves-dark" href="user_addUser.html"><img src="assets/images/sidebar-icon/user-1.png"> Add User </a></li>
+              <li><a class="waves-effect waves-dark" href="user_viewUser.html"><img src="assets/images/sidebar-icon/user-2.png"> View User </a></li>
+               <li><a class="waves-effect waves-dark" href="user_Withdrawl_Report.html"><img src="assets/images/sidebar-icon/user-3.png"> User Withdrawl Report </a></li>
+            <li class="treeview"><a class="waves-effect waves-dark" href="User_Documents_mgmt.html">
+             <img src="assets/images/sidebar-icon/user-4.png">
+             <span> User Documents Mgmt </span></a>
+        </li>
+          </ul>
+      </li>
+
+<!-- SIDEBAR LIST TAG END  -->
+
+        <li class="treeview active"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-briefcase purple_color"></i> --> <img src="assets/images/sidebar-icon/sidebar-3.png">
+          <span> Owner Management </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+                <li><a class="waves-effect waves-dark" href="Owner_add_Owner.html"><img src="assets/images/sidebar-icon/owner-4.png"> Add Owner </a></li>
+                <li class="active"><a class="waves-effect waves-dark" href="Owner_view_Owner.html"><img src="assets/images/sidebar-icon/owner-4.png"> View Owner </a></li>
+                <li><a class="waves-effect waves-dark" href="Owner_Withdrawl_Report.html"><img src="assets/images/sidebar-icon/owner-4.png"> Owner Withdrawl Report </a></li>
+                  <li><a class="waves-effect waves-dark" href="owner_Documents_mgmt.html">
+             <img src="assets/images/sidebar-icon/owner-4.png">
+             <span> Owner Documents Mgmt </span></a>
+        </li>
+            </ul>
+        </li>
+
+<!-- SIDEBAR LIST TAG END  -->
+
+        <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-4.png">
+          <span> Report </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="report_Pending_Report.html"><img src="assets/images/sidebar-icon/report-4.png"> 
+            Pending Report </a></li>
+            <li><a class="waves-effect waves-dark" href="report_Confirm_Report.html"><img src="assets/images/sidebar-icon/report-4.png"> Confirm Report </a></li>
+             <li><a class="waves-effect waves-dark" href="report_Ongoing_Report.html"><img src="assets/images/sidebar-icon/report-4.png"> Ongoing Report </a></li>
+            <li><a class="waves-effect waves-dark" href="report_Complete_Report.html"><img src="assets/images/sidebar-icon/report-4.png"> Complete Report </a></li>
+             <li><a class="waves-effect waves-dark" href="report_Cancel_Report.html"><img src="assets/images/sidebar-icon/report-4.png"> Cancel Report </a></li>
+
+            </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+        <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-briefcase purple_color"></i> --> <img src="assets/images/sidebar-icon/sidebar-3.png">
+          <span> Vehical Management </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+          <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_Category_make.html">
+          <!-- <i class="fa fa-cubes blue2_color"></i> --><img src="assets/images/sidebar-icon/sidebar-6.png">
+          <span> Vehical Category / Make </span> </a>
+        </li>
+        <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_Model.html">
+             <!-- <i class="fa fa-credit-card-alt purple_color"></i> --><img src="assets/images/sidebar-icon/sidebar-29.png">
+             <span> Vehical Model </span></a>
+        </li>
+        <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_Type_Vehical.html">
+          <!-- <i class="fa fa-bandcamp yellow_color"></i> --><img src="assets/images/sidebar-icon/sidebar-7.png">
+          <span> Vehical Type </span></a>
+        </li>
+        <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_Features.html">
+        <!-- <i class="fa fa-calendar orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-8.png">
+        <span> Vehical Features </span></a>
+        </li>
+           <li class="treeview"><a class="waves-effect waves-dark" href="Vehical_View_Vehical.html">
+             <!-- <i class="fa fa-car purple_color2"></i> --><img src="assets/images/sidebar-icon/sidebar-9.png">
+            <span> View Vehical </span></a>
+        </li>
+        <li class="treeview">
+            <a class="waves-effect waves-dark" href="Vehial_Promotion_Details.html">
+                <!-- <i class="fa fa-building green_color"></i> --><img src="assets/images/sidebar-icon/sidebar-16.png">
+                <span> Vehial Sponser </span>
+            </a>                
+        </li>
+         </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+          <li class="treeview"><a class="waves-effect waves-dark" href="Create_Subadmin.html">
+          <!-- <i class="fa fa-bandcamp yellow_color"></i> --><img src="assets/images/sidebar-icon/sidebar-4.png">
+          <span> Create Subadmin </span></a>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+          <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-briefcase purple_color"></i> --> <img src="assets/images/sidebar-icon/sidebar-3.png">
+          <span> Settings </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li class="treeview"><a class="waves-effect waves-dark" href="Country_Add_Country.html">
+             <!-- <i class="fa fa-cogs green_color"></i> --><img src="assets/images/sidebar-icon/sidebar-10.png">
+             <span> Add Country </span></a>
+        </li>
+        <li class="treeview">
+            <a class="waves-effect waves-dark" href="Multi_Currency.html">
+        <!-- <i class="fa fa-money purple_color"></i> --><img src="assets/images/sidebar-icon/sidebar-11.png">
+         <span> Multi Currency </span>
+            </a>                
+        </li>
+           <li class="treeview">
+        <a class="waves-effect waves-dark" href="Setting_page.html">
+        <!-- <i class="fa fa-cogs blue2_color"></i> --><img src="assets/images/sidebar-icon/sidebar-12.png">
+         <span> General Setting </span>
+            </a>                
+        </li>
+        <li class="treeview">
+            <a class="waves-effect waves-dark" href="Slide_Add_App_Slider.html">
+            <!-- <i class="fa fa-weibo blue2_color"></i> --><img src="assets/images/sidebar-icon/sidebar-15.png">
+             <span> Add App Slider   </span>
+            </a>                
+        </li>
+        <li class="treeview">
+            <a class="waves-effect waves-dark" href="Video_add_Video.html">
+            <!-- <i class="fa fa-video-camera purple_color"></i> --><img src="assets/images/sidebar-icon/sidebar-5.png">
+         <span> Add Video </span>
+            </a>                
+        </li>
+         </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+           <li class="treeview"><a class="waves-effect waves-dark" href="Notification.html">
+             <!-- <i class="fa fa-edit orange_color2"></i> --><img src="assets/images/sidebar-icon/sidebar-13.png">
+             <span> Notification </span></a>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+         <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-star orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-17.png">
+          <span> Ratings Managements  </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+                <li><a class="waves-effect waves-dark" href="Rating_user_Rating.html"><img src="assets/images/sidebar-icon/ratings-1.png"> User Rating </a></li>
+                <li><a class="waves-effect waves-dark" href="Rating_owner_Rating.html"><img src="assets/images/sidebar-icon/ratings-2.png"> Owner Rating </a></li>
+            </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+          <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-star orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-15.png">
+          <span> Afflications </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li class="treeview"><a class="waves-effect waves-dark" href="Refer_Amount_Details.html">
+             <!-- <i class="fa fa-credit-card-alt purple_color"></i> --><img src="assets/images/sidebar-icon/sidebar-24.png">
+             <span> Afflications </span></a>
+          </li>
+            <li class="treeview"><a class="waves-effect waves-dark" href="Invitation_Amount_Details.html">
+          <!-- <i class="fa fa-envelope blue2_color"></i> --><img src="assets/images/sidebar-icon/sidebar-18.png">
+          <span> Invitation Amount Details </span></a>
+        </li>
+            <li class="treeview"><a class="waves-effect waves-dark" href="Deposits_Fee_Details.html">
+             <!-- <i class="fa fa-credit-card-alt purple_color"></i> --><img src="assets/images/sidebar-icon/sidebar-19.png">
+             <span> Deposits Fee Details </span></a>
+        </li>
+            </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+
+         <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-4.png">
+          <span> Cms Setting </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+                <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-20.png">
+          <span> Faq </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="faq_user_faq.html"><i class="icon-arrow-right"></i> User Faq </a></li>
+            <li><a class="waves-effect waves-dark" href="faq_owner_faq.html"><i class="icon-arrow-right"></i> Owner Faq </a></li>
+            </ul>
+        </li>
+         <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-21.png">
+          <span> Privacy & Policy </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="Privacy_policy_user.html"><i class="icon-arrow-right"></i> User Privacy & Policy </a></li>
+            <li><a class="waves-effect waves-dark" href="Privacy_policy_owner.html"><i class="icon-arrow-right"></i> Owner Privacy & Policy </a></li>
+            </ul>
+        </li>
+           <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-22.png">
+          <span> Terms And Condition </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="Terms_Condition_user.html"><i class="icon-arrow-right"></i> User Terms & Condition </a></li>
+            <li><a class="waves-effect waves-dark" href="Terms_Condition_owner.html"><i class="icon-arrow-right"></i> Owner Terms & Condition </a></li>
+            </ul>
+        </li> 
+            </ul>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+               <li class="treeview"><a class="waves-effect waves-dark" href="Add_coupan_code.html">
+             <!-- <i class="fa fa-credit-card-alt purple_color"></i> --><img src="assets/images/sidebar-icon/sidebar-25.png">
+             <span> Add coupan code </span></a>
+        </li>
+<!-- SIDEBAR LIST TAG END  -->
+                <li class="treeview"><a class="waves-effect waves-dark" href="#!">
+          <!-- <i class="fa fa-edit orange_color"></i> --><img src="assets/images/sidebar-icon/sidebar-23.png">
+          <span> Support Call Center </span><i class="icon-arrow-down "></i></a>
+            <ul class="treeview-menu">
+            <li><a class="waves-effect waves-dark" href="Support_Inquiry.html"><img src="assets/images/sidebar-icon/supports-1.png"> Inquiry </a></li>
+            <li><a class="waves-effect waves-dark" href="Support_About.html"><img src="assets/images/sidebar-icon/supports-2.png"> About </a></li>
+             <li><a class="waves-effect waves-dark" href="Support_Contact.html"><img src="assets/images/sidebar-icon/supports-3.png"> Contact Support </a></li>
+            </ul>
+        </li>
+    </ul>
+ </section>
+</aside>
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="index.html"> Home </a></li>
+                               <li class="active"><a href="#"> /  Add  Owner Amount  </a></li>
+                            <!-- <li class="active"> / Add Video </li>         -->
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->       
+            </div>
+
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+                    <div class="credit-form">
+                         <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                 <a href="#">  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i> Add  Owner Amount </h6> </a>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="Owner_view_Owner.html"><i class="fa fa-user  mr-1"></i> View Owner   </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form text-center">
+                    <div class="fully-credits">
+                       <div class="credit-card">
+                           <h3>Your Wallet Balance:-</h3>
+                           <span>COL$. 50</span>
+                       </div>
+                       <div class="card-detail">
+                           <label>Add Wallet Amount</label>
+                           <input type="text" class="form-control" id="exampleInputfirst" placeholder="Enter Add Wallet Amount">
+                       </div>
+                       <div class="credit-btns">
+                           <a href="#"><button type="submit" class="btn btn-success waves-effect waves-light m-r-30">Add Credit </button></a>
+                       </div>
+                       </div>
+                   </div> 
+                    </div>
+                    <!--  -->
+             <div class="card-tables">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left"></i> View Owner Amount </h6>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="user_addUser.html"><i class="fa fa-user  mr-1"></i> Add User  </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+                     <div class="table-reponsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                          <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                        <thead>
+                             <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 15.0781px;">S.no</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">Amount(Credit/Debit) </th>
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">Closing Balance </th>
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 90.0781px;">Payment Description </th>
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 80.0781px;">Date / Time </th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 80.156px;">Action</th>
+                            </tr>
+                        </thead>
+                           <div class="table-responsive">
+                              </div>
+                              <tbody>
+                               <tr>
+                                  <td>1</td>
+                                 <td>+ 50</td>
+                                 <td>50</td>
+                                 <td>Amount Added By Admin</td>
+                                 <td>2024-09-19 <span> 02:54 AM </span></td>
+                                 <td>
+                                    <a  href="#"><i class="fa fa-edit icon-2"></i></a>
+                                 <a href="#"><i class="fa fa-trash icon-5"></i></a>
+                                </td>
+                              </tr>
+                          
+                              </tbody>
+                            </table>
+                        </div>
+                      </div>
+                  </div>
+                   </div>
+                     </div>
+                 </div> 
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+             <!-- row start  -->
+             <div class="row">
+               <div class="col-lg-12">
+                 <div class="card footers">
+                     <div class="card-header footer text-center">
+                         © Copyright 2024 <strong><span>Car Rental </span></strong>.
+                          All Rights Reserved   Designed & Developed by 
+                          <a href="https://cyberimpulses.com/" target="_blank">CISS</a>
+                       </div>
+                  </div>
+               </div>
+            </div>
+                <!-- ROW END -->
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+   <!-- Required Jqurey -->
+   <script src="assets/plugins/Jquery/dist/jquery.min.js"></script>
+   <script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+   <script src="assets/plugins/tether/dist/js/tether.min.js"></script>
+
+   <!-- Required Fremwork -->
+   <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+   <!-- Scrollbar JS-->
+   <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+   <script src="assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+
+   <!--classic JS-->
+   <script src="assets/plugins/classie/classie.js"></script>
+
+   <!-- notification -->
+   <script src="assets/plugins/notification/js/bootstrap-growl.min.js"></script>
+
+   <!-- Sparkline charts -->
+   <script src="assets/plugins/jquery-sparkline/dist/jquery.sparkline.js"></script>
+
+   <!-- Counter js  -->
+   <script src="assets/plugins/waypoints/jquery.waypoints.min.js"></script>
+   <script src="assets/plugins/countdown/js/jquery.counterup.js"></script>
+
+   <!-- Echart js -->
+   <script src="assets/plugins/charts/echarts/js/echarts-all.js"></script>
+
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+   <script src="https://code.highcharts.com/modules/exporting.js"></script>
+   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+   <!-- custom js -->
+   <script type="text/javascript" src="assets/js/main.min.js"></script>
+   <script type="text/javascript" src="assets/pages/dashboard.js"></script>
+   <script type="text/javascript" src="assets/pages/elements.js"></script>
+   <script src="assets/js/menu.min.js"></script>
+<script>
+var $window = $(window);
+var nav = $('.fixed-button');
+$window.scroll(function(){
+    if ($window.scrollTop() >= 200) {
+       nav.addClass('active');
+    }
+    else {
+       nav.removeClass('active');
+    }
+});
+</script>
+  <!-- All PAGE DATA TABLEC SCRIPT START All PAGE DATA TABLEC SCRIPT START -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+</body>
+
+</html>

@@ -1,0 +1,520 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+<meta name="csrf-token" content="<%= csrfToken %>">
+
+  
+<style>
+   .card{
+      border-top: 4px solid #39444e;
+    border-bottom: 4px solid #39444e;
+}
+</style>
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li><a href="#"> / Report </a></li>
+                            <li class="active"> / Confirm Report</li>        
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->
+                    
+            </div>
+        <!-- ROw -->
+              <div class="row pt-3">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+                <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                 <a href="#">  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i> Add Confirm Report  </h6> </a>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="Owner_view_Owner.html"><i class="fa fa-user  mr-1"></i> View Owner   </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+                    <form id="kilfrom" method="post" action="/superadmin/confirmed_bookings">
+                      <div class="form-group row users-foarms">
+                        
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="form-group col-md-12" style="margin-bottom: 15px;">
+                          <label><strong>Select Date Type:</strong></label><br>
+                          <input type="radio" name="dateType" value="creationDate" autocomplete="off" <%= dateType === 'creationDate' ? 'checked' : '' %>> Creation Date
+                          <input type="radio" name="dateType" value="bookingDate" autocomplete="off" <%= dateType === 'bookingDate' ? 'checked' : '' %>> Booking Date
+                        </div>
+                    
+                        <div class="form-group col-md-4">
+                          <label for="exampleInputEmail" class="form-control-label"> Start Date</label>
+                          <input type="date" name="start_date" class="form-control" id="exampleInputdate" value="<%= start_date || '' %>" required>
+                        </div>
+                    
+                        <div class="form-group col-md-4">
+                          <label for="exampleInputEmail" class="form-control-label"> End Date</label>
+                          <input type="date" name="end_date" class="form-control" id="exampleInputdate" value="<%= end_date || '' %>" required>
+                        </div>
+                    
+                        <div class="form-group col-md-4">
+                          <div class="submit-btns" style="padding-top: 30px;">
+                            <button type="submit" onclick="validateForm('#kilfrom')" class="btn btn-primary waves-effect waves-light m-r-30">Send Request</button>
+                            <button type="reset" id="resetButton" class="btn btn-info waves-effect waves-light m-r-30">Reset</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                   </div>
+                 </div>
+               </div>
+            </div>      
+        <!--  -->
+
+            <!-- 1-3-block row start -->
+            <div class="row">
+                 <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left"></i> View Confirm Report </h6>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="user_addUser.html"><i class="fa fa-user  mr-1"></i> Add User  </a> -->
+                  </div>
+                  </div>
+                <div class="user-form tabs">
+                      <div class="user-form">
+                     <div class="table-reponsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                            <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                                <thead>
+                                  <tr role="row">
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 15.0781px;">Id</th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 0.0781px;">Booking Id </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="5%: activate to sort column ascending" style="width: 80.1719px;">Booking Status </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="5%: activate to sort column ascending" style="width: 80.1719px;">Vehicle Name </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="5%: activate to sort column ascending" style="width: 80.1719px;">User Name  </th>                              
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="5%: activate to sort column ascending" style="width: 80.1719px;">Owner Name  </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 55.5625px;">Source </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 80.5625px;">Destination</th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 55.5625px;">total_charge </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 55.5625px;">Refundable Charge </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 55.5625px;">Grand Total </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 70.156px;">Booking Date </th>
+                                      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 70.156px;">Payment Mode </th>
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 100.156px;">Action</th>
+                                  </tr>
+                              </thead>
+                              <div class="table-responsive">
+                                  </div>
+                              <tbody>
+                                    <% confirmedBookings.forEach((bookings, index) => { %>
+                                  <tr>
+                                    <td><%= index + 1 %></td>
+                                    <td><%= bookings.booking_id  %></td>
+                                    <td><%= bookings.booking_status %></td>
+                                    <td><%= bookings.vehicle_name %></td>
+                                    <td><%= bookings.user_first_name %> <%= bookings.user_last_name %></td>
+                                    <td><%= bookings.owner_first_name %> <%= bookings.owner_last_name %></td>
+                                    <td><%= bookings.pickup_address %></td>
+                                    <td><%= bookings.dropoff_address %></td>
+                                    <td><%= bookings.total_charge %></td>
+                                    <td><%= bookings.refundable_charge %></td>
+                                    <td><%= bookings.grand_total %></td>
+                                    <td><%= bookings.start_date %> <%= bookings.end_date %></td>
+                                    <td><%= bookings.payment_mode %></td>
+                                    <td>
+                                        <!-- <a href="#" class="tab-action"><i class="fa fa-eye"></i> View Invoice </a> -->
+                                        <a href="javascript:void(0);" class="tab-action" onclick="openImageWithDownload('<%= bookings.booking_invoice%>', '<%= bookings.booking_id %>')">
+                                          <i class="fa fa-eye"></i> View Invoice
+                                      </a>
+                                             
+                                        <a href="javascript:void(0)" class="tab-actions"  onclick="cancelBooking('<%= bookings.booking_id  %>')"  title="Delete"><i class="fa fa-times"></i> Cancel Booking </a> 
+                                    </td>
+                                  </tr>
+                                  <% }) %>
+                              </tbody>
+                            </table>
+                          <!-- <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                        <thead>
+                             <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 15.0781px;">Id</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 0.0781px;">Admin Commission</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="5%: activate to sort column ascending" style="width: 80.1719px;">Insurance Charge</th>
+                                 <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 55.5625px;">Vat Charges </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 80.5625px;">Refundable Charge</th>
+                                 <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 70.156px;">Check In Image </th>
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Net: activate to sort column ascending" style="width: 70.156px;">Check Out Image </th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 100.156px;">Action</th>
+                            </tr>
+                        </thead>
+                           <div class="table-responsive">
+                              </div>
+                              <tbody>
+                              <tr>
+                                  <td>1</td>
+                                <td>Rs 5270</td>
+                                <td>Rs 820</td>
+                                <td> Rs 210 </td>                                
+                               <td>Rs 156 </td>
+                               <td><a href=""><img src="../assets/images/car-img.png"> <img src="../assets/images/car-img-1.png"></a></td>
+                                <td><a href=""><img src="../assets/images/car-img.png"> <img src="../assets/images/car-img-1.png"></a></td>
+                                <td>
+                                  <a href="#" class="tab-action"><i class="fa fa-eye"></i> View Invoice </a>
+                                  <a href="#" class="tab-actions"><i class="fa fa-times"></i> Cancel Booking </a> 
+                             </td>
+                              </tr>
+                              <tr>
+                                  <td>2</td>
+                                   <td>Rs 5270</td>
+                                <td>Rs 820</td>
+                                <td> Rs 210 </td>                                
+                               <td>Rs 156 </td>
+                               <td><a href=""><img src="../assets/images/car-img.png"> <img src="../assets/images/car-img-1.png"></a></td>
+                                <td><a href=""><img src="../assets/images/car-img.png"> <img src="../assets/images/car-img-1.png"></a></td>
+                                <td>
+                                  <a href="#" class="tab-action"><i class="fa fa-eye"></i> View Invoice </a>
+                                  <a href="#" class="tab-actions"><i class="fa fa-times"></i> Cancel Booking </a> 
+                             </td>
+                              </tr>
+                              <tr>
+                                  <td>3</td>
+                                  <td>Rs 5270</td>
+                                <td>Rs 820</td>
+                                <td> Rs 210 </td><td>Rs 156 </td>
+                               <td><a href=""><img src="../assets/images/car-img.png"> <img src="../assets/images/car-img-1.png"></a></td>
+                                <td><a href=""><img src="../assets/images/car-img.png"> <img src="../assets/images/car-img-1.png"></a></td>
+                                <td>
+                                  <a href="#" class="tab-action"><i class="fa fa-eye"></i> View Invoice </a>
+                                  <a href="#" class="tab-actions"><i class="fa fa-times"></i> Cancel Booking </a> 
+                             </td>
+                              </tr>
+                              </tbody>
+                            </table> -->
+                        </div>
+                      </div>
+                  </div>
+                   </div>
+                   </div>
+                 </div> 
+               </div>
+         <!--  -->
+            </div>
+            <!-- 1-3-block row end -->
+
+             <!-- row start  -->
+            
+                <!-- ROW END -->
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+   <%- include ("superfooter.ejs") %>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+<script>
+  
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_type_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+   //-------------- Comman Kilvish Function for input validation start ---------------------
+      
+      function validateRequiredFields(kil) {
+   
+          const form = document.querySelector(`${kil}`); 
+          const inputs = form.querySelectorAll('input[required], select[required], textarea[required]'); // Get only required inputs
+          let isValid = true;
+      
+          
+      
+          // Remove previous error messages and borders
+          form.querySelectorAll('.error-message').forEach(errorMsg => errorMsg.remove());
+          inputs.forEach(input => {
+              input.style.border = ''; // Reset borders
+          });
+      
+          inputs.forEach(input => {
+              if (!input.value.trim()) {  // If the required field is empty
+                  isValid = false;
+                  input.style.border = '2px solid red'; // Set border to red for empty required fields
+                  addErrorMessage(input.parentNode, "This Field is Required."); // Add error message
+              }
+          });
+      
+          return isValid;
+      }
+   
+      // Add real-time validation for each required field
+   function addRealTimeValidation(kil) {
+       const form = document.querySelector(`${kil}`); 
+       const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+   
+       inputs.forEach(input => {
+           // Listen for 'input' and 'change' events on required fields
+           input.addEventListener('input', function () {
+               if (input.value.trim()) {
+                   // If the input is filled, remove red border and error message
+                   input.style.border = '';
+                   const errorMessage = input.parentNode.querySelector('.error-message');
+                   if (errorMessage) {
+                       errorMessage.remove();
+                   }
+               }
+           });
+           input.addEventListener('change', function () {
+               if (input.value.trim()) {
+                   // For select fields, check if an option is selected
+                   input.style.border = '';
+                   const errorMessage = input.parentNode.querySelector('.error-message');
+                   if (errorMessage) {
+                       errorMessage.remove();
+                   }
+               }
+           });
+       });
+   }
+   
+   // Combined validation function
+   function validateForm(kil) {
+      
+         if(!validateRequiredFields(kil)){
+            event.preventDefault();
+         }
+      }
+   
+      // Add real-time validation once the document is loaded
+   document.addEventListener('DOMContentLoaded', () => {
+       addRealTimeValidation('#kilfrom');  // Activate real-time validation
+   });
+      
+      
+   function validateKilvishInput(event) 
+   {
+          const inputField = event.target;
+      
+          // General valid character sets
+          // let validCharacters = /^[a-zA-Z0-9@,._\s-]*$/;
+      
+          let validCharacters = /^[a-zA-Z\s]*$/; // only char, no special char no numbers 
+   
+          // Use parentNode for regular inputs, container for checkboxes
+          const container = inputField.closest('.col-lg-12') || inputField.closest('.form-group') || inputField.closest('div');
+          const inputParent = inputField.parentNode;
+      
+          // Remove previous error message and border
+          let errorMessage = inputParent.querySelector('.error-message');
+          if (errorMessage) errorMessage.remove();
+          inputField.style.border = ''; // Reset border
+      
+          // Custom validations based on input name
+         if (inputField.name === 'start_date' || inputField.name === 'end_date' ) 
+         {
+            validCharacters = /^(?:\d{4}[-\/]\d{2}[-\/]\d{2})$/; 
+            const inputValue = inputField.value.trim();
+            const inputDate = new Date(inputValue.replace(/[-\/]/g, '/'));
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // Set to midnight for comparison
+   
+                           // Check if the date is in the past
+            if (inputDate < today) {
+               addErrorMessage(inputParent, 'The date cannot be in the past.');
+               inputField.style.border = '2px solid red';
+               
+               if (event.type === 'change') {
+                     inputField.value = ''; // Clear the input field on change
+               }
+               
+               return; // Exit the function after handling the error
+            }
+            inputField.style.border = '';
+         }
+            
+   }
+      
+      // Function to display error messages under the input field or container for checkboxes
+      function addErrorMessage(parent, message)
+      {
+          if (!parent.querySelector('.error-message')) {
+              const errorMessage = document.createElement('div');
+              errorMessage.className = 'error-message';
+              errorMessage.style.color = 'red';
+              errorMessage.style.fontSize = '12px';
+              errorMessage.innerText = message;
+              parent.appendChild(errorMessage);
+          }
+      }
+   
+   </script>
+   
+   <script>
+ // Function to open the SweetAlert slideshow
+function openImageSlideshow(imagesString) {
+    const images = imagesString.split(','); // Split the images by comma
+    let currentIndex = 0;
+
+    // Function to update the content inside SweetAlert
+    function updateImage(index) {
+        const totalImages = images.length;
+        const imgSrc = `/images/vehicleUploads/${images[index].trim()}`;
+        const imageTag = `<img src="${imgSrc}" style="width:100%; height:auto;" />`;
+        const navigationText = `${index + 1} of ${totalImages} Images`;
+
+        // Display SweetAlert
+        Swal.fire({
+            title: navigationText, // Display image count
+            html: imageTag,
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Next',
+            cancelButtonText: 'Previous',
+            allowOutsideClick: false,
+            showCloseButton: true,
+            preConfirm: () => {
+                if (currentIndex < totalImages - 1) {
+                    currentIndex++;
+                    updateImage(currentIndex); // Go to next image
+                }
+            },
+            preCancel: () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateImage(currentIndex); // Go to previous image
+                }
+            }
+        });
+    }
+
+    // Start slideshow with the first image
+    updateImage(currentIndex);
+}
+
+
+  // Function to open the SweetAlert with a download option
+  function openImageWithDownload(imagesString, bookingId) {
+        console.log("bookingId-->",bookingId)
+    if (!imagesString || imagesString.trim() === "") {
+        Swal.fire({
+            title: "No Invoice Available",
+            text: "There are no images to display.",
+            icon: "info",
+            confirmButtonText: "OK",
+        });
+        return;
+    }
+
+    const images = imagesString.split(','); // Split the images by comma
+    let currentIndex = 0;
+
+    // Function to update the content inside SweetAlert
+    function updateImage(index) {
+        const totalImages = images.length;
+        const imgSrc = `/images/vehicleUploads/${images[index].trim()}`;
+        const imageTag = `<img src="${imgSrc}" style="width:100%; height:auto;" />`;
+        const navigationText = `${index + 1} of ${totalImages} Images`;
+        const downloadFileName = `BookingId#${bookingId}_Invoice.jpg`; // Include bookingId in the filename
+
+        // Display SweetAlert with download button
+        Swal.fire({
+            title: navigationText, // Display image count
+            html: `
+                ${imageTag}
+                <br>
+                <a href="${imgSrc}" download="${downloadFileName}" class="swal2-download-button">
+                    <button class="swal2-confirm swal2-styled">Download</button>
+                </a>
+            `,
+            showCancelButton: false,
+            showConfirmButton: false,
+            confirmButtonText: 'Next',
+            cancelButtonText: 'Previous',
+            allowOutsideClick: false,
+            showCloseButton: true,
+            preConfirm: () => {
+                if (currentIndex < totalImages - 1) {
+                    currentIndex++;
+                    updateImage(currentIndex); // Go to next image
+                }
+            },
+            preCancel: () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateImage(currentIndex); // Go to previous image
+                }
+            }
+        });
+    }
+
+    // Start slideshow with the first image
+    updateImage(currentIndex);
+}
+
+   function cancelBooking(booking_id) 
+   {
+    
+     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      // Use SweetAlert2 for a stylish confirmation
+      Swal.fire({
+             title: 'Are you sure?',
+            // html: `<span style="color: red;">All the Models & Data Related to Vechicle Type : <span style="font-weight: bold; color: red; background-color: yellow;">${type_name}</span> Will be Permanently Deleted from all Records.</span>`,
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             confirmButtonText: 'Yes, cancel Booking'
+         }).then((result) => {
+             if (result.isConfirmed) {
+                 // Make an AJAX request to delete the user
+                  $.ajax({
+                             url: '/superadmin/cancelBookingStatus',
+                             type: 'POST',
+                             data: { id:booking_id ,  _csrf: csrfToken},
+                             success: function(response) {
+                               if (response.success == true) {
+                                 document.cookie = `rental_msg=${response.msg}`;
+                                 window.location.href = '/superadmin/confirmed_bookings'
+                               }else{
+                                // alert(response.msg)
+                                  document.cookie = `rental_msg=${response.msg}`;
+                               window.location.href = '/superadmin/confirmed_bookings'
+                               }
+                             },
+                             error: function(error) {
+                                 console.error('Error:', error);
+                             }
+                         });
+             }
+         });
+   }
+   
+   </script>
+<script>
+  document.getElementById('resetButton').addEventListener('click', function () {
+      // Reset the form data
+      document.getElementById('kilfrom').reset();
+
+      // Redirect to the specific URL to refresh
+      window.location.href = '/superadmin/confirmed_bookings';
+  });
+</script>

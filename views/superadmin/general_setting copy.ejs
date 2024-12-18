@@ -1,0 +1,259 @@
+
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+
+
+            <style>
+               .card{
+                  border-top: 4px solid #39444e;
+               border-bottom: 4px solid #39444e;
+            }
+            </style>
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li class="active"><a href="#"> / Setting  </a></li>
+                            <!-- <li class="active"> / Add Video </li>         -->
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->       
+            </div>
+
+            <!-- 1-3-block row start -->
+            <div class="row pt-3">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+                <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                 <a href="#">  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i> Add Setting  </h6> </a>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="Owner_view_Owner.html"><i class="fa fa-user  mr-1"></i> View Owner   </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+
+
+                     <form id="kileditfrom" action="/superadmin/general_setting" method="POST" >
+
+                        <div class="form-group row users-foarms">
+                    
+                            <!-- Google Map Key -->
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-globe icon-set"></i>
+                                <label for="map_key" class="form-control-label">Google Map Key </label>
+                                <input type="text" class="form-control" name="map_key" placeholder="Ener Google Map Key"
+                                       value="<%= credentials && credentials.map_key ? credentials.map_key.slice(0, 4) + '****' + credentials.map_key.slice(-4) : '' %>">
+
+                            </div>
+                    
+                    
+                            <!-- <div class="form-group col-md-4">
+                                <i class="fa fa-globe icon-set"></i>
+                                <label for="stripe_secret_key" class="form-control-label">Stripe Secret Key</label>
+                                <input type="text" class="form-control" name="stripe_secret_key" placeholder=""
+                                    value="<%= credentials && credentials.stripe_secret_key ? credentials.stripe_secret_key : '' %>">
+                         
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-globe icon-set"></i>
+                                <label for="stripe_publish_key" class="form-control-label">Stripe Publish Key</label>
+                                <input type="text" class="form-control" name="stripe_publish_key" placeholder=""
+                                    value="<%= credentials && credentials.stripe_publish_key ? credentials.stripe_publish_key : '' %>">
+                            </div> -->
+
+                            <!-- Stripe Secret Key -->
+                              <div class="form-group col-md-4">
+                                 <i class="fa fa-globe icon-set"></i>
+                                 <label for="stripe_secret_key" class="form-control-label">Stripe Secret Key</label>
+                                 <input type="text" class="form-control" name="stripe_secret_key" placeholder=""
+                                    value="<%= credentials && credentials.stripe_secret_key ? credentials.stripe_secret_key.slice(0, 4) + '****' + credentials.stripe_secret_key.slice(-4) : '' %>">
+                              </div>
+
+                              <!-- Stripe Publish Key -->
+                              <div class="form-group col-md-4">
+                                 <i class="fa fa-globe icon-set"></i>
+                                 <label for="stripe_publish_key" class="form-control-label">Stripe Publish Key</label>
+                                 <input type="text" class="form-control" name="stripe_publish_key" placeholder=""
+                                    value="<%= credentials && credentials.stripe_publish_key ? credentials.stripe_publish_key.slice(0, 4) + '****' + credentials.stripe_publish_key.slice(-4) : '' %>">
+                              </div>
+
+                                   <!-- Stripe Secret Key -->
+                                   <div class="form-group col-md-4">
+                                    <i class="fa fa-globe icon-set"></i>
+                                    <label for="paypal_client_id" class="form-control-label">Paypal Client Id</label>
+                                    <input type="text" class="form-control" name="paypal_client_id" placeholder=""
+                                       value="<%= credentials && credentials.paypal_client_id ? credentials.paypal_client_id.slice(0, 4) + '****' + credentials.paypal_client_id.slice(-4) : '' %>">
+                                 </div>
+   
+                                 <!-- Stripe Publish Key -->
+                                 <div class="form-group col-md-4">
+                                    <i class="fa fa-globe icon-set"></i>
+                                    <label for="paypal_secret_key" class="form-control-label">Paypal Secret Key</label>
+                                    <input type="text" class="form-control" name="paypal_secret_key" placeholder=""
+                                       value="<%= credentials && credentials.paypal_secret_key ? credentials.paypal_secret_key.slice(0, 4) + '****' + credentials.paypal_secret_key.slice(-4) : '' %>">
+                                 </div>
+                                        
+                                                
+                            <!-- Email Details -->
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-globe icon-set"></i>
+                                <label for="email_app_email" class="form-control-label">Email App Email</label>
+                                <input type="text" class="form-control" name="email_app_email" placeholder=""
+                                    value="<%= credentials && credentials.email_app_email ? credentials.email_app_email : '' %>">                    
+                            </div>
+
+
+                            <div class="form-group col-md-4">
+                              <i class="fa fa-globe icon-set"></i>
+                             
+                              <label for="email_app_password" class="form-control-label">Email App Password</label>
+                              <input type="password" class="form-control" name="email_app_password" placeholder=""
+                                  value="<%= credentials && credentials.email_app_password ? credentials.email_app_password : '' %>">
+                  
+                             
+                          </div>
+
+                        <div class="form-group col-md-4">
+                           <i class="fa fa-globe icon-set"></i>
+                        
+                           <label for="email_smtp_host" class="form-control-label">Email SMTP Host</label>
+                           <input type="text" class="form-control" name="email_smtp_host" placeholder=""
+                               value="<%= credentials && credentials.email_smtp_host ? credentials.email_smtp_host : '' %>">
+                       </div>
+               
+                  
+
+                    
+                            <!-- VAT Tax Rate -->
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-user-circle icon-set"></i>
+                                <label for="vat_tax_rate" class="form-control-label">Admin Vat Charge (In Percentage)</label>
+                                <input type="text" name="vat_tax_rate" class="form-control" value="<%= credentials && credentials.vat_tax_rate ? credentials.vat_tax_rate : '10' %>">
+                            </div>
+                    
+                            <!-- Submit Button -->
+                            <div class="form-group col-md-12">
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-30">Submit</button>
+                            </div>
+                        </div>
+                    
+                    </form>
+
+                              <!-- alert msgs -->
+                              <% if ( output.includes('successfully') ) { %>
+                                 <p class="success-text"><%= output %></p>
+                             <% } else { %>
+                                 <p class="error-text"><%= output %></p>
+                             <% } %>
+                     <!-- /alert msgs -->  
+                    
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+
+                  
+               <!-- <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left"></i> View Setting </h6>
+                 </div>
+                    <div class="heads-rights">
+               
+                  </div> -->
+
+
+
+                  <!-- <div class="user-form">
+                     <div class="table-reponsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                          <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                        <thead>
+                             <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 10.0781px;">Id</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 40.0781px;">Google Map Key </th>
+                               <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 40.0781px;">Admin Commission (In Percentage)</th>
+                               <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 40.0781px;">Admin Vat Charge (In Percentage)</th>
+                               <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 40.0781px;">Extra Fuel Charges</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 40.0781px;">Affiliation Sender Fee</th>
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 40.0781px;">Booking Security Amount</th>
+                                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 30.0781px;">Operational Fee</th>
+                                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 30.0781px;">Vat And Other Charges Percentage </th>
+                                   <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 30.0781px;">Discount Percentage For Vehicle Insurance</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 50.156px;">Action</th>
+                            </tr>
+                        </thead>
+                           <div class="table-responsive">
+                              </div>
+                              <tbody>
+                             <tr>
+                                  <td>1</td>
+                                 <td> AIzaSyDlEn34-goBHulOLyVRE-3wVvoH_cJnAv8 </td>
+                                 <td> 10%  </td>
+                                  <td> 10%  </td>
+                                 <td> 25 </td>
+                                 <td> 10%  </td>
+                                  <td> 300  </td>
+                                  <td> 10%  </td>
+                                   <td> 10%  </td>
+                                   <td> 10%  </td>
+                                 <td><a href="#"><i class="fa fa-trash icon-5"></i></a></td>
+                              </tr>
+                                 <tr>
+                                  <td>2</td>
+                                 <td> AIzaSyDlEn34-goBHulOLyVRE-3wVvoH_cJnAv8 </td>
+                                 <td> 20%  </td>
+                                  <td> 20%  </td>
+                                 <td> 35 </td>
+                                 <td> 20%  </td>
+                                  <td> 200  </td>
+                                  <td> 20%  </td>
+                                   <td> 20%  </td>
+                                   <td> 20%  </td>
+                                 <td><a href="#"><i class="fa fa-trash icon-5"></i></a></td>
+                              </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                      </div>
+                  </div>
+                   </div> -->
+
+
+
+                 </div> 
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+   
+   <%- include ("superfooter.ejs") %>

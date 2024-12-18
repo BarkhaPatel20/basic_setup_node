@@ -1,0 +1,1007 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+<style>
+   .card{
+      border-top: 4px solid #39444e;
+    border-bottom: 4px solid #39444e;
+}
+</style>
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li class="active"><a href="#"> / Vehical Model </a></li>
+                            <!-- <li class="active"> / Add Video </li>         -->
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->       
+            </div>
+
+            <!-- 1-3-block row start -->
+            <div class="row pt-3">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+                <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                 <a href="#">  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i> Add Vehical Model  </h6> </a>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="Owner_view_Owner.html"><i class="fa fa-user  mr-1"></i> View Owner   </a> -->
+                  </div>
+                  </div>
+
+                           <!-- alert msgs -->
+                                <% if ( output.includes('successfully') ) { %>
+                                    <p class="success-text"><%= output %></p>
+                                <% } else { %>
+                                    <p class="error-text"><%= output %></p>
+                                <% } %>
+                        <!-- /alert msgs -->  
+
+
+                  <form id="kilfrom" method="post" action="/superadmin/vehicleModel" >
+                     <div class="user-form">
+                         <div class="form-group row users-foarms">
+                             <div class="form-group col-md-4">
+                                 <label for="vehicalMake" class="form-control-label">Vehicle Make</label>
+                                 <select name="vehical_make" class="form-control" id="vehicalMake" required>
+                                     <option value="">Select Vehicle</option>
+                                     <!-- Dynamic options will be inserted here -->
+                                     <% makes.forEach(make => { %>
+                                         <option value="<%= make.id %>"><%= make.make_name %></option>
+                                     <% }) %>
+                                 </select>
+                             </div>
+                             <!-- <div class="form-group col-md-4">
+                                 <label for="modelName" class="form-control-label">Model</label>
+                                 <input onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" type="text" name="model_name" class="form-control" id="modelName" placeholder="Enter Model" required>
+
+                                 <div id="errorText" style="color: red;"></div>
+                                 <div id="kilText" style="color: green;"></div>
+                                 <div id="kilError" style="color: red;"></div>
+                             </div> -->
+
+
+
+                             
+            <div class="form-group col-md-4">
+                <div class="form-group add-admin col-md-12" id="subcategories-container">
+                    <label for="modelName" class="form-control-label">Model</label>
+                  <div class="subcategories">
+                   
+  
+  
+                    <div class="input-group mb-2">
+                      <input type="text" class="form-control" name="models[]" placeholder="Enter Model Name" onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" required>
+                      <div class="input-group-append">
+                      <button class="btn btn-danger removeSubcategory" type="button">Remove</button>
+                      </div>
+                    </div>
+  
+  
+                  </div>
+                  <button type="button" class="btn btn-primary mt-4" id="addSubcategory">Add More Models</button>
+                </div>
+                
+              </div>
+
+                             <div class="form-group col-md-12">
+                                 <button onclick="validateForm()" type="submit" class="btn btn-success waves-effect waves-light m-r-30">Submit</button>
+                             </div>
+                         </div>
+                     </div>
+                 </form>
+
+                          <!-- alert msgs -->
+                          <% if ( output.includes('successfully') ) { %>
+                            <p class="success-text"><%= output %></p>
+                        <% } else { %>
+                            <p class="error-text"><%= output %></p>
+                        <% } %>
+                <!-- /alert msgs -->  
+                 
+
+
+
+                 </div>
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left"></i> View Vehical Model </h6>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="user_addUser.html"><i class="fa fa-user  mr-1"></i> Add User  </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+
+
+
+
+                     
+
+                     <div class="table-responsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                            <div class="row">
+                                <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th style="width: 15.0781px;">S.no</th>
+                                            <th style="width: 50.0781px;">Vehicle Make</th>
+                                            <th style="width: 50.0781px;">Models</th>
+                                            <th style="width: 50.0781px;">Image</th>
+                                            <th style="width: 80.156px;">Status</th>
+                                            <th style="width: 80.156px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% makes.forEach((make, index) => { %>
+                                        <tr>
+                                            <td><%= index + 1 %></td>
+                                            <td><%= make.make_name %></td>
+                                            <td>
+                                                <% if (make.models_name) { %>
+                                                    <ul style="list-style-type:circle;">
+                                                        <% JSON.parse(make.models_name).forEach((model) => { %>
+                                                            <li><%= model %></li>
+                                                        <% }) %>
+                                                    </ul>
+                                                <% } else { %>
+                                                    No models
+                                                <% } %>
+                                            </td>
+                                            <!-- <td>
+                                                <% if (make.make_image) { %>
+                                                    <a href="/images/vehicleUploads/<%= make.make_image %>" target="_blank">
+                                                        <img class="img-circle" src="/images/vehicleUploads/<%= make.make_image %>" alt="make image" style="width:50px; height:50px;">
+                                                    </a>
+                                                <% } else { %>
+                                                    No image
+                                                <% } %>
+                                            </td> -->
+
+
+                                            <td>
+                                                <% if (make.make_image) { 
+                                                    let images = make.make_image.split(','); // Split the comma-separated images
+                                                %>
+                                                    <!-- Show only the first image in the table -->
+                                                    <a href="javascript:void(0);" onclick="openImageSlideshow('<%= images.join(',') %>')">
+                                                        <img class="img-circle" src="/images/vehicleUploads/<%= images[0] %>" alt="make image" style="width:50px; height:50px;">
+                                                    </a>
+                                                <% } else { %>
+                                                    No image
+                                                <% } %>
+                                            </td>
+                                            
+                                            <!-- <td>
+                                                <% if (make.status === 'Active') { %>
+                                                    <span class="badge badge-success">Active</span>
+                                                <% } else { %>
+                                                    <span class="badge badge-danger">Inactive</span>
+                                                <% } %>
+                                            </td> -->
+
+
+
+
+                                            <td class="status-container" data-user-id="<%=  make.id %>" data-user-status="<%= make.status %>">
+                                                <div >
+                                                  <% if (make.status == 'Active') { %>
+                                                    <img src="../images/icons/active.png" class="status-image" style="width:30px;height:30px;">
+                                                  <% } else { %>
+                                                    <img src="../images/icons/inactive.png" class="status-image" style="width:30px;height:30px;">
+                                                  <% } %>
+                                                  <div class="status-overlay"></div>
+                                                </div>
+                                               
+                        
+                                                <% if (make.status == 'Active') { %>
+                                                  <p id="msg<%=  make.id %>" style="color: rgb(255, 58, 9);"></p>
+                                                  <p class="kilstatus" style="color: green;"> Activated</p>
+                                                  <% } else { %>
+                                                    <p id="msg<%=  make.id %>" style="color: green;"></p>
+                                                    <p class="kilstatus" style="color: red;"> Deactivated</p>
+                        
+                                                    <% } %>
+                        
+                                            
+                        
+                                              </td>                                 
+
+                                            <td>
+                                             <a href="javascript:void(0)" onclick="editMake('<%= make.id %>', '<%= make.make_name %>', '<%= make.models_name %>')"  title="Update">
+                                                 <i class="fa fa-edit icon-2"></i>
+                                             </a>
+                                             <a href="javascript:void(0)" onclick="deleteMake('<%= make.id  %>', '<%= make.make_name  %>')"  title="Delete">
+                                                 <i class="fa fa-trash icon-5"></i>
+                                             </a>
+
+
+
+                                             <% if (make.status === 'Active') { %>
+                                              
+                                                <a href="javascript:void(0)" onclick="changeMakeStatus('<%= make.id  %>', 'Inactive', '<%= make.make_name %>')"  title="Make Inactive" >
+                                                 
+                                                    <i class="fa fa-times icon-4"></i>
+                                                </a>
+                                              <% } else { %>
+                                              
+                                                <a href="javascript:void(0)" onclick="changeMakeStatus('<%= make.id  %>', 'Active', '<%= make.make_name %>')"  title="Make Active">
+                                                    <i class="fa fa-check-square-o icon-3"></i>
+                                                </a>
+                                              <% } %>
+
+                                           
+                                         </td>
+                                         
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
+
+
+
+                   </div>
+                 </div> 
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+             
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+   <%- include ("superfooter.ejs") %>
+  
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+
+<script>
+
+   //-------------- Comman Kilvish Function for input validation start ---------------------
+   
+   
+   
+   
+   function validateRequiredFields() {
+       const form = document.querySelector('#kilfrom'); 
+       const inputs = form.querySelectorAll('input[required], select[required], textarea[required]'); // Get only required inputs
+       let isValid = true;
+   
+       
+   
+       // Remove previous error messages and borders
+       form.querySelectorAll('.error-message').forEach(errorMsg => errorMsg.remove());
+       inputs.forEach(input => {
+           input.style.border = ''; // Reset borders
+       });
+   
+       inputs.forEach(input => {
+           if (!input.value.trim()) {  // If the required field is empty
+               isValid = false;
+               input.style.border = '1px solid red'; // Set border to red for empty required fields
+               addErrorMessage(input.parentNode, "This Field is Required."); // Add error message
+           }
+       });
+   
+       return isValid;
+   }
+
+   // Add real-time validation for each required field
+function addRealTimeValidation() {
+    const form = document.querySelector('#kilfrom');
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+
+    inputs.forEach(input => {
+        // Listen for 'input' and 'change' events on required fields
+        input.addEventListener('input', function () {
+            if (input.value.trim()) {
+                // If the input is filled, remove red border and error message
+                input.style.border = '';
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
+            }
+        });
+        input.addEventListener('change', function () {
+            if (input.value.trim()) {
+                // For select fields, check if an option is selected
+                input.style.border = '';
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
+            }
+        });
+    });
+}
+
+   
+   
+   
+   // Combined validation function
+   function validateForm() {
+   
+      if(!validateRequiredFields()){
+         event.preventDefault();
+      }
+   }
+
+   // Add real-time validation once the document is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    addRealTimeValidation();  // Activate real-time validation
+});
+   
+   
+   function validateKilvishInput(event) {
+       const inputField = event.target;
+   
+       // General valid character sets
+       // let validCharacters = /^[a-zA-Z0-9@,._\s-]*$/;
+   
+       let validCharacters = /^[a-zA-Z\s]*$/; // only char, no special char no numbers 
+   
+       // Define allowed image file types
+       const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp', 'image/svg+xml'];
+   
+       // Use parentNode for regular inputs, container for checkboxes
+       const container = inputField.closest('.col-lg-12') || inputField.closest('.form-group') || inputField.closest('div');
+       const inputParent = inputField.parentNode;
+   
+       // Remove previous error message and border
+       let errorMessage = inputParent.querySelector('.error-message');
+       if (errorMessage) errorMessage.remove();
+       inputField.style.border = ''; // Reset border
+   
+       // Custom validations based on input name
+       if (inputField.name === 'description') {
+           validCharacters = /^[a-zA-Z0-9@,._\s-'"*]*$/;
+   
+           // Check length limit
+           if (inputField.value.length > 400) {
+               addErrorMessage(inputParent, 'Input exceeds the maximum length of 400 characters!');
+               inputField.style.border = '1px solid red';
+               inputField.value = inputField.value.substring(0, 400); // Truncate the input
+               return;
+           }
+       } else if (inputField.name === 'contact' || inputField.name === 'contact') {
+           // Only numbers allowed, between 7 and 10 digits
+           validCharacters = /^\d{7,10}$/;
+       }else if (inputField.name === 'age') {
+           // Only numbers allowed, between 7 and 10 digits
+           validCharacters = /^\d{2,2}$/;
+             // Custom validation: Ensure age is 18 or above
+                 if (inputField.value && parseInt(inputField.value) < 18 && event.type === 'change') {
+                     addErrorMessage(inputParent, 'Age must be 18 or above!');
+                     inputField.style.border = '1px solid red';
+                     inputField.value = ''; // Clear the input field if age is below 18
+                     return;
+                 }else if(inputField.value && parseInt(inputField.value) < 18 ){
+                   addErrorMessage(inputParent, 'Age must be 18 or above!');
+                     inputField.style.border = '1px solid red';                 
+   
+                 }
+               }else if (inputField.name === 'model_name' || inputField.name ==='models[]') {
+                  // Only numbers allowed, between 7 and 10 digits
+                  validCharacters = /^[a-zA-Z0-9]{4,20}$/;
+               }else if(inputField.type ==='email'){
+                  validCharacters = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email pattern
+               }else if(inputField.type ==='password'){
+   
+                               const hasSequentialChars = (password) => {
+                                    console.log("passworddddddd -", password)
+                                    const length = password.length;
+                                    
+                                    // Check for ascending sequences (e.g., "123", "abc")
+                                    for (let i = 0; i < length - 3; i++) {
+                                       if (password.charCodeAt(i + 1) === password.charCodeAt(i) + 1 &&
+                                             password.charCodeAt(i + 2) === password.charCodeAt(i) + 2 &&
+                                             password.charCodeAt(i + 3) === password.charCodeAt(i) + 3) {
+                                             return true; // Ascending sequence found
+                                       }
+                                    }
+   
+                                    // Check for descending sequences (e.g., "321", "cba")
+                                    for (let i = 0; i < length - 3; i++) {
+                                       if (password.charCodeAt(i + 1) === password.charCodeAt(i) - 1 &&
+                                             password.charCodeAt(i + 2) === password.charCodeAt(i) - 2 &&
+                                             password.charCodeAt(i + 3) === password.charCodeAt(i) - 3) {
+                                             return true; // Descending sequence found
+                                       }
+                                    }
+                                    
+                                    return false; // No sequential characters
+                                 };
+   
+                  
+   
+                  validCharacters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
+   
+   
+                                             // Check if password meets the required pattern
+                              if (!validCharacters.test(inputField.value)) {
+                                 addErrorMessage(inputParent, 'Password must be at least 12 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.');
+                                 inputField.style.border = '1px solid red';
+                                 if (event.type === 'change') {   inputField.value = '';  }
+                                 return; // Stop further validation
+                              }
+   
+                              // Check for sequential characters
+                              if (hasSequentialChars(inputField.value)) {
+                                 addErrorMessage(inputParent, 'Password should not contain sequential characters.');
+                                 inputField.style.border = '1px solid red';
+                                    if (event.type === 'change') {   inputField.value = '';  }
+                                 return; // Stop further validation
+                              }
+   
+   
+                              // Function to check for sequential characters in the password
+                    
+                                                      
+   
+   
+   
+               }
+                 
+   
+               
+   
+   
+   
+       // Handle file input validation
+       if (inputField.type === 'file') {
+           const file = inputField.files[0];
+           if (file && !validImageTypes.includes(file.type)) {
+               addErrorMessage(inputParent, 'Please select a valid image file (JPEG, PNG, etc.)');
+               inputField.value = ''; // Clear the file input field
+               inputField.style.border = '1px solid red';
+               return;
+           }
+       } else {
+           // For normal text/number input validation
+           if (event.type === 'keyup') {
+               if (!validCharacters.test(inputField.value)) {
+                   addErrorMessage(inputParent, 'Invalid character entered!');
+                   inputField.style.border = '1px solid red';
+                   
+               }
+           }
+   
+           if (event.type === 'change') {
+               if (!validCharacters.test(inputField.value)) {
+                   // On invalid input during change event, clear the field and show an error
+                   inputField.value = ''; // Clear invalid input
+                   addErrorMessage(inputParent, 'Invalid character or format!');
+                   inputField.style.border = '1px solid red';
+               } else {
+                   // Clear error when value is corrected
+                   inputField.style.border = '';
+                   if (errorMessage) errorMessage.remove();
+               }
+           }
+       }
+   }
+   
+   // Function to display error messages under the input field or container for checkboxes
+   function addErrorMessage(parent, message) {
+       if (!parent.querySelector('.error-message')) {
+           const errorMessage = document.createElement('div');
+           errorMessage.className = 'error-message';
+           errorMessage.style.color = 'red';
+           errorMessage.style.fontSize = '12px';
+           errorMessage.innerText = message;
+           parent.appendChild(errorMessage);
+       }
+   }
+   
+   
+   
+   
+   
+   //-------------- Comman Kilvish Function for input validation End ---------------------
+   
+   
+   
+   
+   </script>
+
+   <script>
+
+    
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_make_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+
+//-------------- Delete Make 
+
+
+function deleteMake(makeId,makeName) {
+
+// Use SweetAlert2 for a stylish confirmation
+Swal.fire({
+          title: 'Are you sure?',
+          html: `<span style="color: red;">All the Models & Data Related to Make : <span style="font-weight: bold; color: red; background-color: yellow;">${makeName}</span> Will be Permanently Deleted from all Records.</span>`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete Vehicle Make'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Make an AJAX request to delete the user
+                                  $.ajax({
+                          url: '/superadmin/deleteMake',
+                          type: 'POST',
+                          data: { id: makeId },
+                          success: function(response) {
+                            if (response.success == true) {
+                              document.cookie = `rental_msg=${response.msg}`;
+                              window.location.href = '/superadmin/vehicleModel'
+                            }else{
+                             // alert(response.msg)
+                               document.cookie = `rental_msg=${response.msg}`;
+                            window.location.href = '/superadmin/vehicleModel'
+                            }
+                          },
+                          error: function(error) {
+                              console.error('Error:', error);
+                          }
+                      });
+          }
+      });
+
+
+
+}
+
+
+
+   </script>
+
+
+
+
+<script>
+
+
+//================= Start KILupdate multiple JSON ======================
+function editMake(makeId, makeName, models) {
+    let modelList = JSON.parse(models); // Parse the models JSON array
+
+    // Check if modelList is empty
+    if (modelList.length === 0) {
+        // Show alert for no models added
+        Swal.fire({
+            title: 'No Models Added Yet',
+            showConfirmButton: false, // No confirmation button
+            showCancelButton: false, // No cancel button
+            timer: 500, // Show for 0.5 seconds
+            backdrop: 'rgba(0, 0, 0, 0.5)', // Optional backdrop effect
+        });
+        return; // Exit the function early
+    }
+
+    // Create HTML for the bubble format for each model with a red X
+    const bubbleHtml = modelList.map((model, index) => `
+        <div id="model-${index}" class="bubble" style="display: inline-block; margin: 5px; padding: 5px 10px; background-color: #f0f0f0; border-radius: 20px;">
+            ${model} <span onclick="removeModel(${index})" style="color: red; cursor: pointer;">&times;</span>
+        </div>
+    `).join('');
+
+    // Display SweetAlert with the Make name and models
+    Swal.fire({
+        title: `Edit Make: ${makeName}`,
+        html: `
+            <div>
+                <h5>Models</h5>
+                <div id="model-container">${bubbleHtml}</div>
+            </div>
+        `,
+        showConfirmButton: true, // Show the default confirmation button
+        confirmButtonText: 'Update', // Rename confirmation button to "Update"
+        showCancelButton: true, // Show the Cancel button
+        cancelButtonText: 'Cancel',
+        focusCancel: true,
+        backdrop: 'rgba(0, 0, 0, 0.5)', // Optional: Adds a backdrop effect
+        allowOutsideClick: false, // Prevents closing when clicking outside
+    }).then((result) => {
+        if (result.isConfirmed) {
+            updateModels(makeId); // Call updateModels if "Update" is clicked
+        }
+    });
+
+    // Store the models array globally to keep track of removals
+    window.modelList = modelList;
+}
+
+function removeModel(index) {
+    // Remove the model from the global array
+    window.modelList.splice(index, 1);
+
+    // Update the model list in the SweetAlert modal
+    const modelContainer = document.getElementById('model-container');
+    
+    // Rebuild the entire model list to ensure the indices are correct
+    const updatedHtml = window.modelList.map((model, newIndex) => `
+        <div id="model-${newIndex}" class="bubble" style="display: inline-block; margin: 5px; padding: 5px 10px; background-color: #f0f0f0; border-radius: 20px;">
+            ${model} <span onclick="removeModel(${newIndex})" style="color: red; cursor: pointer;">&times;</span>
+        </div>
+    `).join('');
+    
+    modelContainer.innerHTML = updatedHtml; // Update the HTML content to refresh the indices
+}
+
+    function updateModels(makeId) {
+        // Send the updated model list to the backend
+        const updatedModels = window.modelList;
+        fetch(`/superadmin/updateModels`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ models: updatedModels,id:makeId})
+        }).then(response => {
+            if (response.ok) {
+                Swal.fire('Success!', 'Models have been updated', 'success').then(() => {
+                    location.reload(); // Reload the page to reflect changes
+                });
+            } else {
+                Swal.fire('Error', 'There was an error updating the models', 'error');
+            }
+        }).catch(err => {
+            console.error('Error:', err);
+            Swal.fire('Error', 'There was an error updating the models', 'error');
+        });
+    }
+
+
+    function updateModelswithoutrefresh(makeId) {
+    // Send the updated models list to the server for updating the database
+    const updatedModels = window.modelList;
+
+    $.ajax({
+        type: 'POST',
+        url: `/superadmin/updateModels`,
+        data: { models: updatedModels ,id:makeId },
+        success: function(response) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Models updated successfully!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
+        error: function(error) {
+            console.error('Error updating models:', error);
+        }
+    });
+
+
+}
+
+//================= End KILupdate multiple JSON ======================
+
+
+    //-------------- change Make status 
+
+
+    function changeMakeStatus(makeId, newStatus,makeName ) {
+  event.preventDefault(); 
+  var action;
+if(newStatus== 'Inactive'){
+  action = 'deactivated'
+}else{
+  action = 'activated '
+}
+ 
+
+  const userStatusElement = document.getElementById(`userStatus${makeId}`);
+  const pmsgElement  = document.getElementById(`msg${makeId}`);
+
+    $.ajax({
+        url: '/superadmin/changeMakeStatus',
+        type: 'POST',
+        data: { id: makeId, status: newStatus },
+        beforeSend: function() {
+            // Hide the kilstatus paragraph before the request
+            $('.kilstatus').hide();
+        },
+        success: function(response) {  
+           console.log(response)       
+           
+                    if (response.success == true) {
+               
+                                                      $('[data-user-id="' + makeId + '"]').attr('data-user-status', newStatus);
+
+                                // Update image source and tooltip based on new status
+                                var imgSrc = (newStatus === 'active') ? '../images/icons/active.png' : '../images/icons/inactive.png';
+                                $('[data-user-id="' + makeId + '"] .status-image').attr('src', imgSrc);
+                                $('[data-user-id="' + makeId + '"] .status-tooltip').attr('title', (newStatus === 'active') ? 'deactive' : 'active');
+
+                                // Add fade in overlay and change background color based on new status
+                                var bgColor = (newStatus === 'active') ? 'rgba(163,209,121,0.5)' : 'rgba(227 99 99 / 50%)';
+                                var textColor = (newStatus === 'Approve') ? '#3c763d' : '#ffffff'; // White font for non-Approve status
+                                // $('[data-user-id="' + makeId + '"] .status-overlay').css('background-color', bgColor).fadeIn();
+                              
+
+                                $('[data-user-id="' + makeId + '"] .status-overlay').css({
+                                    'background-color': bgColor,
+                                    'color': textColor + ' !important', // Force the font color change
+                                  
+                                }).fadeIn();
+
+
+
+                                pmsgElement.innerHTML = response.msg;
+                                var msg = 'Make '+makeName+' '+action+' successfully'
+                                document.cookie = `rental_msg=${msg}`;
+
+                                // Fade out the overlay after a delay
+                                setTimeout(function() {
+                                 
+                                    $('[data-user-id="' + makeId + '"] .status-overlay').fadeOut();
+                                    window.location.href = '/superadmin/vehicleModel'
+                                }, 1500);
+
+                                // $('.kilstatus').show();
+
+
+              } else {
+                  console.error('Error:', response.msg);
+                  $("#errorMessage").removeClass("d-none");
+                  $("#successMessage").addClass("d-none");
+              }
+
+
+        },
+        error: function(error) { alert("ajax error")
+          console.error('Error:', error);
+          $("#errorMessage").text('Ajax Error');
+    $("#errorMessage").removeClass("d-none");
+    $("#successMessage").addClass("d-none");
+        }
+    });
+}
+
+
+
+
+
+
+  //------------------- kilcheck Modal name================ -> 
+  $(document).ready(function() 
+{
+    $('#modelName').on('change', function()
+    {  
+        var model = $(this).val();
+        var ModelInput = document.getElementById('modelName');
+        $.ajax({
+            type: 'POST',
+            url: '/superadmin/checkModel',
+            data: { model: model },
+            success: function(data) 
+            {
+             
+                if (data.exists == true)
+                {
+                    $('#kilError').text("A record with the given Model Name ( "+ model + " ) already exist, Enter another unnique Model Name and try again.");
+                  
+                    ModelInput.value = "";
+                } 
+                else
+                {
+                  if( ModelInput.value == ""){
+                  
+                    $('#kilError').text("");
+                  }else{
+                  
+                    $('#kilError').text("");
+                  }
+                     
+                }
+            }
+        });
+    });
+});
+
+
+
+
+//================ multiple  Inputs  on click ======================= 
+
+$(document).ready(function() {
+    // Add an event listener for the change event on the dropdown
+    $('#selects').on('change', function() {
+      var selectedOption = $(this).val();
+
+   
+      $('#prop_type').val(selectedOption);
+
+      if(selectedOption=='Other'){
+
+document.getElementById('prop_type').style.display = 'block';
+$('#prop_type').val('');
+}else{
+
+document.getElementById('prop_type').style.display = 'none';
+
+}
+     
+
+      // Clear existing subcategories
+      // $('#subcategories-container .subcategories').empty();
+    });
+  
+    // Add Subcategory button click event
+    $('#addSubcategory').on('click', function() {
+      var subcategoryHtml = '<div class="input-group mb-2">' +
+        '<input type="text" class="form-control" name="models[]" placeholder="Enter Model Name" onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" required>' +
+        '<div class="input-group-append">' +
+        '<button class="btn btn-danger removeSubcategory" type="button">Remove</button>' +
+        '</div></div>';
+      
+      // Append a new subcategory input field
+      $('#subcategories-container .subcategories').append(subcategoryHtml);
+    });
+  
+    // Remove Subcategory button click event
+    $('#subcategories-container').on('click', '.removeSubcategory', function() {
+      // Remove the clicked subcategory input field
+      $(this).closest('.input-group').remove();
+    });
+  });
+
+
+
+  //---------- check uniquness in multiple options 
+
+
+  $(document).ready(function() {
+  // Event handler for checking if the model names exist when form is changed
+  $('#subcategories-container').on('change', 'input[name="models[]"]', function() {
+    var models = [];
+    $('input[name="models[]"]').each(function() {
+      models.push($(this).val().trim()); // Collect all model names and remove spaces
+    });
+
+    var makeId = document.getElementById('vehicalMake').value; 
+
+    if(makeId==''){
+        makeId=0;
+    }
+
+    var ModelInput = $(this);
+    
+    // AJAX request to check if models exist
+    $.ajax({
+      type: 'POST',
+      url: '/superadmin/checkModel',
+      data: { models: models, makeId:makeId }, // Send all models to server for checking
+      success: function(data) {
+        // Clear previous errors
+        $('.errorText').remove();
+
+        // Loop through existing models and display an error message next to them
+        if (data.existingModels && data.existingModels.length > 0) {
+          data.existingModels.forEach(function(existingModel) {
+            $('input[name="models[]"]').each(function() {
+              if ($(this).val().trim() === existingModel) {
+                $(this).after('<div class="errorText" style="color: red;">Model "' + existingModel + '" already exists!</div>');
+                $(this).val(''); // Optionally, clear the input field
+              }
+            });
+          });
+        }
+      }
+    });
+  });
+
+  // Add Subcategory button click event
+//   $('#addSubcategory').on('click', function() {
+//     var subcategoryHtml = '<div class="input-group mb-2">' +
+//       '<input type="text" class="form-control" name="models[]" placeholder="Enter Model Name" required>' +
+//       '<div class="input-group-append">' +
+//       '<button class="btn btn-danger removeSubcategory" type="button">Remove</button>' +
+//       '</div></div>';
+    
+//     // Append a new subcategory input field
+//     $('#subcategories-container .subcategories').append(subcategoryHtml);
+//   });
+
+//   // Remove Subcategory button click event
+//   $('#subcategories-container').on('click', '.removeSubcategory', function() {
+//     // Remove the clicked subcategory input field
+//     $(this).closest('.input-group').remove();
+//   });
+});
+
+
+
+//------------- multiple images 
+
+// Function to open the SweetAlert slideshow
+function openImageSlideshow(imagesString) {
+    const images = imagesString.split(','); // Split the images by comma
+    let currentIndex = 0;
+
+    // Function to update the content inside SweetAlert
+    function updateImage(index) {
+        const totalImages = images.length;
+        const imgSrc = `/images/vehicleUploads/${images[index].trim()}`;
+        const imageTag = `<img src="${imgSrc}" style="width:100%; height:auto;" />`;
+        const navigationText = `${index + 1} of ${totalImages} Images`;
+
+        // Display SweetAlert
+        Swal.fire({
+            title: navigationText, // Display image count
+            html: imageTag,
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Next',
+            cancelButtonText: 'Previous',
+            allowOutsideClick: false,
+            showCloseButton: true,
+            preConfirm: () => {
+                if (currentIndex < totalImages - 1) {
+                    currentIndex++;
+                    updateImage(currentIndex); // Go to next image
+                }
+            },
+            preCancel: () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateImage(currentIndex); // Go to previous image
+                }
+            }
+        });
+    }
+
+    // Start slideshow with the first image
+    updateImage(currentIndex);
+}
+
+
+</script>
+
+

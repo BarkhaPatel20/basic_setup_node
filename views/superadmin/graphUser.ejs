@@ -1,0 +1,635 @@
+
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<style>
+    .info-box-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 1.8;
+        flex: 1;
+        padding: 0 10px;
+        overflow: hidden;
+    }
+    
+    .info-box-number {
+        display: block;
+        margin-top: .25rem;
+        font-weight: 700;
+    }
+    
+    .progress-description,
+    .info-box-text {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .bar {
+        position: relative;
+        display: block;
+        width: revert-layer !important;
+    }
+    
+    .chart {
+        flex: 1;
+        text-align: center;
+    }
+    svg {
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        background-color: white;
+    }
+    
+    .col-md-2.col-sm-6.col-12 {
+        padding: 15px;
+    }
+    
+    @media screen and (min-width: 320px) and (max-width: 768px)
+     { .gh{
+        overflow: scroll;
+     }}
+</style>
+<meta name="csrf-token" content="<%= csrfToken %>">
+
+    <!-- Sidebar chat end-->
+    <div class="content-wrapper">
+
+        <!-- Container-fluid starts -->
+        <!-- Main content starts -->
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                            <li class="active"><a href="#"> / Graph</a></li>
+                            <li class="active"> / Graph User </li> 
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row start -->
+            <div class="row pt-3">
+                <div class="col-lg-12">
+                    <div class="card mb-4" style="border-top:4px solid black;">
+                        <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                            <div class="heads-lefts">
+                                <a href="#"><h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i> User Analysis Filter </h6></a>
+                            </div>
+                            <div class="heads-rights">
+                                <!-- <a class="btn btn-success waves-effect waves-light " href="User_view_User.html"><i class="fa fa-user  mr-1"></i> View User   </a> -->
+                            </div>
+                        </div>
+                 
+                        <div class="hep-program-form" style="border-radius: 10px 10px 0px 0px;border-bottom: #003c7b;">
+                            <form method="POST" enctype="multipart/form-data" action="/superadmin/graphUser" style="padding: 10px 10px;">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <div class="form-group row" style="margin-bottom: 5px;">
+                                    <div class="form-group col-lg-12">
+                                        <button type="button" id="this_week_btn" class="btn btn-info">This Week</button>&nbsp;&nbsp;&nbsp;
+                                        <button type="button" id="this_month_btn" class="btn btn-info">This Month</button>&nbsp;&nbsp;&nbsp;
+                                        <button type="button" id="3_month_btn" class="btn btn-info">3 Month</button>&nbsp;&nbsp;&nbsp;
+                                        <button type="button" id="6_month_btn" class="btn btn-info">6 Month</button>&nbsp;&nbsp;&nbsp;
+                                        <button type="button" id="this_year_btn" class="btn btn-info">This Year</button>&nbsp;&nbsp;&nbsp;
+                                        <button type="button" id="reset_btn" class="btn btn-info">Reset</button>
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <input class="form-control" type="date" name="s_date" id="s_date" placeholder="Enter the date" value="<%= start_date || '' %>" required>
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <input class="form-control" type="date" name="e_date" id="e_date" placeholder="Enter the date" value="<%= end_date || '' %>" required>
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <input type="submit" class="btn btn-success" name="search" value="Apply">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Row end -->
+
+            <!-- Row start -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4" style="border-top:4px solid black;">
+                        <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                            <div class="heads-lefts">
+                                <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left"></i> User Complaint Analysis  </h6>
+                            </div>
+                            <div class="heads-rights">
+                                <!-- <a class="btn btn-success waves-effect waves-light " href="user_addUser.html"><i class="fa fa-user  mr-1"></i> Add User  </a> -->
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding: 15px 15px 0 15px;">
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-info">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">January</span>
+                                        <span class="info-box-number"><%= january_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-success">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">February</span>
+                                        <span class="info-box-number"><%= february_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-warning">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">March</span>
+                                        <span class="info-box-number"><%= march_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-danger">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">April</span>
+                                        <span class="info-box-number"><%= april_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-primary">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">May</span>
+                                        <span class="info-box-number"><%= may_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-warning">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">June</span>
+                                        <span class="info-box-number"><%= june_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 15px 15px 0 15px;">
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-info">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">July</span>
+                                        <span class="info-box-number"><%= july_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-success">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">August</span>
+                                        <span class="info-box-number"><%= august_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-warning">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">September</span>
+                                        <span class="info-box-number"><%= september_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-danger">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">October</span>
+                                        <span class="info-box-number"><%= october_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-primary">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">November</span>
+                                        <span class="info-box-number"><%= november_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-12">
+                                <div class="info-box bg-warning">
+                                    <div class="info-box-content text-center">
+                                        <span><i class="fa fa-comments"></i></span>
+                                        <span class="info-box-text">December</span>
+                                        <span class="info-box-number"><%= december_complaint %></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user-form">
+                            <div class="table-reponsive box">
+                                <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 15.0781px;">Sr. No.</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">User Name </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">User Email </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">User Image</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">User Status</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 50.0781px;">Joined Date</th>                                                                    					
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% users.forEach((user, index) => { %>
+                                                    <tr role="row" >
+                                                        <td><%= index + 1 %></td>
+                                                        <td><%= user.first_name %> <%= user.last_name %></td>
+                                                        <td> <%= user.email	 %> </td>
+                                                       
+                                                 
+                                                   
+                                                        <td>
+                                                            <% if (user.profile_image) { 
+                                                                let images = user.profile_image.split(','); // Split the comma-separated images
+                                                            %>
+                                                                <!-- Show only the first image in the table -->
+                                                                <a href="javascript:void(0);" onclick="openImageSlideshow('<%= images.join(',') %>')">
+                                                                    <img class="img-circle" src="../images/profiles/<%= images[0] %>" alt="Image" style="width:50px; height:50px;">
+                                                                </a>
+                                                            <% } else { %>
+                                                                No image
+                                                            <% } %>
+                                                        </td>
+                    
+                                                                                       
+                    
+                    
+                                                        <td class="status-container" data-user-id="<%=  user.user_id %>" data-user-status="<%= user.status %>">
+                                                            <div >
+                                                        
+                                                              <% if (user.status == 'Approve') { %>
+                                                                <img src="../images/icons/active.png" class="status-image" style="width:30px;height:30px;">
+                                                            <% } else if (user.status == 'Pending') { %>
+                                                                <!-- Add an image for Pending status here -->
+                                                                <img src="../images/icons/pending.png" class="status-image" style="width:30px;height:30px;">
+                                                            <% } else { %>
+                                                                <img src="../images/icons/inactive.png" class="status-image" style="width:30px;height:30px;">
+                                                            <% } %>
+                    
+                                                              <div class="status-overlay"></div>
+                                                            </div>
+                                                                               
+                                                          
+                                                            <% if (user.status == 'Approve') { %>
+                                                              <p id="msg<%=  user.user_id %>" style="color: orange;"></p>
+                                                              <p class="kilstatus" style="color: green;"> Approved</p>
+                                                            <% } else if (user.status == 'Pending') { %>
+                                                              <p id="msg<%=  user.user_id %>" style="color: green !important;"></p>
+                                                              <p class="kilstatus" style="color: #a6ad96;"> Pending</p>
+                                                            <% } else { %>
+                                                              <p id="msg<%=  user.user_id %>" style="color: green !important;"></p>
+                                                              <p class="kilstatus" style="color: red;"> Disapproved</p>
+                                                            <% } %>                   
+                                                          </td> 
+                                                           <td> <%= user.date %> <%= user.time %></td>
+                                                        </tr>
+                                                        
+                                                        <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bar chart container -->
+                            <!-- <div id="chart"></div> -->
+  
+                            <!-- Pie Chart Container -->
+                            <center><div id="pieChart"></div></center>
+
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <!-- Row end -->
+
+        </div>
+        <!-- Main content ends -->
+        <!-- Container-fluid ends -->
+    </div>
+
+   <%- include ("superfooter.ejs") %>
+
+   <script>
+    // Function to set start and end dates for predefined intervals
+    function setDates(interval) {
+        var endDate = new Date();
+        var startDate = new Date();
+        
+        switch(interval) {
+            case 'This Week':
+                startDate.setDate(endDate.getDate() - endDate.getDay());
+                break;
+            case 'This Month':
+                startDate.setDate(1);
+                break;
+            case '3 Month':
+                startDate.setMonth(endDate.getMonth() - 2);
+                startDate.setDate(1);
+                break;
+            case '6 Month':
+                startDate.setMonth(endDate.getMonth() - 5);
+                startDate.setDate(1);
+                break;
+            case 'This Year':
+                startDate.setMonth(0);
+                startDate.setDate(1);
+                break;
+        }
+        
+        document.getElementById('s_date').valueAsDate = startDate;
+        document.getElementById('e_date').valueAsDate = endDate;
+    }
+    
+    // Function to reset form fields
+    function resetForm() {
+        document.getElementById('s_date').value = '';
+        document.getElementById('e_date').value = '';
+    }
+    
+    // Event listeners for button clicks
+    document.getElementById('this_week_btn').addEventListener('click', function() {
+        setDates('This Week');
+    });
+    
+    document.getElementById('this_month_btn').addEventListener('click', function() {
+        setDates('This Month');
+    });
+    
+    document.getElementById('3_month_btn').addEventListener('click', function() {
+        setDates('3 Month');
+    });
+    
+    document.getElementById('6_month_btn').addEventListener('click', function() {
+        setDates('6 Month');
+    });
+    
+    document.getElementById('this_year_btn').addEventListener('click', function() {
+        setDates('This Year');
+    });
+    
+    document.getElementById('reset_btn').addEventListener('click', function() {
+        resetForm();
+    });
+</script>
+
+<!-- D3 Bar Chart Script -->
+<script>
+    // Sample data
+    const data = [
+      {name: "A", value: 30},
+      {name: "B", value: 80},
+      {name: "C", value: 45},
+      {name: "D", value: 60},
+      {name: "E", value: 20},
+      {name: "F", value: 90},
+      {name: "G", value: 75},
+      {name: "H", value: 90},
+      {name: "I", value: 75},
+      {name: "J", value: 90},
+      {name: "K", value: 75},
+      {name: "L", value: 90}
+    ];
+
+    // Set dimensions and margins
+    const width = 500;
+    const height = 300;
+    const margin = { top: 20, right: 30, bottom: 30, left: 40 };
+
+    // Create SVG container
+    const svg = d3.select("#chart")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    // Set scales
+    const x = d3.scaleBand()
+      .domain(data.map(d => d.name))
+      .range([margin.left, width - margin.right])
+      .padding(0.1);
+
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(data, d => d.value)]).nice()
+      .range([height - margin.bottom, margin.top]);
+
+    // Draw bars
+    svg.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", d => x(d.name))
+      .attr("y", d => y(d.value))
+      .attr("height", d => y(0) - y(d.value))
+      .attr("width", x.bandwidth())
+      .attr("fill", "steelblue");
+
+    // Add x-axis
+    svg.append("g")
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(d3.axisBottom(x));
+
+    // Add y-axis
+    svg.append("g")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y));
+  </script>
+  
+<script>
+     // Parse the JSON directly into JavaScript
+       const userGraphData = <%- userGraphData %>;
+
+     console.log("User Graph Data:", userGraphData);
+  
+    // Proceed to clean and use the data as intended
+    const cleanedData = userGraphData.map(dataset =>
+      dataset.map(entry => {
+        if (entry.value !== undefined && entry.name !== undefined) {
+          return { value: entry.value, name: entry.name };
+        }
+        return null;
+      }).filter(Boolean)
+    );
+  
+    console.log("Cleaned Data:", cleanedData);
+  
+    // Pie chart rendering logic
+    const pieWidth = 400,
+      pieHeight = 400,
+      radius = Math.min(pieWidth, pieHeight) / 2;
+  
+    const pieSvg = d3.select("#pieChart")
+      .append("svg")
+      .attr("width", pieWidth)
+      .attr("height", pieHeight)
+      .append("g")
+      .attr("transform", `translate(${pieWidth / 2}, ${pieHeight / 2})`);
+  
+    const color = d3.scaleOrdinal()
+      .domain(cleanedData[0].map(d => d.name))
+      .range(d3.schemeCategory10);
+  
+    const pie = d3.pie()
+      .sort(null)
+      .value(d => d.value);
+  
+    const arc = d3.arc()
+      .innerRadius(0)
+      .outerRadius(radius);
+  
+    pieSvg.selectAll("path")
+      .data(pie(cleanedData[0]))
+      .enter()
+      .append("path")
+      .attr("d", arc)
+      .attr("fill", d => color(d.data.name))
+      .append("title")
+      .text(d => `${d.data.name}: ${d.data.value}`);
+  
+    pieSvg.selectAll("text")
+      .data(pie(cleanedData[0]))
+      .enter()
+      .append("text")
+      .attr("transform", d => `translate(${arc.centroid(d)})`)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "12px")
+      .text(d => d.data.name);
+  </script>
+  
+  
+  <script>
+    // // Parse the data passed from the server
+    // const rawData = [
+    //     [
+    //         { value: 34, name: "Approve" },
+    //         { value: 1, name: "Disapprove" }
+    //     ]
+    // ];
+
+    // // Flatten the nested array to get a single dataset for the pie chart
+    // const flattenedData = rawData.flat();
+
+    // console.log("Flattened Data:", flattenedData);
+
+    // // Example for rendering the pie chart
+    // const pieWidth = 400,
+    //     pieHeight = 400,
+    //     radius = Math.min(pieWidth, pieHeight) / 2;
+
+    // const pieSvg = d3
+    //     .select("#pieChart")
+    //     .append("svg")
+    //     .attr("width", pieWidth)
+    //     .attr("height", pieHeight)
+    //     .append("g")
+    //     .attr("transform", `translate(${pieWidth / 2}, ${pieHeight / 2})`);
+
+    // const color = d3.scaleOrdinal()
+    //     .domain(flattenedData.map((d) => d.name))
+    //     .range(d3.schemeCategory10);
+
+    // const pie = d3
+    //     .pie()
+    //     .sort(null)
+    //     .value((d) => d.value);
+
+    // const arc = d3.arc().innerRadius(0).outerRadius(radius);
+
+    // pieSvg
+    //     .selectAll("path")
+    //     .data(pie(flattenedData))
+    //     .enter()
+    //     .append("path")
+    //     .attr("d", arc)
+    //     .attr("fill", (d) => color(d.data.name))
+    //     .append("title")
+    //     .text((d) => `${d.data.name}: ${d.data.value}`);
+
+    // // Add labels to Pie Chart
+    // pieSvg
+    //     .selectAll("text")
+    //     .data(pie(flattenedData))
+    //     .enter()
+    //     .append("text")
+    //     .attr("transform", (d) => `translate(${arc.centroid(d)})`)
+    //     .attr("text-anchor", "middle")
+    //     .attr("font-size", "12px")
+    //     .text((d) => d.data.name);
+</script>
+  
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_type_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+        // Function to open the SweetAlert slideshow
+    function openImageSlideshow(imagesString) {
+            const images = imagesString.split(','); // Split the images by comma
+            let currentIndex = 0;
+
+            // Function to update the content inside SweetAlert
+            function updateImage(index) {
+                const totalImages = images.length;
+                const imgSrc = `/images/profiles/${images[index].trim()}`;
+                const imageTag = `<img src="${imgSrc}" style="width:100%; height:auto;" />`;
+                const navigationText = `${index + 1} of ${totalImages} Images`;
+
+                // Display SweetAlert
+                Swal.fire({
+                    title: navigationText, // Display image count
+                    html: imageTag,
+                    showCancelButton: true,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Next',
+                    cancelButtonText: 'Previous',
+                    allowOutsideClick: false,
+                    showCloseButton: true,
+                    preConfirm: () => {
+                        if (currentIndex < totalImages - 1) {
+                            currentIndex++;
+                            updateImage(currentIndex); // Go to next image
+                        }
+                    },
+                    preCancel: () => {
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            updateImage(currentIndex); // Go to previous image
+                        }
+                    }
+                });
+            }
+
+            // Start slideshow with the first image
+            updateImage(currentIndex);
+        }
+
+</script>

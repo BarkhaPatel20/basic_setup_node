@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title> Rental Car Login home page </title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Style.css -->
+   <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+
+ <!--  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+
+<style>
+  .top-login {
+    padding: 47% 5%;
+}
+section#login-page {
+   background: linear-gradient(#00000000, #00000000), url(../assets/images/login-bg-2.png);
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.auth-form-light {
+/*     background: #00000073; */
+    background: transparent;
+    margin: 40px 10px 24px 15px;
+    width: 85%;
+    box-shadow: 0px 2px 20px rgb(0 0 0 / 15%);
+    border-radius: 0px;
+    border-top: 4px solid #000000 !important;
+    border: 4px solid #ffffffd9;
+    border-bottom: 4px solid #000000 !important;
+
+}
+
+.brand-logo {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.brand-logo img.header-logo {
+    width: 50% !important;
+    background: #fffffff2;
+    padding: 6px 10px;
+    height: auto;
+    box-shadow: 0px 2px 20px rgb(0 0 0 / 11%);
+    border: 4px solid #efefef;
+    border-radius: 10px;
+}
+.brand-logo h4 {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+a.auth-link.text-black {
+   color: black;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+button.btn.btn-block.btn-facebook.auth-form-btn {
+    background: #7DA0FA;
+    color: #ffffff;
+    margin: 14px 0px;
+}
+.btn-primary {
+    color: #fff;
+    background: linear-gradient(45deg, #004458, #00718c);
+    border-color: #00718c !important;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+.btn-primary, .btn-primary:focus, .btn-primary:hover, .btn-primary:active {
+    background-color: #440115 !important;
+    border-color: #ffffff2b !important;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+a.text-primary:focus, a.text-primary:hover {
+    color: #f4c61b!important;
+}
+.text-primary {
+    color: #ffffff!important;
+}
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+.create-img img {
+    width: 100%;
+}
+/**/
+.field-icon {
+ float: right;
+    margin-left: 53px;
+    margin-top: -26px;
+    position: relative;
+    z-index: 99;
+    color: black;
+    opacity: 1;
+}
+label {
+    display: inline-block;
+    margin-bottom: .8rem;
+    color: white;
+    font-weight: 500;
+}
+.login-cent {
+    padding: 5px 15px;
+}
+</style>
+  </head>
+  <body>
+   
+<!-- LOGIN PAGE SRTDSRT -->
+<section id="login-page" class="login-page">
+    <div class="container-fluid">
+      <div class="row w-100 mx-0">
+       <div class="col-lg-8 mx-auto px-0 py-0">
+           <div class="login-colors" style="background: linear-gradient(#00000000, #00000000), url(images/hero-bg-light.webp);height: 100vh;">
+               
+           </div>
+        </div>
+
+         <div class="col-lg-4 mx-auto px-0 py-0">
+            <div class="auth-form-light text-left">
+              <div class="brand-logo">
+                <h4 style="color:black;text-align: center;font-size: 19px;line-height: 1.6;margin-bottom: 10px;background: #ffffffdb; padding: 10px 0px;">Welcome To Demo Website</h4>
+                <a href="/superadmin"> <img alt="image" src="../assets/images/logo.png" class="header-logo" style="width:70%;margin: 15px 0px;">
+            </a>
+              </div>
+
+              
+              
+             <div class="login-cent">
+                  <h6 class="font-weight-light " style="color:white;font-weight: 500 !important;">Log in to continue.</h6>
+                         <!-- alert msgs -->
+           <% if ( output.includes('successfully') ) { %>
+            <p class="success-text"><%= output %></p>
+              <% } else { %>
+                    <p class="error-text"><%= output %></p>
+              <% } %>
+          <!-- /alert msgs -->  
+                  <form id="kilfrom" method="post" action="/superadmin/login"  class="pt-3">
+                <div class="form-group">
+                  <label >Email</label>
+                  <input  onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)"  type="text" name="username" class="form-control form-control-lg" id="exampleInputEmail1" placeholder=" Enter Username">
+                </div>
+                <div class="form-group">
+                   <label >Password</label>
+                     <input id="password-field" type="password" name="password"  class="form-control form-control-lg" placeholder=" Enter Password">
+               <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span> 
+                </div>
+             
+               <!--  <div class="my-3 form-group justify-content-between align-items-center">
+                  <div class="form-check">
+                    <label class="form-check-label text-muted" style="color: white !important;">
+                      <input type="checkbox" class="form-check-input">
+                      Remember me
+                    <i class="input-helper"></i></label>
+                  </div>
+                </div> -->
+                 <div class="mt-4 log-btns d-flex">
+                  <button onclick="validateForm()" type="submit" class="btn btn-block btn-primary font-weight-medium auth-form-btn" type="button" style="width: 49%;font-size: 15px;font-weight: 600;text-transform: capitalize;background: #f16609 !important; padding: 6px 10px;"> Log In </button>
+                  <a href="/superadmin/forgetPassword" class="btn btn-primary auth-link text-black" style="width: 49%;margin-left: 10px;color: white;background: #fe9752 !important;padding: 9px 9px;font-size: 13px;">Forgot password?</a>
+                </div>
+              
+              </form>
+             </div>
+               <div class="text-center mt-3 font-weight-bold" style="color:black;    background: #ffffffdb;padding: 10px 0px;">
+                 <a href="#"> <img src="../assets/images/login-footer.png" width="70%"></a>
+                  <!-- Don't have an account ? <a href="#"
+                 style=" color: #000 !important;" >Sign In</a> -->
+                </div>
+            </div>
+
+          </div>
+     <!-- <div class="col-lg-4 mx-auto px-0 py-0">
+   </div> -->
+</section>
+<!-- LOGIN SCRIPT START -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- show and hide password -->
+  <script>
+      $(".toggle-password").click(function() {
+
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+});
+  </script> 
+</body>
+</html>
+
+
+<script>
+
+
+function validateSimpleForm() { 
+    // event.preventDefault(); // Prevent the default form submission
+
+    const form = document.querySelector('#kilvishform');
+
+    // Get all input, select, and textarea elements inside the form
+    const inputs = form.querySelectorAll('input, select');
+    console.log("all Inputsssss ", inputs)
+    let isValid = true;
+
+    // Remove previous error messages and borders
+    form.querySelectorAll('.error-message').forEach(errorMsg => errorMsg.remove());
+    inputs.forEach(input => {
+        input.style.border = ''; // Reset borders
+    });
+
+   
+
+    inputs.forEach(input => {
+        // Remove error message and border immediately on valid input change
+        input.addEventListener('input', () => {
+            if (input.value.trim() || input.checked) {
+                input.style.border = ''; // Remove red border
+                const error = input.parentNode.querySelector('.error-message');
+                if (error) error.remove(); // Remove error message
+            }
+        });
+
+        // Validate required fields
+        if (input.required && !input.value.trim()) {
+            isValid = false;
+            input.style.border = '2px solid red'; // Set border to red for required fields
+            kilfireErrorMessage(input.parentNode, "This Field is Required"); // Add error message under normal inputs
+        }
+
+        // Special case for file input (if required)
+        // if (input.type === 'file' && input.required && !input.files.length) {
+        //     isValid = false;
+        //     input.style.border = '2px solid red'; // Set border to red for invalid file input
+        //     kilfireErrorMessage(input.parentNode, "Please upload an image."); // Add error message for file input
+        // }
+    });
+
+    if (isValid) {
+        form.submit(); // Submit the form if valid
+    }
+
+    return false; // Prevent default form submission
+}
+
+function kilfireErrorMessage(container, message) {
+    // Check if error message already exists to avoid duplicates
+    if (!container.querySelector('.error-message')) {
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.style.color = 'red';
+        errorMessage.style.fontSize = '12px';
+        errorMessage.innerText = message;
+        container.appendChild(errorMessage);
+    }
+}
+
+
+function validateRequiredFields() {
+    const form = document.querySelector('#kilfrom'); 
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]'); // Get only required inputs
+    let isValid = true;
+
+    
+
+    // Remove previous error messages and borders
+    form.querySelectorAll('.error-message').forEach(errorMsg => errorMsg.remove());
+    inputs.forEach(input => {
+        input.style.border = ''; // Reset borders
+    });
+
+    inputs.forEach(input => {
+        if (!input.value.trim()) {  // If the required field is empty
+            isValid = false;
+            input.style.border = '2px solid red'; // Set border to red for empty required fields
+            addErrorMessage(input.parentNode, "This Field is Required."); // Add error message
+        }
+    });
+
+    return isValid;
+}
+
+
+
+
+// Combined validation function
+function validateForm() {
+
+if(!validateRequiredFields()){
+   event.preventDefault();
+}
+}
+
+
+//-------------- Comman Kilvish Function for input validation start ---------------------
+function validateKilvishInput(event) {
+    const inputField = event.target;
+
+    // General valid character sets
+    // let validCharacters = /^[a-zA-Z0-9@,._\s-]*$/;
+
+    let validCharacters = /^[a-zA-Z\s]*$/; // only char, no special char no numbers 
+
+    // Define allowed image file types
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp', 'image/svg+xml'];
+
+    // Use parentNode for regular inputs, container for checkboxes
+    const container = inputField.closest('.col-lg-12') || inputField.closest('.form-group') || inputField.closest('div');
+    const inputParent = inputField.parentNode;
+
+    // Remove previous error message and border
+    let errorMessage = inputParent.querySelector('.error-message');
+    if (errorMessage) errorMessage.remove();
+    inputField.style.border = ''; // Reset border
+
+    // Custom validations based on input name
+    if (inputField.name === 'description') {
+        validCharacters = /^[a-zA-Z0-9@,._\s-'"*]*$/;
+
+        // Check length limit
+        if (inputField.value.length > 400) {
+            addErrorMessage(inputParent, 'Input exceeds the maximum length of 400 characters!');
+            inputField.style.border = '2px solid red';
+            inputField.value = inputField.value.substring(0, 400); // Truncate the input
+            return;
+        }
+    } else if (inputField.name === 'contact' || inputField.name === 'contact') {
+        // Only numbers allowed, between 7 and 10 digits
+        validCharacters = /^\d{7,10}$/;
+    }else if (inputField.name === 'age') {
+        // Only numbers allowed, between 7 and 10 digits
+        validCharacters = /^\d{2,2}$/;
+          // Custom validation: Ensure age is 18 or above
+              if (inputField.value && parseInt(inputField.value) < 18 && event.type === 'change') {
+                  addErrorMessage(inputParent, 'Age must be 18 or above!');
+                  inputField.style.border = '2px solid red';
+                  inputField.value = ''; // Clear the input field if age is below 18
+                  return;
+              }else if(inputField.value && parseInt(inputField.value) < 18 ){
+                addErrorMessage(inputParent, 'Age must be 18 or above!');
+                  inputField.style.border = '2px solid red';                 
+
+              }
+            }else if (inputField.name === 'job_exp') {
+               // Only numbers allowed, between 7 and 10 digits
+               validCharacters = /^\d{1,2}$/;
+            }else if(inputField.type ==='email'){
+               validCharacters = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email pattern
+            }else if(inputField.type ==='password'){
+
+                            const hasSequentialChars = (password) => {
+                                 console.log("passworddddddd -", password)
+                                 const length = password.length;
+                                 
+                                 // Check for ascending sequences (e.g., "123", "abc")
+                                 for (let i = 0; i < length - 3; i++) {
+                                    if (password.charCodeAt(i + 1) === password.charCodeAt(i) + 1 &&
+                                          password.charCodeAt(i + 2) === password.charCodeAt(i) + 2 &&
+                                          password.charCodeAt(i + 3) === password.charCodeAt(i) + 3) {
+                                          return true; // Ascending sequence found
+                                    }
+                                 }
+
+                                 // Check for descending sequences (e.g., "321", "cba")
+                                 for (let i = 0; i < length - 3; i++) {
+                                    if (password.charCodeAt(i + 1) === password.charCodeAt(i) - 1 &&
+                                          password.charCodeAt(i + 2) === password.charCodeAt(i) - 2 &&
+                                          password.charCodeAt(i + 3) === password.charCodeAt(i) - 3) {
+                                          return true; // Descending sequence found
+                                    }
+                                 }
+                                 
+                                 return false; // No sequential characters
+                              };
+
+               
+
+               validCharacters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
+
+
+                                          // Check if password meets the required pattern
+                           if (!validCharacters.test(inputField.value)) {
+                              addErrorMessage(inputParent, 'Password must be at least 12 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.');
+                              inputField.style.border = '2px solid red';
+                              if (event.type === 'change') {   inputField.value = '';  }
+                              return; // Stop further validation
+                           }
+
+                           // Check for sequential characters
+                           if (hasSequentialChars(inputField.value)) {
+                              addErrorMessage(inputParent, 'Password should not contain sequential characters.');
+                              inputField.style.border = '2px solid red';
+                                 if (event.type === 'change') {   inputField.value = '';  }
+                              return; // Stop further validation
+                           }
+
+
+                           // Function to check for sequential characters in the password
+                 
+                                                   
+
+
+
+            }
+              
+
+            
+
+
+
+    // Handle file input validation
+    if (inputField.type === 'file') {
+        const file = inputField.files[0];
+        if (file && !validImageTypes.includes(file.type)) {
+            addErrorMessage(inputParent, 'Please select a valid image file (JPEG, PNG, etc.)');
+            inputField.value = ''; // Clear the file input field
+            inputField.style.border = '2px solid red';
+            return;
+        }
+    } else {
+        // For normal text/number input validation
+        if (event.type === 'keyup') {
+            if (!validCharacters.test(inputField.value)) {
+                addErrorMessage(inputParent, 'Invalid character entered!');
+                inputField.style.border = '2px solid red';
+                
+            }
+        }
+
+        if (event.type === 'change') {
+            if (!validCharacters.test(inputField.value)) {
+                // On invalid input during change event, clear the field and show an error
+                inputField.value = ''; // Clear invalid input
+                addErrorMessage(inputParent, 'Invalid character or format!');
+                inputField.style.border = '2px solid red';
+            } else {
+                // Clear error when value is corrected
+                inputField.style.border = '';
+                if (errorMessage) errorMessage.remove();
+            }
+        }
+    }
+}
+
+// Function to display error messages under the input field or container for checkboxes
+function addErrorMessage(parent, message) {
+    if (!parent.querySelector('.error-message')) {
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.style.color = 'red';
+        errorMessage.style.fontSize = '12px';
+        errorMessage.innerText = message;
+        parent.appendChild(errorMessage);
+    }
+}
+
+
+
+
+
+//-------------- Comman Kilvish Function for input validation End ---------------------
+
+
+
+</script>

@@ -1,0 +1,907 @@
+      
+   <%- include ("superheader.ejs") %>
+   <%- include ("supersidebar.ejs") %>
+   <meta name="csrf-token" content="<%= csrfToken %>">
+
+   <!-- <% if (dashboard_type === 'subadmin') { %>
+    <%- include("subsidebar.ejs") %> 
+  <% } else { %>
+    <%- include("supersidebar.ejs") %>
+  <% } %>
+   -->
+
+   <style>
+    .card{
+       border-top: 4px solid #39444e;
+     border-bottom: 4px solid #39444e;
+ }
+ /*NEW CHEHBOXCSS START */
+ input#checksboxess {
+     height: auto;
+ }
+ .dashboard-list h3.box {
+     line-height: normal;
+     font-weight: 600;
+     text-transform: uppercase;
+     color: black;
+         border: 2px solid #d4d4d4;
+     padding: 7px 12px;
+     font-size: 13px;
+     background:#efefef;
+     /*background: #943dfb;*/
+     margin: 0px 0px 10px 0px;
+ }
+ input.btn.btn-primary {
+     padding: 6px 15px !important;
+     height: 35px  !important;
+ }
+ /*chackboxes css start */
+ 
+ .boxes-full p input[type="checkbox"] {
+     height: 12px;
+     margin: 0px 10px 0px 0px;
+ }
+ .boxes-full p.main-heads {
+    line-height: normal;
+     font-weight: 600;
+     text-transform: uppercase;
+     color: #ffffff;
+     border: 2px solid #1398fc;
+     padding: 6px 6px;
+ /*    border-radius: 9px 0px;*/
+     font-size: 12px;
+     background: #1398fc;
+     /* background: #943dfb; */
+     margin: 0px 0px 10px 0px;
+ }
+ p.check-lists {
+     color: #58718a;
+     font-size: 12px;
+     padding: 0px 6px;
+     line-height: 21px;
+     font-weight: 600;
+     text-align: left;
+     text-transform: capitalize;
+     margin-bottom: 4px;
+ }
+ .checkbox-full {
+     border: 2px solid #1396f9;
+ }
+ .boxes-full {
+     width: 19%;
+     margin: 5px 10px;
+     object-fit: contain;
+     aspect-ratio: 5 / 5;
+ }
+ </style>
+      
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li class="active"><a href="#"> / Create Subadmin  </a></li>
+                            <!-- <li class="active"> / Add Video </li>         -->
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->       
+            </div>
+
+            <!--  -->
+              <div class="row pt-3">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+                <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                 <a href="#">  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i> Add Subadmin </h6> </a>
+                 </div>
+                    <div class="heads-rights">
+                      
+                        <a class="btn btn-success waves-effect waves-light" href="/superadmin/viewSubadmins"><i class="fa fa-user  mr-1"></i> View Subadmins  </a>
+                    
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="Owner_view_Owner.html"><i class="fa fa-user  mr-1"></i> View Owner   </a> -->
+                  </div>
+                  </div>
+
+                  <form id="kilfrom" action="/superadmin/addSubadmin" method="POST">
+
+
+                  <div class="user-form">
+                  <div class="form-group row users-foarms">
+                    
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <div class="form-group col-md-4">
+                       <!-- <i class="fa fa-car icon-set"></i> -->
+                        <label for="exampleInputfirst" class="form-control-label"> First Name </label>
+                        <input type="text" name="first_name" class="form-control" id="exampleInputfirst" placeholder="Enter First Name"  onkeyup="validateKilvishInput(event)"  onchange="validateKilvishInput(event)" required >
+                     </div>
+                       <div class="form-group col-md-4">
+                          <!-- <i class="fa fa-image icon-set"></i> -->
+                        <label for="exampleInputfirst" class="form-control-label">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" id="exampleInputfirst" placeholder="Enter Last Name" onkeyup="validateKilvishInput(event)"  onchange="validateKilvishInput(event)" required >
+                     </div>
+                      <div class="form-group col-md-4">
+                          <!-- <i class="fa fa-image icon-set"></i> -->
+                        <label for="exampleInputEmail" class="form-control-label"> Email </label>
+                        <input type="email" name="email" class="form-control" id="emailInput" placeholder="Enter Email" onkeyup="validateKilvishInput(event)"  onchange="validateKilvishInput(event)" required >
+
+
+                        <div id="kilText" style="color: green;"></div>
+                        <div id="kilError" style="color: red;"></div>
+                     </div>
+
+                     <div class="form-group col-md-4">
+                      <!-- <i class="fa fa-image icon-set"></i> -->
+                    <label for="exampleInputEmail" class="form-control-label"> Username </label>
+                    <input type="text" name="username" class="form-control" id="kilvishusername" placeholder="Enter Username" onkeyup="validateKilvishInput(event)"  onchange="validateKilvishInput(event)" required >
+                    <div id="kilError3" style="color: red;"></div>
+                 </div>
+
+                      <div class="form-group col-md-4">
+                          <!-- <i class="fa fa-image icon-set"></i> -->
+                        <label for="exampleInputpassword" class="form-control-label">password</label>
+                        <input name="password" type="password" class="form-control" id="exampleInputpassword" placeholder="Enter password" onkeyup="validateKilvishInput(event)"  onchange="validateKilvishInput(event)" required>
+                     </div>
+
+                      <div class="form-group col-md-4">
+                        <label for="exampleInputPassword" class="form-control-label">Mobile Number</label>             
+                                
+
+                                 <input type="tel" onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" name="contact" id="kilvishcontact"   class="form-control cc text-left prof-boxes" placeholder="Contact Number" onkeyup="validateKilvishInput(event)"  onchange="validateKilvishInput(event)" required >
+
+    
+                                 <input type="hidden" id="fullkilvishcontact" name="fullkilvishcontact"  >
+                                 <input type="hidden" id="country_code" name="country_code" >
+                                 <div id="kilError2" style="color: red;"></div>
+                     </div>
+
+                     <input type="hidden" class="form-control" id="permissions" name="permissions">
+
+
+                    <div class="form-group col-md-4">
+                   <div class="submit-btns" style="padding-top: 30px;">
+                        <!-- <button type="submit" class="btn btn-primary waves-effect waves-light m-r-30">Cancel</button> -->
+                        <button type="submit" onclick="validateForm('#kilfrom')" class="btn btn-info waves-effect waves-light m-r-30">Submit</button>
+                   </div>
+                    </div>
+                  </div>
+                   </div>
+
+
+                  </form>
+
+
+                 </div>
+               </div>
+            </div>
+            <!-- 1-3-block row start -->
+            <div class="row pt-3">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+                <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                 <a href="#">  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i> Create Subadmin  </h6> </a>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="Owner_view_Owner.html"><i class="fa fa-user  mr-1"></i> View Owner   </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form fully-subadmin">
+                    <div class="fulAdmin">
+                        <div class="d-flex users-foarms">
+                         <div class="boxes-full ">
+                             <div class="checkbox-full">
+                   <p class="main-heads"><input onclick="setAllCheckboxes('Dashboard', this);" type="checkbox">Dashboard </p>
+                     <div id="Dashboard">
+                        <p class="check-lists"><input type="checkbox" name="/superadmin">Dashboard</p>
+                    </div>
+                </div>
+               </div>
+               <!--  -->
+              <div class="boxes-full ">
+                  <div class="checkbox-full">
+                   <p class="main-heads"><input onclick="setAllCheckboxes('User', this);" type="checkbox">User Management</p>
+                    <div id="User">
+                     <p class="check-lists"><input type="checkbox" name="/addUser">Add User</p>
+                       <p class="check-lists"><input type="checkbox" name="/viewUsers">View Users</p>                   
+                    <p class="check-lists"><input type="checkbox" name="/user_document_management"> User Documents Managements </p>
+                    </div> 
+                    </div>    
+               </div>
+               <!--  -->
+             <div class="boxes-full ">
+                 <div class="checkbox-full">
+                   <p class="main-heads"><input onclick="setAllCheckboxes('Owner', this);" type="checkbox">Owner Management</p>
+                    <div id="Owner">
+                     <p class="check-lists"><input type="checkbox" name="/addOwner">Add Owner</p>
+                       <p class="check-lists"><input type="checkbox" name="/viewOwners">View Owner</p>
+                      
+                        <p class="check-lists"><input type="checkbox" name="/Owner_document_management"> Owner Documents Managements </p>
+                    </div>     
+               </div>
+                 </div>
+                 <!--  -->
+             <div class="boxes-full ">
+                 <div class="checkbox-full">
+                   <p class="main-heads"><input onclick="setAllCheckboxes('Reports', this);" type="checkbox">Report</p>
+                    <div id="Reports">
+                     <p class="check-lists"><input type="checkbox" name="/pending_bookings"> Pending Report </p>
+                       <p class="check-lists"><input type="checkbox" name="/confirmed_bookings"> Confirm Report </p>
+                         <p class="check-lists"><input type="checkbox" name="/ongoing_bookings"> Ongoing Report </p>
+                           <p class="check-lists"><input type="checkbox" name="/completed_bookings"> Complete Report </p>
+                             <p class="check-lists"><input type="checkbox" name="/cancelled_bookings"> Cancel Report </p>
+                    </div>     
+               </div>
+                 </div>
+                 <!--  -->
+                      <div class="boxes-full ">
+                           <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes('Vehical', this);" type="checkbox" />Vehical Management</p>
+                    <div id="Vehical">
+                     <p class="check-lists"><input type="checkbox" name="/vehicleCategory" /> Vehical Category / Make  </p>
+                     <p class="check-lists"><input type="checkbox" name="/vehicleModel" /> Vehical Model  </p>
+                      <p class="check-lists"><input type="checkbox" name="/vehicleTypes" /> Vehical Type  </p>
+                       <p class="check-lists"><input type="checkbox" name="/vehicleFeatures" /> Vehical Feature </p>
+                        <p class="check-lists"><input type="checkbox" name="/viewVehicles" /> View Vehical </p>
+                         <p class="check-lists"><input type="checkbox" name="/promotional_plans" /> Vehical Sponser  </p>
+                    </div>     
+               </div>
+               </div>  
+             </div>
+                    </div>
+ <!-- 1 FULL ADMIN END 5 BOX -->
+                <div class="fulAdmin">
+                        <div class="d-flex users-foarms">
+                     
+              <div class="boxes-full ">
+                   <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes('Subadmin', this);" type="checkbox" /> Create Subadmin </p>
+                    <div id="Subadmin">
+                     <p class="check-lists"><input type="checkbox" name="/addSubadmin" /> Create Subadmin </p>
+                    </div>     
+               </div>    
+               </div>
+               <!--  -->
+             <div class="boxes-full ">
+                <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes('Setting', this);" type="checkbox" /> Setting</p>
+                    <div id="Setting">
+                     <p class="check-lists"><input type="checkbox" name="/addCountry" /> Add Country </p>                     
+                      <p class="check-lists"><input type="checkbox" name="/general_setting" /> General Setting</p>
+                      <p class="check-lists"><input type="checkbox" name="/addAppSlider" /> Add App Slider </p>
+                     
+                    </div>     
+               </div>
+                 </div>
+                 <!--  -->
+             <div class="boxes-full ">
+                     <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes('Notification', this);" type="checkbox" /> Notification </p>
+                    <div id="Notification">
+                     <p class="check-lists"><input type="checkbox" name="/notifications" /> Notification </p>
+                    </div>     
+               </div>
+                 </div>
+                 <!--  -->
+                  <div class="boxes-full ">
+                     <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes('Ratings', this);" type="checkbox" />  Ratings Managements </p>
+                    <div id="Ratings">
+                     <p class="check-lists"><input type="checkbox" name="/userRatings" /> User Ratings  </p>
+                      <p class="check-lists"><input type="checkbox" name="/ownerRatings" /> Owner Ratings  </p>
+                    </div>     
+               </div>
+                 </div>  
+                 <!--  -->
+                  <!---->
+                <div class="boxes-full">
+                     <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes(' Afflications ', this);" type="checkbox" />  Afflications  </p>
+                    <div id=" Afflications ">
+                     <p class="check-lists"><input type="checkbox" name="/affiliation" />  Afflications </p>
+                      <p class="check-lists"><input type="checkbox" name="/referralAmounts" />   Invitation Amount Details  </p>
+                       <p class="check-lists"><input type="checkbox" name="/deposits_fee" />  Deposit Fee Details </p>
+                    </div>     
+               </div>
+                 </div>
+                 <!--  -->
+             </div>
+                    </div>
+<!-- 2 FULL ADMIN END 5 BOX -->
+
+              <div class="fulAdmin">
+                        <div class="d-flex users-foarms">
+
+              <div class="boxes-full ">
+                    <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes('CMS', this);" type="checkbox" />  CMS Setting </p>
+                    <div id="CMS">
+
+
+                    <div class="faq">
+                        <p  class="main-heads" ><input onClick="setAllCheckboxes('faq', this);" type="checkbox" />  Faq </p>
+                    <div id="faq">
+                     <p class="check-lists"><input type="checkbox" name="/users_faqs" /> User Faq </p>
+                      <p class="check-lists"><input type="checkbox" name="/owners_faqs" /> Owner Faq </p>
+                      </div> 
+                     </div>
+
+
+                      <div class="Policy">
+                        <p  class="main-heads" ><input onClick="setAllCheckboxes('Policy', this);" type="checkbox" /> Privacy Policy </p>
+                    <div id="Policy">
+                     <p class="check-lists"><input type="checkbox" name="/users_privacy_policy" /> User Privacy Policy </p>
+                      <p class="check-lists"><input type="checkbox" name="/owners_privacy_policy" /> Owner Privacy Policy </p>
+                      </div> 
+                     </div>
+
+
+                     <div class="Cancel_Policy">
+                      <p  class="main-heads" ><input onClick="setAllCheckboxes('Cancel_Policy', this);" type="checkbox" /> Cancel Policy </p>
+                  <div id="Cancel_Policy">
+                   <p class="check-lists"><input type="checkbox" name="/users_cancellation_policy" /> User Cancel Policy </p>
+                    <p class="check-lists"><input type="checkbox" name="/owners_cancellation_policy" /> Owner Cancel Policy </p>
+                    </div> 
+                   </div>
+
+
+
+                      <div class="Terms">
+                        <p  class="main-heads" ><input onClick="setAllCheckboxes('Terms', this);" type="checkbox" />  Terms & Condition</p>
+                    <div id="Terms">
+                     <p class="check-lists"><input type="checkbox" name="/users_terms_condition" /> User Terms & Condition </p>
+                      <p class="check-lists"><input type="checkbox" name="/owners_terms_condition" /> Owner Terms & Condition </p>
+                      </div> 
+                     </div>
+
+                     <div id="About">
+                      <p class="check-lists"><input type="checkbox" name="/about_us" />  About us   </p>
+                     </div>     
+
+
+                    </div>     
+               </div>    
+               </div>
+               <!--  -->
+                <div class="boxes-full ">
+                      <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes('Coupan', this);" type="checkbox" />  Add coupan code   </p>
+                    <div id="Coupan">
+                     <p class="check-lists"><input type="checkbox" name="/discount_coupons" />  Add coupan code   </p>
+                    </div>     
+               </div>
+                </div>
+                 <!--  -->
+               <div class="boxes-full ">
+                          <div class="checkbox-full">
+                   <p  class="main-heads" ><input onClick="setAllCheckboxes('supportcall', this);" type="checkbox" />    Support Call Center   </p>
+                    <div id="supportcall">
+                     <p class="check-lists"><input type="checkbox" name="/inquiry_contacts" /> Inquiry Contacts </p>
+                
+                      <p class="check-lists"><input type="checkbox" name="/queries" /> Query Tickets  Support </p>
+                    </div>     
+               </div>
+                </div>
+                <!--  -->
+
+
+             </div>
+          </div>
+           <!--  -->
+             </div>
+           </div>
+         </div>
+       </div>
+            <!-- 1-3-block row end -->
+
+        
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+
+   <%- include ("superfooter.ejs") %>
+   <script>
+    function collectPermissions11() {
+        // Get all checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const permissions = [];
+    
+        // Loop through checkboxes and collect checked ones
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                permissions.push(checkbox.name); // Use the name attribute as the permission value
+            }
+        });
+    
+        // Set the value of the hidden input field
+        const permissionsInput = document.getElementById('permissions');
+        permissionsInput.value = permissions.join(','); // Join the permissions with a comma
+    }
+
+    function collectPermissions() {
+    // Get all checkboxes
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const permissions = [];
+
+    // Loop through checkboxes and collect checked ones
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked && checkbox.name.trim() !== '') {
+            permissions.push(checkbox.name); // Use the name attribute as the permission value
+        }
+    });
+
+    // Set the value of the hidden input field without starting with a comma
+    const permissionsInput = document.getElementById('permissions');
+    permissionsInput.value = permissions.join(','); // Join the permissions with a comma
+}
+
+document.querySelector('form').addEventListener('submit', collectPermissions);
+
+
+
+
+
+
+
+
+
+
+    //----------------
+
+document.addEventListener("DOMContentLoaded", function() {
+        var input = document.querySelector("#kilvishcontact");
+
+        var iti = window.intlTelInput(input, {
+          preferredCountries: ["us", "IN"], // Customize based on your needs
+          separateDialCode: true,
+          initialCountry: "us",
+          utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.min.js", // Utility script
+        });
+
+
+
+    // Update hidden input field with full phone number
+    input.addEventListener("input", function() {
+      var fullPhoneNumber = iti.getNumber();
+      var countryCode =   '+'+iti.getSelectedCountryData().dialCode;
+      document.querySelector("#fullkilvishcontact").value = fullPhoneNumber;
+      document.querySelector("#country_code").value = countryCode;
+
+    });
+
+
+    input.addEventListener("countrychange", function() {
+    var fullPhoneNumber = iti.getNumber();  // Get the full number
+    var countryCode = '+' + iti.getSelectedCountryData().dialCode;  // Get the new country code
+    // Update hidden fields
+    document.querySelector("#fullkilvishcontact").value = fullPhoneNumber;
+    document.querySelector("#country_code").value = countryCode;
+  });
+
+
+
+
+    // Initialize hidden field with the current value on page load
+    var fullPhoneNumber = iti.getNumber();
+    var countryCode =   '+'+iti.getSelectedCountryData().dialCode;
+    document.querySelector("#fullkilvishcontact").value = fullPhoneNumber;
+    document.querySelector("#country_code").value = countryCode;
+
+  });
+
+
+
+
+
+
+
+
+  //
+  //------------------- kilcheck email================ -> 
+$(document).ready(function() 
+{
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+ 
+    $('#emailInput').on('change', function()
+    {  
+        var email = $(this).val();
+        var emailInput = document.getElementById('emailInput');
+        $.ajax({
+            type: 'POST',
+            url: '/superadmin/checksubadminemail',
+            data: { email: email ,  _csrf: csrfToken},
+            success: function(data) 
+            {
+             
+                if (data.exists == true)
+                {
+                    $('#kilError').text("A record with the given Email ID( "+ email + " ) already exist, Enter another unnique Email ID and try again.");
+                    // $('#kilText').text("");
+                    emailInput.value = "";
+                } 
+                else
+                {
+                  if( emailInput.value == ""){
+                    // $('#kilText').text("");
+                    $('#kilError').text("");
+                  }else{
+                    // $('#kilText').text("Email available.");
+                    $('#kilError').text("");
+                  }
+                     
+                }
+            }
+        });
+    });
+});
+
+
+
+
+
+$(document).ready(function() 
+{
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+ 
+    $('#kilvishcontact').on('change', function()
+    {  
+
+        var phoneNumber = $(this).val();
+
+var countryCode = document.querySelector("#country_code").value ;
+ var contactInput = document.getElementById('kilvishcontact');
+
+        $.ajax({
+            type: 'POST',
+            url: '/superadmin/checksubadminphonenumber',
+            data: { phoneNumber: phoneNumber ,countryCode:countryCode,  _csrf: csrfToken},
+            success: function(data) 
+            {
+             
+                if (data.exists == true)
+                {
+                    $('#kilError2').text("A record with the given Phone number ( "+ phoneNumber + " ) already exist, Enter another unnique contact and try again.");
+                    // $('#kilText').text("");
+                    contactInput.value = "";
+                } 
+                else
+                {
+                  if( contactInput.value == ""){
+                    // $('#kilText').text("");
+                    $('#kilError2').text("");
+                  }else{
+                    // $('#kilText').text("Email available.");
+                    $('#kilError2').text("");
+                  }
+                     
+                }
+            }
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+$(document).ready(function() 
+{
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+ 
+    $('#kilvishusername').on('change', function()
+    {  
+        var username = $(this).val();
+        var usernameInput = document.getElementById('kilvishusername');
+        $.ajax({
+            type: 'POST',
+            url: '/superadmin/checksubadminusername',
+            data: { username: username,  _csrf: csrfToken },
+            success: function(data) 
+            {
+             
+                if (data.exists == true)
+                {
+                    $('#kilError3').text("A record with the given Username ( "+ username + " ) already exist, Enter another unnique username and try again.");
+                    // $('#kilText').text("");
+                    usernameInput.value = "";
+                } 
+                else
+                {
+                  if( usernameInput.value == ""){
+                    // $('#kilText').text("");
+                    $('#kilError3').text("");
+                  }else{
+                    // $('#kilText').text("Email available.");
+                    $('#kilError3').text("");
+                  }
+                     
+                }
+            }
+        });
+    });
+});
+
+  
+//--------------------------------  
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_type_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+
+//-------------- Comman Kilvish Function for input validation start ---------------------
+
+     
+   
+function validateRequiredFields(kil) {
+
+const form = document.querySelector(`${kil}`); 
+const inputs = form.querySelectorAll('input[required], select[required], textarea[required]'); // Get only required inputs
+let isValid = true;
+
+
+
+// Remove previous error messages and borders
+form.querySelectorAll('.error-message').forEach(errorMsg => errorMsg.remove());
+inputs.forEach(input => {
+    input.style.border = ''; // Reset borders
+});
+
+inputs.forEach(input => {
+    if (!input.value.trim()) {  // If the required field is empty
+        isValid = false;
+        input.style.border = '1px solid red'; // Set border to red for empty required fields
+        addErrorMessage(input.parentNode, "This Field is Required."); // Add error message
+    }
+});
+
+return isValid;
+}
+
+// Add real-time validation for each required field
+function addRealTimeValidation(kil) {
+const form = document.querySelector(`${kil}`); 
+const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+
+inputs.forEach(input => {
+ // Listen for 'input' and 'change' events on required fields
+ input.addEventListener('input', function () {
+     if (input.value.trim()) {
+         // If the input is filled, remove red border and error message
+         input.style.border = '';
+         const errorMessage = input.parentNode.querySelector('.error-message');
+         if (errorMessage) {
+             errorMessage.remove();
+         }
+     }
+ });
+ input.addEventListener('change', function () {
+     if (input.value.trim()) {
+         // For select fields, check if an option is selected
+         input.style.border = '';
+         const errorMessage = input.parentNode.querySelector('.error-message');
+         if (errorMessage) {
+             errorMessage.remove();
+         }
+     }
+ });
+});
+}
+
+
+
+
+// Combined validation function
+function validateForm(kil) {
+
+if(!validateRequiredFields(kil)){
+  event.preventDefault();
+}
+}
+
+// Add real-time validation once the document is loaded
+document.addEventListener('DOMContentLoaded', () => {
+addRealTimeValidation('#kilfrom');  // Activate real-time validation
+});
+
+
+
+
+function validateKilvishInput(event) {
+    const inputField = event.target;
+
+    // General valid character sets
+    // let validCharacters = /^[a-zA-Z0-9@,._\s-]*$/;
+
+    let validCharacters = /^[a-zA-Z\s]*$/; // only char, no special char no numbers 
+
+    // Define allowed image file types
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp', 'image/svg+xml'];
+
+    // Use parentNode for regular inputs, container for checkboxes
+    const container = inputField.closest('.col-lg-12') || inputField.closest('.form-group') || inputField.closest('div');
+    const inputParent = inputField.parentNode;
+
+    // Remove previous error message and border
+    let errorMessage = inputParent.querySelector('.error-message');
+    if (errorMessage) errorMessage.remove();
+    inputField.style.border = ''; // Reset border
+
+    // Custom validations based on input name
+    if (inputField.name === 'description') {
+        validCharacters = /^[a-zA-Z0-9@,._\s-'"*]*$/;
+
+        // Check length limit
+        if (inputField.value.length > 400) {
+            addErrorMessage(inputParent, 'Input exceeds the maximum length of 400 characters!');
+            inputField.style.border = '1px solid red';
+            inputField.value = inputField.value.substring(0, 400); // Truncate the input
+            return;
+        }
+    } else if (inputField.name === 'contact' || inputField.name === 'contact') {
+        // Only numbers allowed, between 7 and 10 digits
+        validCharacters = /^\d{7,10}$/;
+    }else if (inputField.name === 'age') {
+        // Only numbers allowed, between 7 and 10 digits
+        validCharacters = /^\d{2,2}$/;
+          // Custom validation: Ensure age is 18 or above
+              if (inputField.value && parseInt(inputField.value) < 18 && event.type === 'change') {
+                  addErrorMessage(inputParent, 'Age must be 18 or above!');
+                  inputField.style.border = '1px solid red';
+                  inputField.value = ''; // Clear the input field if age is below 18
+                  return;
+              }else if(inputField.value && parseInt(inputField.value) < 18 ){
+                addErrorMessage(inputParent, 'Age must be 18 or above!');
+                  inputField.style.border = '1px solid red';                 
+
+              }
+            }else if (inputField.name === 'job_exp') {
+               // Only numbers allowed, between 7 and 10 digits
+               validCharacters = /^\d{1,2}$/;
+            }else if(inputField.type ==='email'){
+               validCharacters = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email pattern
+            }else if(inputField.type ==='password'){
+
+                            const hasSequentialChars = (password) => {
+                                 console.log("passworddddddd -", password)
+                                 const length = password.length;
+                                 
+                                 // Check for ascending sequences (e.g., "123", "abc")
+                                 for (let i = 0; i < length - 3; i++) {
+                                    if (password.charCodeAt(i + 1) === password.charCodeAt(i) + 1 &&
+                                          password.charCodeAt(i + 2) === password.charCodeAt(i) + 2 &&
+                                          password.charCodeAt(i + 3) === password.charCodeAt(i) + 3) {
+                                          return true; // Ascending sequence found
+                                    }
+                                 }
+
+                                 // Check for descending sequences (e.g., "321", "cba")
+                                 for (let i = 0; i < length - 3; i++) {
+                                    if (password.charCodeAt(i + 1) === password.charCodeAt(i) - 1 &&
+                                          password.charCodeAt(i + 2) === password.charCodeAt(i) - 2 &&
+                                          password.charCodeAt(i + 3) === password.charCodeAt(i) - 3) {
+                                          return true; // Descending sequence found
+                                    }
+                                 }
+                                 
+                                 return false; // No sequential characters
+                              };
+
+               
+
+               validCharacters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
+
+
+                                          // Check if password meets the required pattern
+                           if (!validCharacters.test(inputField.value)) {
+                              addErrorMessage(inputParent, 'Password must be at least 12 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.');
+                              inputField.style.border = '1px solid red';
+                              if (event.type === 'change') {   inputField.value = '';  }
+                              return; // Stop further validation
+                           }
+
+                           // Check for sequential characters
+                           if (hasSequentialChars(inputField.value)) {
+                              addErrorMessage(inputParent, 'Password should not contain sequential characters.');
+                              inputField.style.border = '1px solid red';
+                                 if (event.type === 'change') {   inputField.value = '';  }
+                              return; // Stop further validation
+                           }
+
+
+                           // Function to check for sequential characters in the password
+                 
+                                                   
+
+
+
+            }
+              
+
+            
+
+
+
+    // Handle file input validation
+    if (inputField.type === 'file') {
+        const file = inputField.files[0];
+        if (file && !validImageTypes.includes(file.type)) {
+            addErrorMessage(inputParent, 'Please select a valid image file (JPEG, PNG, etc.)');
+            inputField.value = ''; // Clear the file input field
+            inputField.style.border = '1px solid red';
+            return;
+        }
+    } else {
+        // For normal text/number input validation
+        if (event.type === 'keyup') {
+            if (!validCharacters.test(inputField.value)) {
+                addErrorMessage(inputParent, 'Invalid character entered!');
+                inputField.style.border = '1px solid red';
+                
+            }
+        }
+
+        if (event.type === 'change') {
+            if (!validCharacters.test(inputField.value)) {
+                // On invalid input during change event, clear the field and show an error
+                inputField.value = ''; // Clear invalid input
+                addErrorMessage(inputParent, 'Invalid character or format!');
+                inputField.style.border = '1px solid red';
+            } else {
+                // Clear error when value is corrected
+                inputField.style.border = '';
+                if (errorMessage) errorMessage.remove();
+            }
+        }
+    }
+}
+
+// Function to display error messages under the input field or container for checkboxes
+function addErrorMessage(parent, message) {
+    if (!parent.querySelector('.error-message')) {
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.style.color = 'red';
+        errorMessage.style.fontSize = '12px';
+        errorMessage.innerText = message;
+        parent.appendChild(errorMessage);
+    }
+}
+
+
+
+
+
+//-------------- Comman Kilvish Function for input validation End ---------------------
+
+
+    </script>

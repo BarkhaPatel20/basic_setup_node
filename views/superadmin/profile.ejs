@@ -1,0 +1,822 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+
+<meta name="csrf-token" content="<%= csrfToken %>">
+
+<style>
+  .fade{
+     opacity: 1 !important;
+  }
+  .row {
+      margin-left: -10px;
+      margin-right: -15px;
+  }
+  /* profile css */
+  .profile-header {
+      background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+      border: 1px solid #efefef;
+      padding: 1.5rem;
+  }
+  .profile-menu {
+      background-color: #fff;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+      padding: 0.9375rem 1.5rem;
+  }
+  .profile-menu .nav-tabs.nav-tabs-solid {
+    background-color: transparent;
+  }
+  .profile-header img {
+      height: auto;
+      max-width: 120px;
+      width: 120px;
+  }
+  .profile-tab-cont {
+    padding-top: 1.875rem;
+  }
+  .about-text {
+      max-width: 500px;
+  }
+  .skill-tags span {
+      background-color: #f4f4f5;
+      border-radius: 4px;
+      color: #66676b;
+      display: inline-block;
+      font-size: 15px;
+      line-height: 22px;
+      margin: 2px 0;
+      padding: 5px 15px;
+  }
+  
+  .edit-link {
+      color: #66676b;
+      font-size: 16px;
+      text-align: right;
+      margin-top: 4px;
+  }
+  .card-body {
+      padding: 3px 0px;
+      
+  }
+  .card-body h5 {
+      margin-bottom: .75rem;
+      padding: 10px 10px;
+      color: white;
+      background: #39444e;
+      margin-top: 2px;
+          font-size: 16px;
+  }
+  
+  .card-body a {color: #c9c9c9;}
+  .about-left {
+      text-align: center;
+  }
+  
+  .about-left img {
+      width: 62%;
+      height: auto;
+  }
+  .modal-content {
+      padding: 0px 10px;
+  }
+  .profile-list p {
+      padding: 8px 11px;
+      font-weight: 600;
+  }
+
+
+ 
+
+
+
+  </style>
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+           <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/"> Home </a></li>
+                               <li class="active"><a href="#"> / Profile  </a></li>
+                            <!-- <li class="active"> / Add Video </li>         -->
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->       
+            </div>
+            <!-- 1-3-block row start -->
+            <div class="row">
+               <div class="col-lg-12">
+              <div class="card mb-4" style="border-top:4px solid black;">
+                <div class="users-forms">
+                 <div class="row">
+            <div class="col-md-12">
+                    <!-- alert msgs -->
+           <% if ( output.includes('successfully') ) { %>
+            <p class="success-text"><%= output %></p>
+              <% } else { %>
+                    <p class="error-text"><%= output %></p>
+              <% } %>
+          <!-- /alert msgs -->  
+              <div class="profile-menu">
+                <ul class="nav nav-tabs nav-tabs-solid">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#password_tab">Password</a>
+                  </li>
+                </ul>
+              </div>  
+              <div class="tab-content profile-tab-cont">
+                
+                <!-- Personal Details Tab -->
+                <div class="tab-pane fade active show" id="per_details_tab">
+                
+                  <!-- Personal Details -->
+                  <div class="row">
+                                        <div class="col-lg-4">
+
+
+
+                                              <!-- Account Status -->
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title  justify-content-between">
+                            <span style="float: left;width: 80%;">Profile picture </span>
+                            <a class="edit-link" href="#">.</a>
+                          </h5>
+
+
+                        <div class=" profile-image mb-4 mt-3">
+              
+
+
+                      <!--   ------ Start  Kil profile pic  -------   -->
+  
+                      <div id="successMessage" class="alert alert-success d-none">
+                        Profile picture updated successfully!
+                      </div>
+                        
+                        <div id="errorMessage" class="alert alert-danger d-none">
+                        Error updating profile picture. Please try again.
+                        </div>
+                        <div id="errmsg1"></div>   
+              
+              
+              
+              
+                            <div class="profile-pic  mt-3">
+                              <label class="-label" for="file">
+                                <span class="glyphicon glyphicon-camera"></span>
+                                <!-- <span>Change Image</span> -->
+                              </label>
+                              <input id="file" type="file"  onchange="loadFile(event)"/>
+                              <img src="/images/profiles/<%- loggeduser.image %>" id="output" alt="Change" width="200" />
+                            </div>       
+                     
+                          <p style="color: gray; text-align: left;">Choose a nice & professional picture! </p>
+                          &nbsp;
+                            
+                      <!--   ------ END Kil profile pic  -------   -->
+                
+
+
+
+
+                  </div>
+
+
+
+
+                        </div>
+                      </div>
+                      <!-- /Account Status -->
+                
+                    </div>
+                    
+
+     
+                    <div class="col-lg-8">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title  justify-content-between">
+                            <span style="float: left;width: 90%;">Personal Details</span> 
+                           
+                              <a href="javascript:void(0)" onclick="updateUser('<%= loggeduser.admin_id %>', '<%= JSON.stringify(loggeduser) %>')" title="Update">
+                                <i class="fa fa-edit icon-2"></i> Edit
+                            </a>
+
+                          </h5>
+                          <div class="row profile-list">
+                            <p class="col-sm-3 lefts-p text-muted text-sm-left mb-0 mb-sm-3">Name</p>
+                            <p class="col-sm-9 rights-p"> <%= loggeduser.first_name %> <%= loggeduser.last_name %></p>
+                          </div>
+                          <div class="row profile-list">
+                            <p class="col-sm-3 lefts-p text-muted text-sm-left mb-0 mb-sm-3"> Username</p>
+                            <p class="col-sm-9 rights-p"> <%= loggeduser.username %> </p>
+                          </div>
+                          <div class="row profile-list">
+                            <p class="col-sm-3 lefts-p text-muted text-sm-left mb-0 mb-sm-3">Email ID</p>
+                            <p class="col-sm-9 rights-p"> <%= loggeduser.email %> </p>
+                          </div>
+                          <div class="row profile-list">
+                            <p class="col-sm-3 lefts-p text-muted text-sm-left mb-0 mb-sm-3">Mobile</p>
+                            <p class="col-sm-9 rights-p"><%= loggeduser.country_code %><%= loggeduser.contact %></p>
+                          </div>
+                          <!-- <div class="row profile-list">
+                            <p class="col-sm-3 lefts-p text-muted text-sm-left mb-0">Address</p>
+                            <p class="col-sm-9 rights-p mb-0">4663  Agriculture Lane,<br>
+                            Miami,<br>
+                            Florida - 33165,<br>
+                            United States.</p>
+                          </div> -->
+                        </div>
+                      </div>  
+                    </div>
+
+
+                  </div>
+                  <!-- /Personal Details -->
+
+                </div>
+                <!-- /Personal Details Tab -->
+                
+                <!-- Change Password Tab -->
+                <div id="password_tab" class="tab-pane fade">
+                
+                  <div class="card">
+                      <div class="row">
+                        <div class="col-lg-6">
+                    <div class="card-body">
+                      <h5 class="card-title">Change Password</h5>
+
+                        <div class="profile-password">
+                       
+
+                            <form id="kilfrom" method="post" action="/superadmin/changepass" >
+
+                              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <div class="form-group">
+                              <label>Old Password</label>
+                              <input name="opass" type="password" class="form-control" required>
+                           </div>
+                           <div class="form-group">
+                              <label>New Password</label>
+                              <input name="npass" type="password" class="form-control"  onkeyup="validateKilvishInput(event)"  onchange="validateKilvishInput(event)" required >
+                           </div>
+                           <div class="form-group">
+                              <label>Confirm Password</label>
+                              <input name="cpass" type="password" class="form-control" onkeyup="validateKilvishInput(event)"  onchange="validateKilvishInput(event)" required>
+                           </div>
+
+
+
+                            <button class="btn btn-primary" onclick="validateForm('#kilfrom')" type="submit">Change Password</button>
+
+
+
+                          </form>
+                        </div>
+                    </div>
+                    </div>
+                      <div class="col-lg-6">
+                    <div class="card-body">
+                    
+                        <div class="password-img">
+                           <div class="about-left">
+                              <img src="../assets/images/about-imgs.png">
+                             </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Change Password Tab -->
+                
+              </div>
+            </div>
+          </div>
+                </div>
+               
+              </div>
+              </div>
+          <!--Row-->
+
+          <!-- Modal Logout -->
+          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                  <a href="login.html" class="btn btn-primary">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+            <!-- 1-3-block row end -->
+
+     
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+   <%- include ("superfooter.ejs") %>
+
+     <!-- -----  Start Kil cropper script start ---------- -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+  <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+
+  <!-- -----  End Kil cropper script  ---------- -->
+
+
+
+
+  <script>
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_type_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+
+//-------------- Comman Kilvish Function for input validation start ---------------------
+
+     
+   
+function validateRequiredFields(kil) {
+
+const form = document.querySelector(`${kil}`); 
+const inputs = form.querySelectorAll('input[required], select[required], textarea[required]'); // Get only required inputs
+let isValid = true;
+
+
+
+// Remove previous error messages and borders
+form.querySelectorAll('.error-message').forEach(errorMsg => errorMsg.remove());
+inputs.forEach(input => {
+    input.style.border = ''; // Reset borders
+});
+
+inputs.forEach(input => {
+    if (!input.value.trim()) {  // If the required field is empty
+        isValid = false;
+        input.style.border = '1px solid red'; // Set border to red for empty required fields
+        addErrorMessage(input.parentNode, "This Field is Required."); // Add error message
+    }
+});
+
+return isValid;
+}
+
+// Add real-time validation for each required field
+function addRealTimeValidation(kil) {
+const form = document.querySelector(`${kil}`); 
+const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+
+inputs.forEach(input => {
+ // Listen for 'input' and 'change' events on required fields
+ input.addEventListener('input', function () {
+     if (input.value.trim()) {
+         // If the input is filled, remove red border and error message
+         input.style.border = '';
+         const errorMessage = input.parentNode.querySelector('.error-message');
+         if (errorMessage) {
+             errorMessage.remove();
+         }
+     }
+ });
+ input.addEventListener('change', function () {
+     if (input.value.trim()) {
+         // For select fields, check if an option is selected
+         input.style.border = '';
+         const errorMessage = input.parentNode.querySelector('.error-message');
+         if (errorMessage) {
+             errorMessage.remove();
+         }
+     }
+ });
+});
+}
+
+
+
+
+// Combined validation function
+function validateForm(kil) {
+
+if(!validateRequiredFields(kil)){
+  event.preventDefault();
+}
+}
+
+// Add real-time validation once the document is loaded
+document.addEventListener('DOMContentLoaded', () => {
+addRealTimeValidation('#kilfrom');  // Activate real-time validation
+});
+
+
+
+
+function validateKilvishInput(event) {
+    const inputField = event.target;
+
+    // General valid character sets
+    // let validCharacters = /^[a-zA-Z0-9@,._\s-]*$/;
+
+    let validCharacters = /^[a-zA-Z\s]*$/; // only char, no special char no numbers 
+
+    // Define allowed image file types
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp', 'image/svg+xml'];
+
+    // Use parentNode for regular inputs, container for checkboxes
+    const container = inputField.closest('.col-lg-12') || inputField.closest('.form-group') || inputField.closest('div');
+    const inputParent = inputField.parentNode;
+
+    // Remove previous error message and border
+    let errorMessage = inputParent.querySelector('.error-message');
+    if (errorMessage) errorMessage.remove();
+    inputField.style.border = ''; // Reset border
+
+    // Custom validations based on input name
+    if (inputField.name === 'description') {
+        validCharacters = /^[a-zA-Z0-9@,._\s-'"*]*$/;
+
+        // Check length limit
+        if (inputField.value.length > 400) {
+            addErrorMessage(inputParent, 'Input exceeds the maximum length of 400 characters!');
+            inputField.style.border = '1px solid red';
+            inputField.value = inputField.value.substring(0, 400); // Truncate the input
+            return;
+        }
+    } else if (inputField.name === 'contact' || inputField.name === 'contact') {
+        // Only numbers allowed, between 7 and 10 digits
+        validCharacters = /^\d{7,10}$/;
+    }else if (inputField.name === 'age') {
+        // Only numbers allowed, between 7 and 10 digits
+        validCharacters = /^\d{2,2}$/;
+          // Custom validation: Ensure age is 18 or above
+              if (inputField.value && parseInt(inputField.value) < 18 && event.type === 'change') {
+                  addErrorMessage(inputParent, 'Age must be 18 or above!');
+                  inputField.style.border = '1px solid red';
+                  inputField.value = ''; // Clear the input field if age is below 18
+                  return;
+              }else if(inputField.value && parseInt(inputField.value) < 18 ){
+                addErrorMessage(inputParent, 'Age must be 18 or above!');
+                  inputField.style.border = '1px solid red';                 
+
+              }
+            }else if (inputField.name === 'job_exp') {
+               // Only numbers allowed, between 7 and 10 digits
+               validCharacters = /^\d{1,2}$/;
+            }else if(inputField.type ==='email'){
+               validCharacters = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email pattern
+            }else if(inputField.type ==='password'){
+
+                            const hasSequentialChars = (password) => {
+                                 console.log("passworddddddd -", password)
+                                 const length = password.length;
+                                 
+                                 // Check for ascending sequences (e.g., "123", "abc")
+                                 for (let i = 0; i < length - 3; i++) {
+                                    if (password.charCodeAt(i + 1) === password.charCodeAt(i) + 1 &&
+                                          password.charCodeAt(i + 2) === password.charCodeAt(i) + 2 &&
+                                          password.charCodeAt(i + 3) === password.charCodeAt(i) + 3) {
+                                          return true; // Ascending sequence found
+                                    }
+                                 }
+
+                                 // Check for descending sequences (e.g., "321", "cba")
+                                 for (let i = 0; i < length - 3; i++) {
+                                    if (password.charCodeAt(i + 1) === password.charCodeAt(i) - 1 &&
+                                          password.charCodeAt(i + 2) === password.charCodeAt(i) - 2 &&
+                                          password.charCodeAt(i + 3) === password.charCodeAt(i) - 3) {
+                                          return true; // Descending sequence found
+                                    }
+                                 }
+                                 
+                                 return false; // No sequential characters
+                              };
+
+               
+
+               validCharacters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
+
+
+                                          // Check if password meets the required pattern
+                           if (!validCharacters.test(inputField.value)) {
+                              addErrorMessage(inputParent, 'Password must be at least 12 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.');
+                              inputField.style.border = '1px solid red';
+                              if (event.type === 'change') {   inputField.value = '';  }
+                              return; // Stop further validation
+                           }
+
+                           // Check for sequential characters
+                           if (hasSequentialChars(inputField.value)) {
+                              addErrorMessage(inputParent, 'Password should not contain sequential characters.');
+                              inputField.style.border = '1px solid red';
+                                 if (event.type === 'change') {   inputField.value = '';  }
+                              return; // Stop further validation
+                           }
+
+
+                           // Function to check for sequential characters in the password
+                 
+                                                   
+
+
+
+            }
+              
+
+            
+
+
+
+    // Handle file input validation
+    if (inputField.type === 'file') {
+        const file = inputField.files[0];
+        if (file && !validImageTypes.includes(file.type)) {
+            addErrorMessage(inputParent, 'Please select a valid image file (JPEG, PNG, etc.)');
+            inputField.value = ''; // Clear the file input field
+            inputField.style.border = '1px solid red';
+            return;
+        }
+    } else {
+        // For normal text/number input validation
+        if (event.type === 'keyup') {
+            if (!validCharacters.test(inputField.value)) {
+                addErrorMessage(inputParent, 'Invalid character entered!');
+                inputField.style.border = '1px solid red';
+                
+            }
+        }
+
+        if (event.type === 'change') {
+            if (!validCharacters.test(inputField.value)) {
+                // On invalid input during change event, clear the field and show an error
+                inputField.value = ''; // Clear invalid input
+                addErrorMessage(inputParent, 'Invalid character or format!');
+                inputField.style.border = '1px solid red';
+            } else {
+                // Clear error when value is corrected
+                inputField.style.border = '';
+                if (errorMessage) errorMessage.remove();
+            }
+        }
+    }
+}
+
+// Function to display error messages under the input field or container for checkboxes
+function addErrorMessage(parent, message) {
+    if (!parent.querySelector('.error-message')) {
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.style.color = 'red';
+        errorMessage.style.fontSize = '12px';
+        errorMessage.innerText = message;
+        parent.appendChild(errorMessage);
+    }
+}
+
+
+
+
+
+//-------------- Comman Kilvish Function for input validation End ---------------------
+
+
+    
+ 
+ 
+ 
+ 
+ 
+ </script>
+
+  
+
+
+   <script> 
+
+
+const loadFile = function (event) {
+    const inputField = event.target;
+    const errorMessageDiv = document.getElementById('errmsg1');
+    const successMessageDiv = document.getElementById('successMessage');
+    const errorMessageAlert = document.getElementById('errorMessage');
+    const fileInput = inputField.files[0]; 
+
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp', 'image/svg+xml'];
+
+    if (!validImageTypes.includes(fileInput.type)) {
+        errorMessageDiv.textContent = 'Please select a valid image file (JPEG, PNG, etc.)!';
+        errorMessageDiv.style.color = 'red';
+        inputField.value = ''; // Clear the input field
+        return;
+    }
+
+    // Clear error messages
+    errorMessageDiv.textContent = '';
+    successMessageDiv.classList.add('d-none');
+    errorMessageAlert.classList.add('d-none');
+
+    const previewImage = document.getElementById("output");
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    const formData = new FormData();
+    formData.append("image", fileInput); // Append the file
+    formData.append("_csrf", csrfToken); // Append CSRF token
+
+    // Debugging: log form data
+    for (let pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
+    // Send the AJAX request
+    $.ajax({
+    url: "/superadmin/updateUserPic",
+    type: "POST",
+    data: formData,
+    processData: false,
+    contentType: false,
+    xhrFields: {
+      withCredentials: true
+    },
+    headers: {
+      'x-csrf-token': csrfToken
+    },
+    success: function (response) {
+        console.log('Server Response:', response); // Debug server response
+        if (response.msg === 'success') {
+            $("#successMessage").removeClass("d-none");
+            $("#errorMessage").addClass("d-none");
+            $("#output").attr("src", "/images/profiles/" + response.image); // Ensure path matches
+        } else {
+            $("#errorMessage").removeClass("d-none");
+            $("#successMessage").addClass("d-none");
+        }
+    },
+    error: function (xhr, status, error) {
+        console.error('Error:', error, xhr.responseText); // Log error details
+        $("#errorMessage").removeClass("d-none");
+        $("#successMessage").addClass("d-none");
+    }
+});
+
+};
+</script>
+
+   <script>
+
+function updateUser(admin_id, admin ) {
+    admin = JSON.parse(admin);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // Create the form structure for editing inside SweetAlert
+    const htmlForm = `
+        <div style="position: relative;">
+            <!-- Close (X) Button -->
+            <button type="button" class="swal2-close" onclick="Swal.close()" aria-label="Close" style="position: absolute; top: -10px; right: -10px; background: transparent; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+        </div>
+        <form id="kileditfrom" action="/superadmin/updateAdmin?_csrf=<%= csrfToken %>" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="admin_id" value="${admin_id}">   
+            <div class="form-group" style="text-align: left;">
+                 <label>First Name</label>
+                 <input onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" type="text" name="first_name" class="form-control" value="${admin.first_name}"  placeholder="Enter First Name" required>
+            </div>
+
+            <div class="form-group" style="text-align: left;">
+                <label>Last Name</label>
+                 <input onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" type="text" name="last_name"  class="form-control" value="${admin.last_name}"  placeholder="Enter Last Name" required>
+            </div>
+
+
+            <div class="form-group" style="text-align: left;">
+                <label>Username (For Login) </label>
+                <input type="text" name="username" class="form-control" id="emailInput" placeholder="Enter email" value="${admin.username}"  required>
+                <div id="kilErrorupdate" style="color: red;"></div>
+            </div>
+
+            <div class="form-group" style="text-align: left;">
+                <label>Email ID</label>
+                <input type="email" name="email" class="form-control" id="emailInput" placeholder="Enter email" value="${admin.email}" readonly required>
+                <div id="kilErrorupdate" style="color: red;"></div>
+            </div>
+
+            <div class="form-group" style="text-align: left;">
+                <label for="exampleInputPassword" class="form-control-label">Mobile Number</label>
+                <input type="tel" onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" name="contact" id="kilvishcontact" value="${admin.contact}" class="form-control cc text-left prof-boxes" placeholder="Contact Number" required>
+                <input type="hidden" id="fullkilvishcontact" name="fullkilvishcontact">
+                <input type="hidden" id="country_code" name="country_code">
+                <div id="errorText1" style="color: red;"></div>
+            </div>
+
+              <!--   
+
+            <div class="form-group" style="text-align: left;">
+                <label>Customer Image</label><br>
+                <img src="../images/profiles/${admin.image}" width="100" height="100"/> <br>
+                <input type="file" class="form-control" name="profile_image">
+            </div>
+
+            -->
+
+            <div style="display: flex; justify-content: space-between;">
+                <button type="button" class="btn btn-secondary" onclick="Swal.close()">Cancel</button>
+                <button type="submit" onclick="validateForm('#kileditfrom')" class="btn btn-success">Update</button>
+            </div>
+        </form>
+    `;
+
+    // Open SweetAlert with the form
+    Swal.fire({
+        title: `<span style="font-size: 16px;">Update User : ${admin.first_name}</span>`,
+        html: htmlForm,
+        showConfirmButton: false, // Disable default SweetAlert buttons, use form's submit buttons instead
+        focusCancel: true,
+        customClass: {
+            popup: 'my-popup-class' // Add a custom class for the popup
+        },
+        allowOutsideClick: false, // Disable closing by clicking outside
+        didOpen: () => {
+            // Now initialize intlTelInput when the modal has fully opened
+            var input = document.querySelector("#kilvishcontact");
+            var savedCountryCode = admin.country_code || '';  // Use saved country code from user data
+            var savedPhoneNumber = admin.contact || '';  // Use saved phone number from user data
+
+            var iti = window.intlTelInput(input, {
+                preferredCountries: ["hk", "cn"], // Customize based on your needs
+                separateDialCode: true,
+                initialCountry: "auto",
+                geoIpLookup: function(success, failure) {
+                    fetch('https://ipinfo.io/json', {cache: 'reload'}).then(resp => resp.json()).then(resp => {
+                        var countryCode = (resp && resp.country) ? resp.country : "hk";
+                        success(countryCode);
+                    }).catch(() => success("hk"));
+                },
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.min.js", // Utility script
+            });
+
+            if (savedCountryCode && savedPhoneNumber) {
+                // Combine country code and phone number if available
+                iti.setNumber(savedCountryCode + savedPhoneNumber);
+            }
+
+            // Update hidden input field with full phone number
+            input.addEventListener("input", function() {
+                var fullPhoneNumber = iti.getNumber();
+                var countryCode = '+' + iti.getSelectedCountryData().dialCode;
+                document.querySelector("#fullkilvishcontact").value = fullPhoneNumber;
+                document.querySelector("#country_code").value = countryCode;
+            });
+
+            input.addEventListener("countrychange", function() {
+                var fullPhoneNumber = iti.getNumber();
+                var countryCode = '+' + iti.getSelectedCountryData().dialCode;
+                document.querySelector("#fullkilvishcontact").value = fullPhoneNumber;
+                document.querySelector("#country_code").value = countryCode;
+            });
+
+            // Initialize hidden field with the current value on page load
+            var fullPhoneNumber = iti.getNumber();
+            var countryCode = '+' + iti.getSelectedCountryData().dialCode;
+            document.querySelector("#fullkilvishcontact").value = fullPhoneNumber;
+            document.querySelector("#country_code").value = countryCode;
+        }
+    });
+
+    // Add real-time validation for inputs (reuse the existing validation)
+    addRealTimeValidation('#kileditfrom'); // Ensure real-time validation works with the new modal form
+}
+
+
+
+
+
+   </script>

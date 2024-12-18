@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title> Rental Car home page</title>
+   <!-- <meta charset="utf-8"> -->
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+   <!-- Favicon icon -->
+   <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- Google font-->
+   <!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet"> -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&amp;display=swap" rel="stylesheet">
+
+   <!-- themify -->
+   <link rel="stylesheet" type="text/css" href="../assets/icon/themify-icons/themify-icons.css">
+
+   <!-- iconfont -->
+   <link rel="stylesheet" type="text/css" href="../assets/icon/icofont/css/icofont.css">
+
+   <!-- simple line icon -->
+   <link rel="stylesheet" type="text/css" href="../assets/icon/simple-line-icons/css/simple-line-icons.css">
+
+   <!-- Required Fremwork -->
+   <link rel="stylesheet" type="text/css" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+
+   <!-- Chartlist chart css -->
+   <link rel="stylesheet" href="../assets/plugins/chartist/dist/chartist.css" type="text/css" media="all">
+
+   <!-- Weather css -->
+   <link href="../assets/css/svg-weather.css" rel="stylesheet">
+
+
+   <!-- Style.css -->
+   <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+   <link rel="stylesheet" type="text/css" href="../assets/css/kil.css">
+
+
+   <!-- Responsive.css-->
+   <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css" >
+  
+  <!-- data table css -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css">
+  
+  
+  <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.4/dt-1.10.13/fc-3.2.2/fh-3.1.2/r-2.1.0/sc-1.4.2/datatables.min.css" />
+
+
+<!-- ---------- moment for Time/date Integrity -------------  -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  
+  <style>
+       .card {
+    border-top: 0px solid #98a5b1 !important;
+    border-bottom: 0px solid #98a5b1 !important;
+}
+
+body {
+            font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif !important;
+        }
+   </style>
+</head>
+
+<body class="sidebar-mini fixed">
+   <div class="loader-bg">
+      <div class="loader-bar">
+      </div>
+   </div>
+   <div class="wrapper">
+      <!-- Navbar-->
+      <header class="main-header-top hidden-print">
+        
+         <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#!" data-toggle="offcanvas" class="sidebar-toggle"></a>
+            <!-- <div class="main-header main-head" style="padding-left: 0px;">
+               <h4 style="padding-left: 0px;">Dashboard</h4>
+            </div> -->
+            <!-- Navbar Right Menu-->
+            <div class="navbar-custom-menu f-right">
+
+               <ul class="top-nav">
+                  <!--Notification Menu-->
+                  <li class="dropdown notification-menu notify" style="  margin-top: 5px;">
+                     <a href="#!" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
+                        <i class="icon-bell"></i>
+                        <span class="badge badge-danger header-badge"><%- notificationsCount %></span>
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li class="not-head">You have <b class="text-primary"><%- notificationsCount %></b> new notifications.</li>
+                        <% if (Notifications && Notifications.length > 0) { %>
+                           <% Notifications.forEach((Notification) => { %>
+                               <li class="bell-notification">
+                                   <a href="javascript:;" class="media">
+                                       <span class="media-left media-icon">
+                                           <img class="img-circle" src="../assets/images/avatar-3.png" alt="User Image">
+                                       </span>
+                                       <div class="media-body">
+                                           <span class="block"><%- Notification.title %></span>
+                                           <span class="text-muted block-time" data-datetime="<%- Notification.date %> <%- Notification.time %>"></span>
+                                       </div>
+                                   </a>
+                               </li>
+                           <% }); %>
+                       <% } %>
+                       
+                        <li class="not-footer">
+                           <a href="/superadmin/showNotifications">See all notifications.</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <!-- chat dropdown -->
+
+                  <!-- User Menu-->
+                  <li class="dropdown">
+                     <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image">
+                        <span><img class="img-circle " src="/images/profiles/<%- loggeduser.image %>" style="width:40px;" alt="User Image"></span>
+                        <span><%- loggeduser.first_name %> <b><%- loggeduser.last_name %></b> <i class=" icofont icofont-simple-down"></i></span>
+
+                     </a>
+                     <ul class="dropdown-menu settings-menu">
+                       <li><a href="/superadmin/profile"> <i class="icon-user"></i> Profile </a></li>
+                        
+                        <li class="p-0">
+                           <div class="dropdown-divider m-0"></div>
+                        </li>
+                        <li><a href="/superadmin/logout"><i class="icon-logout"></i> Logout</a></li>
+
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+
+
+
+      <script>
+
+function highlightActiveLink() {
+    const currentPath = window.location.pathname;
+    
+    // Highlight links in the header menu
+    document.querySelectorAll('.navbar-custom-menu a').forEach((link) => {
+        link.parentElement.classList.remove('active'); // Remove 'active' class from all links
+        if (link.getAttribute('href') === currentPath) {
+            link.parentElement.classList.add('active'); // Add 'active' class to the matching link
+        }
+    });
+
+    // Highlight links in the sidebar menu (if applicable)
+    document.querySelectorAll('.sidebar-menu li').forEach((li) => {
+        li.classList.remove('active'); // Remove 'active' class from all sidebar items
+    });
+    const activeSidebarLink = document.querySelector(`.sidebar-menu a[href="${currentPath}"]`);
+    if (activeSidebarLink) {
+        let parentLi = activeSidebarLink.closest('li');
+        while (parentLi) {
+            parentLi.classList.add('active');
+            parentLi = parentLi.parentElement.closest('li');
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', highlightActiveLink);
+
+      </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script>
+    document.querySelectorAll('.block-time').forEach((element) => {
+        const dateTime = element.getAttribute('data-datetime');
+        const timeAgo = moment(dateTime, "YYYY-MM-DD hh:mm:ss A").fromNow();
+        element.textContent = timeAgo;
+    });
+</script>

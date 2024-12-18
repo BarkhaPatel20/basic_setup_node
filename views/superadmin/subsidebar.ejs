@@ -1,0 +1,459 @@
+<% let userPermissions = permissions.includes('full') ? 'full' : permissions.split(','); %>
+
+<!-- Side-Nav-->
+<aside class="main-sidebar hidden-print">
+    <section class="sidebar" id="sidebar-scroll">
+        <a href="/superadmin" class="logo"><img class="img-fluid able-logo" src="../assets//images/logo.png" alt="Theme-logo"></a>
+        <!-- Sidebar Menu-->
+        <ul class="sidebar-menu">
+            <li class="active treeview">
+                <a class="waves-effect waves-dark" href="/superadmin">
+                    <img src="../assets//images/sidebar-icon/sidebar-1.png">
+                    <span> Dashboard</span>
+                </a>
+            </li>
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/addUser') || userPermissions.includes('/viewUsers')) { %>
+            <li class="treeview">
+                <a class="waves-effect waves-dark" href="#!">
+                    <img src="../assets//images/sidebar-icon/sidebar-2.png">
+                    <span>User Management</span>
+                    <i class="icon-arrow-down "></i>
+                </a>
+                <ul class="treeview-menu">
+                    <% if (userPermissions === 'full' || userPermissions.includes('/addUser')) { %>
+                    <li><a class="waves-effect waves-dark" href="/superadmin/addUser"><img src="../assets//images/sidebar-icon/user-1.png"> Add User</a></li>
+                    <% } %>
+                    <% if (userPermissions === 'full' || userPermissions.includes('/viewUsers')) { %>
+                    <li><a class="waves-effect waves-dark" href="/superadmin/viewUsers"><img src="../assets//images/sidebar-icon/user-2.png"> View User</a></li>
+                    <% } %>
+                    <% if (userPermissions === 'full' || userPermissions.includes('/user_document_management')) { %>
+                    <li><a class="waves-effect waves-dark" href="/superadmin/user_document_management"><img src="../assets//images/sidebar-icon/user-4.png"> User Documents Mgmt</a></li>
+                    <% } %>
+                </ul>
+            </li>
+            <% } %>
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/addOwner') || userPermissions.includes('/viewOwners')) { %>
+            <li class="treeview">
+                <a class="waves-effect waves-dark" href="#!">
+                    <img src="../assets//images/sidebar-icon/sidebar-3.png">
+                    <span>Owner Management</span>
+                    <i class="icon-arrow-down "></i>
+                </a>
+                <ul class="treeview-menu">
+                    <% if (userPermissions === 'full' || userPermissions.includes('/addOwner')) { %>
+                    <li><a class="waves-effect waves-dark" href="/superadmin/addOwner"><img src="../assets//images/sidebar-icon/owner-4.png"> Add Owner</a></li>
+                    <% } %>
+                    <% if (userPermissions === 'full' || userPermissions.includes('/viewOwners')) { %>
+                    <li><a class="waves-effect waves-dark" href="/superadmin/viewOwners"><img src="../assets//images/sidebar-icon/owner-4.png"> View Owner</a></li>
+                    <% } %>
+                    <% if (userPermissions === 'full' || userPermissions.includes('/Owner_document_management')) { %>
+                    <li><a class="waves-effect waves-dark" href="/superadmin/Owner_document_management"><img src="../assets//images/sidebar-icon/owner-4.png"> Owner Documents Mgmt</a></li>
+                    <% } %>
+                </ul>
+            </li>
+            <% } %>
+
+
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/pending_bookings') || userPermissions.includes('/confirmed_bookings') || userPermissions.includes('/ongoing_bookings') || userPermissions.includes('/completed_bookings') || userPermissions.includes('/cancelled_bookings')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="#!">
+                        <img src="../assets//images/sidebar-icon/sidebar-4.png">
+                        <span> Report </span>
+                        <i class="icon-arrow-down "></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <% if (userPermissions === 'full' || userPermissions.includes('/pending_bookings')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/pending_bookings">
+                                <img src="../assets//images/sidebar-icon/report-4.png"> Pending Report
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/confirmed_bookings')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/confirmed_bookings">
+                                <img src="../assets//images/sidebar-icon/report-4.png"> Confirm Report
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/ongoing_bookings')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/ongoing_bookings">
+                                <img src="../assets//images/sidebar-icon/report-4.png"> Ongoing Report
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/completed_bookings')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/completed_bookings">
+                                <img src="../assets//images/sidebar-icon/report-4.png"> Complete Report
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/cancelled_bookings')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/cancelled_bookings">
+                                <img src="../assets//images/sidebar-icon/report-4.png"> Cancel Report
+                            </a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+            
+
+
+
+
+            
+
+
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/vehicleCategory') || userPermissions.includes('/vehicleModel') || userPermissions.includes('/vehicleTypes') || userPermissions.includes('/vehicleFeatures') || userPermissions.includes('/viewVehicles') || userPermissions.includes('/promotional_plans')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="#!">
+                        <img src="../assets//images/sidebar-icon/sidebar-3.png">
+                        <span> Vehicle Management </span>
+                        <i class="icon-arrow-down "></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <% if (userPermissions === 'full' || userPermissions.includes('/vehicleCategory')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/vehicleCategory">
+                                <img src="../assets//images/sidebar-icon/sidebar-6.png">
+                                <span> Vehicle Make </span>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/vehicleModel')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/vehicleModel">
+                                <img src="../assets//images/sidebar-icon/sidebar-29.png">
+                                <span> Vehicle Model </span>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/vehicleTypes')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/vehicleTypes">
+                                <img src="../assets//images/sidebar-icon/sidebar-7.png">
+                                <span> Vehicle Type </span>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/vehicleFeatures')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/vehicleFeatures">
+                                <img src="../assets//images/sidebar-icon/sidebar-8.png">
+                                <span> Vehicle Features </span>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/viewVehicles')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/viewVehicles">
+                                <img src="../assets//images/sidebar-icon/sidebar-9.png">
+                                <span> View Vehicles </span>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/promotional_plans')) { %>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/superadmin/promotional_plans">
+                                <img src="../assets//images/sidebar-icon/sidebar-16.png">
+                                <span> Vehicle Sponsor </span>
+                            </a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/addSubadmin')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="/superadmin/addSubadmin">
+                        <img src="../assets//images/sidebar-icon/sidebar-4.png">
+                        <span> Create Subadmin </span>
+                    </a>
+                </li>
+            <% } %>
+
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/addCountry') || userPermissions.includes('/general_setting') || userPermissions.includes('/addAppSlider')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="#!">
+                        <img src="../assets//images/sidebar-icon/sidebar-3.png">
+                        <span> Settings </span>
+                        <i class="icon-arrow-down "></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <% if (userPermissions === 'full' || userPermissions.includes('/addCountry')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="/superadmin/addCountry">
+                                    <img src="../assets//images/sidebar-icon/sidebar-10.png">
+                                    <span> Add Country </span>
+                                </a>
+                            </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/general_setting')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="/superadmin/general_setting">
+                                    <img src="../assets//images/sidebar-icon/sidebar-12.png">
+                                    <span> General Setting </span>
+                                </a>
+                            </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/addAppSlider')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="/superadmin/addAppSlider">
+                                    <img src="../assets//images/sidebar-icon/sidebar-15.png">
+                                    <span> Add App Slider </span>
+                                </a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+
+
+
+
+
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/notifications')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="/superadmin/notifications">
+                        <img src="../assets//images/sidebar-icon/sidebar-13.png">
+                        <span> Notification </span>
+                    </a>
+                </li>
+            <% } %>
+            
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/userRatings') || userPermissions.includes('/ownerRatings')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="#!">
+                        <img src="../assets//images/sidebar-icon/sidebar-17.png">
+                        <span> Ratings Management </span>
+                        <i class="icon-arrow-down "></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <% if (userPermissions === 'full' || userPermissions.includes('/userRatings')) { %>
+                            <li><a class="waves-effect waves-dark" href="/superadmin/userRatings"><img src="../assets//images/sidebar-icon/ratings-1.png"> User Rating </a></li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/ownerRatings')) { %>
+                            <li><a class="waves-effect waves-dark" href="/superadmin/ownerRatings"><img src="../assets//images/sidebar-icon/ratings-2.png"> Owner Rating </a></li>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+            
+            
+
+
+
+
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/affiliation') || userPermissions.includes('/referralAmounts') || userPermissions.includes('/deposits_fee')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="#!">
+                        <img src="../assets//images/sidebar-icon/sidebar-15.png">
+                        <span> Affiliations </span>
+                        <i class="icon-arrow-down "></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <% if (userPermissions === 'full' || userPermissions.includes('/affiliation')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="/superadmin/affiliation">
+                                    <img src="../assets//images/sidebar-icon/sidebar-24.png">
+                                    <span> Affiliations </span>
+                                </a>
+                            </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/referralAmounts')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="/superadmin/referralAmounts">
+                                    <img src="../assets//images/sidebar-icon/sidebar-18.png">
+                                    <span> Referral Amounts </span>
+                                </a>
+                            </li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/deposits_fee')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="/superadmin/deposits_fee">
+                                    <img src="../assets//images/sidebar-icon/sidebar-19.png">
+                                    <span> Deposits Fee Details </span>
+                                </a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+
+
+
+
+
+
+
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/users_faqs') || userPermissions.includes('/owners_faqs') || userPermissions.includes('/users_privacy_policy') || userPermissions.includes('/owners_privacy_policy') || userPermissions.includes('/users_cancellation_policy') || userPermissions.includes('/owners_cancellation_policy') || userPermissions.includes('/users_terms_condition') || userPermissions.includes('/owners_terms_condition') || userPermissions.includes('/about_us')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="#!">
+                        <img src="../assets//images/sidebar-icon/sidebar-4.png">
+                        <span> CMS Setting </span>
+                        <i class="icon-arrow-down "></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <% if (userPermissions === 'full' || userPermissions.includes('/users_faqs') || userPermissions.includes('/owners_faqs')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#!">
+                                    <img src="../assets//images/sidebar-icon/sidebar-20.png">
+                                    <span> FAQ </span>
+                                    <i class="icon-arrow-down "></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <% if (userPermissions === 'full' || userPermissions.includes('/users_faqs')) { %>
+                                        <li><a class="waves-effect waves-dark" href="/superadmin/users_faqs"><i class="icon-arrow-right"></i> User FAQs </a></li>
+                                    <% } %>
+                                    <% if (userPermissions === 'full' || userPermissions.includes('/owners_faqs')) { %>
+                                        <li><a class="waves-effect waves-dark" href="/superadmin/owners_faqs"><i class="icon-arrow-right"></i> Owner FAQs </a></li>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        <% } %>
+            
+                        <% if (userPermissions === 'full' || userPermissions.includes('/users_privacy_policy') || userPermissions.includes('/owners_privacy_policy')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#!">
+                                    <img src="../assets//images/sidebar-icon/sidebar-21.png">
+                                    <span> Privacy & Policy </span>
+                                    <i class="icon-arrow-down "></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <% if (userPermissions === 'full' || userPermissions.includes('/users_privacy_policy')) { %>
+                                        <li><a class="waves-effect waves-dark" href="/superadmin/users_privacy_policy"><i class="icon-arrow-right"></i> User Privacy & Policy </a></li>
+                                    <% } %>
+                                    <% if (userPermissions === 'full' || userPermissions.includes('/owners_privacy_policy')) { %>
+                                        <li><a class="waves-effect waves-dark" href="/superadmin/owners_privacy_policy"><i class="icon-arrow-right"></i> Owner Privacy & Policy </a></li>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        <% } %>
+            
+                        <% if (userPermissions === 'full' || userPermissions.includes('/users_cancellation_policy') || userPermissions.includes('/owners_cancellation_policy')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#!">
+                                    <img src="../assets//images/sidebar-icon/sidebar-21.png">
+                                    <span> Cancellation Policy </span>
+                                    <i class="icon-arrow-down "></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <% if (userPermissions === 'full' || userPermissions.includes('/users_cancellation_policy')) { %>
+                                        <li><a class="waves-effect waves-dark" href="/superadmin/users_cancellation_policy"><i class="icon-arrow-right"></i> User Cancellation Policy </a></li>
+                                    <% } %>
+                                    <% if (userPermissions === 'full' || userPermissions.includes('/owners_cancellation_policy')) { %>
+                                        <li><a class="waves-effect waves-dark" href="/superadmin/owners_cancellation_policy"><i class="icon-arrow-right"></i> Owner Cancellation Policy </a></li>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        <% } %>
+            
+                        <% if (userPermissions === 'full' || userPermissions.includes('/users_terms_condition') || userPermissions.includes('/owners_terms_condition')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#!">
+                                    <img src="../assets//images/sidebar-icon/sidebar-22.png">
+                                    <span> Terms And Condition </span>
+                                    <i class="icon-arrow-down "></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <% if (userPermissions === 'full' || userPermissions.includes('/users_terms_condition')) { %>
+                                        <li><a class="waves-effect waves-dark" href="/superadmin/users_terms_condition"><i class="icon-arrow-right"></i> User Terms & Condition </a></li>
+                                    <% } %>
+                                    <% if (userPermissions === 'full' || userPermissions.includes('/owners_terms_condition')) { %>
+                                        <li><a class="waves-effect waves-dark" href="/superadmin/owners_terms_condition"><i class="icon-arrow-right"></i> Owner Terms & Condition </a></li>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        <% } %>
+            
+                        <% if (userPermissions === 'full' || userPermissions.includes('/about_us')) { %>
+                            <li>
+                                <a class="waves-effect waves-dark" href="/superadmin/about_us">
+                                    <img src="../assets//images/sidebar-icon/supports-2.png">
+                                    <span> Add About Us </span>
+                                </a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+            
+            
+            
+
+
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/discount_coupons')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="/superadmin/discount_coupons">
+                        <img src="../assets//images/sidebar-icon/sidebar-25.png">
+                        <span> Add Coupon Code </span>
+                    </a>
+                </li>
+            <% } %>
+
+
+
+
+            <% if (userPermissions === 'full' || userPermissions.includes('/inquiry_contacts') || userPermissions.includes('/queries')) { %>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="#!">
+                        <img src="../assets//images/sidebar-icon/sidebar-23.png">
+                        <span> Support Call Center </span><i class="icon-arrow-down "></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <% if (userPermissions === 'full' || userPermissions.includes('/inquiry_contacts')) { %>
+                            <li><a class="waves-effect waves-dark" href="/superadmin/inquiry_contacts"><img src="../assets//images/sidebar-icon/supports-1.png"> Inquiry Contacts </a></li>
+                        <% } %>
+                        <% if (userPermissions === 'full' || userPermissions.includes('/queries')) { %>
+                            <li><a class="waves-effect waves-dark" href="/superadmin/queries"><img src="../assets//images/sidebar-icon/supports-3.png"> Query Tickets </a></li>
+                        <% } %>
+                    </ul>
+                </li>
+            <% } %>
+            
+            
+            
+
+   
+
+            <!-- Add other sections similarly based on your application's requirements -->
+
+        </ul>
+    </section>
+</aside>
+
+<script>
+    function highlightActiveLink() {
+        const savedPath = localStorage.getItem('activePath') || window.location.pathname;
+
+        document.querySelectorAll('.sidebar-menu li').forEach((li) => {
+            li.classList.remove('active');
+        });
+
+        const activeLink = document.querySelector(`a[href="${savedPath}"]`);
+        if (activeLink) {
+            let parentLi = activeLink.closest('li');
+            while (parentLi) {
+                parentLi.classList.add('active');
+                parentLi = parentLi.parentElement.closest('li');
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', highlightActiveLink);
+</script>

@@ -1,0 +1,336 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+        <!-- Container-fluid starts -->
+        <!-- Main content starts -->
+        <div class="container-fluid">
+           <div class="row">
+           </div>
+           <!-- Ro Start  -->
+           <!-- 4-blocks row start -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="header-boxes card">
+                    <div class="heading">
+                    <h3> <i class="fa fa-bar-chart"></i> Site Statistics </h3>
+                    </div>
+                    <div class="heade-center">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="cards">
+                                    <div class="stat-widget-one card-body">
+                                        <div class="stat-icon d-inline-block">
+                                            <!-- <i class="ti-user text-success border-success"></i> -->
+                                            <img src="../assets//images/dash-icon/dash-icon-1.png">
+                                        </div>
+                                        <div class="stat-content d-inline-block">
+                                            <a href="/superadmin/viewUsers">
+                                            <div class="stat-text">Total User</div>
+                                            <div class="stat-digit"><%= indexDetails.user_ids%></div>
+                                         </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="cards">
+                                    <div class="stat-widget-one card-body">
+                                        <div class="stat-icon d-inline-block">
+                                            <!-- <i class="ti-user text-primary border-primary"></i> -->
+                                            <img src="../assets//images/dash-icon/dash-icon-2.png">
+                                        </div>
+                                        <div class="stat-content d-inline-block">
+                                            <a href="/superadmin/viewOwners">
+                                            <div class="stat-text">Total Owner</div>
+                                            <div class="stat-digit"><%= indexDetails.Owner_ids%></div>
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="col-lg-6">
+                                <div class="cards">
+                                    <div class="stat-widget-one card-body">
+                                        <div class="stat-icon d-inline-block">
+                                            <!-- <i class="ti-money text-danger border-danger"></i> -->
+                                            <img src="../assets//images/dash-icon/dash-icon-3.png">
+                                        </div>
+                                        <div class="stat-content d-inline-block">
+                                            <a href="/superadmin/completed_bookings">
+                                            <div class="stat-text">Total Earnings</div>
+                                            <div class="stat-digit">USD <%= indexDetails.total_charge%></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="cards">
+                                    <div class="stat-widget-one card-body">
+                                        <div class="stat-icon d-inline-block">
+                                            <!-- <i class="ti-money text-danger border-danger"></i> -->
+                                            <img src="../assets//images/dash-icon/dash-icon-8.png">
+                                        </div>
+                                        <div class="stat-content d-inline-block">
+                                            <a href="/superadmin/viewVehicles">
+                                            <div class="stat-text">Admin Earnings</div>
+                                            <div class="stat-digit">USD <%= indexDetails.admin_com%></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="cards">
+                                    <div class="stat-widget-one card-body">
+                                        <div class="stat-icon d-inline-block">
+                                            <!-- <i class="ti-user text-primary border-primary"></i> --><img src="../assets//images/dash-icon/dash-icon-5.png">
+                                        </div>
+                                        <div class="stat-content d-inline-block">
+                                            <a href="/superadmin/viewVehicles">
+                                            <div class="stat-text">Total Car</div>
+                                            <div class="stat-digit"><%= indexDetails.Vehicle_ids%></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- col 6 -->
+            <div class="col-lg-6">
+           <div class="header-boxes card">
+             <div class="heading">
+               <h3> <i class="fa fa-bar-chart"></i> Ride Statistics </h3>
+            </div>
+            <div class="heade-center">
+                <div class="row">
+                    <div class="col-lg-6">
+                       <div class="cards">
+                           <div class="stat-widget-one card-body">
+                               <div class="stat-icon d-inline-block">
+                                   <!-- <i class="ti-user text-success border-success"></i> -->
+                                   <img src="../assets//images/dash-icon/dash-icon-4.png">
+                               </div>
+                               <div class="stat-content d-inline-block">
+                                <a href="/superadmin/pending_bookings">
+                                   <div class="stat-text">Total Rides</div>
+                                   <div class="stat-digit"><%= indexDetails.booking_ids%></div>
+                                </a>
+                                </div>
+                           </div>
+                       </div>
+                   </div>
+                    <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-money text-danger border-danger"></i> --><img src="../assets//images/dash-icon/dash-icon-9.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <a href="/superadmin/pending_bookings">
+                                    <div class="stat-text">Pending Rides</div>
+                                    <div class="stat-digit"><%= indexDetails.Pendings%></div>
+                                   </a>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                    <div class="col-lg-6">
+                        <div class="cards">
+                            <div class="stat-widget-one card-body">
+                                <div class="stat-icon d-inline-block">
+                                    <!-- <i class="ti-user text-primary border-primary"></i> --><img src="../assets//images/dash-icon/dash-icon-5.png">
+                                </div>
+                                <div class="stat-content d-inline-block">
+                                    <a href="/superadmin/confirmed_bookings">
+                                    <div class="stat-text">Confirm Rides</div>
+                                    <div class="stat-digit"><%= indexDetails.Confirms%></div>
+                                   </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-lg-6">
+                       <div class="cards">
+                           <div class="stat-widget-one card-body">
+                               <div class="stat-icon d-inline-block">
+                                   <!-- <i class="ti-money text-info border-danger"></i> -->
+                                   <img src="../assets//images/dash-icon/dash-icon-10.png">
+                               </div>
+                               <div class="stat-content d-inline-block">
+                                <a href="/superadmin/ongoing_bookings">
+                                   <div class="stat-text">Ongoing Rides</div>
+                                   <div class="stat-digit"><%= indexDetails.On_Goings%></div>
+                                </a>
+                                </div>
+                           </div>
+                       </div>
+                   </div>
+                       
+                <div class="col-lg-6">
+                       <div class="cards">
+                           <div class="stat-widget-one card-body">
+                               <div class="stat-icon d-inline-block">
+                                   <!-- <i class="ti-money text-danger border-danger"></i> --><img src="../assets//images/dash-icon/dash-icon-6.png">
+                               </div>
+                               <div class="stat-content d-inline-block">
+                                <a href="/superadmin/cancelled_bookings">
+                                   <div class="stat-text">Cancel Rides</div>
+                                   <div class="stat-digit"><%= indexDetails.Cancelleds %></div>
+                                </a>
+                                </div>
+                           </div>
+                       </div>
+                   </div>
+                     <div class="col-lg-6">
+                       <div class="cards">
+                           <div class="stat-widget-one card-body">
+                               <div class="stat-icon d-inline-block">
+                                   <!-- <i class="ti-money text-info border-danger"></i> -->
+                                   <img src="../assets//images/dash-icon/dash-icon-7.png">
+                               </div>
+                               <div class="stat-content d-inline-block">
+                                <a href="/superadmin/completed_bookings">
+                                   <div class="stat-text">Complete Rides</div>
+                                   <div class="stat-digit"><%= indexDetails.Completeds%></div>
+                                </a>
+                                </div>
+                           </div>
+                       </div>
+                   </div>
+
+                </div>
+            </div>
+          </div>
+      </div>
+      <!-- col 6 -->
+           </div>
+           <!-- 4-blocks row end -->
+
+
+<!-- row -->
+    <div class="row">
+      <div class="col-lg-6">
+           <div class="header-boxes card">
+             <div class="heading">
+               <h3> <i class="fa fa-bar-chart"></i> Rides </h3>
+            </div>
+            <div class="heade-center">
+               <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+            </div>
+          </div>
+      </div>
+      <!-- col-6 -->
+       <div class="col-lg-6">
+           <div class="header-boxes card">
+             <div class="heading">
+               <h3> <i class="fa fa-bar-chart"></i> Owners </h3>
+            </div>
+            <div class="heade-center">
+              <canvas id="chart-doughnut" style="height: 300px; width: 100%;"></canvas>
+            </div>
+          </div>
+      </div>
+      <!--  -->
+           </div>
+
+        </div>
+  
+     </div>
+  </div>
+
+<%- include ("superfooter.ejs") %>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_user_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    });
+</script>
+<script>
+    window.onload = function () {
+        // Fetch chart data from the API
+        fetch('/superadmin/fetchRideChartData')
+            .then(response => response.json())
+            .then(dataPoints => {
+                // Initialize the chart
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    title: {
+                        text: "Booking Stats",
+                        horizontalAlign: "left"
+                    },
+                    data: [{
+                        type: "doughnut",
+                        startAngle: 60,
+                        indexLabelFontSize: 17,
+                        indexLabel: "{label} - #percent%",
+                        toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+                        dataPoints: dataPoints // Use fetched data
+                    }]
+                });
+                chart.render(); // Render the chart
+            })
+            .catch(error => console.error("Error fetching chart data:", error));
+    };
+</script>
+
+<script>
+    var ctx = document.getElementById("chart-doughnut").getContext('2d');
+
+    // Fetch data from the API
+    fetch('/superadmin/fetchChartData')
+        .then(response => response.json())
+        .then(chartData => {
+            // Initialize the chart with fetched data
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        data: chartData.data,
+                        backgroundColor: chartData.backgroundColors,
+                        borderWidth: 0,
+                    }]
+                },
+                options: {
+                    plugins: {
+                        datalabels: {
+                            color: '#000', // Text color
+                            font: {
+                                size: 16, // Font size
+                                weight: 'bold'
+                            },
+                            formatter: (value) => value // Display raw count (value)
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'right',
+                        labels: {
+                            fontSize: 15,
+                            fontColor: '#FF5722',
+                            padding: 30
+                        }
+                    },
+                    responsive: false,
+                    cutoutPercentage: 40,
+                    layout: {
+                        padding: 30
+                    }
+                },
+            });
+        })
+    .catch(error => console.error('Error fetching chart data:', error));
+</script>
+

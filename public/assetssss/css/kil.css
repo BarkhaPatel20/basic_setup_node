@@ -1,0 +1,1324 @@
+
+/* @font-face {
+  font-family: "proxima_nova_rgregular";
+  src: url("assets/fonts/proximanova-regular-webfont.woff") format("woff"),
+       url("assets/fonts/proximanova-regular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "proxima_nova_rgbold";
+  src: url("assets/fonts/proximanova-bold-webfont.woff") format("woff"),
+       url("assets/fonts/proximanova-bold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: proxima_nova_rgregular;
+  font-style: normal;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+   font-family: proxima_nova_rgregular;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+   font-family: proxima_nova_rgregular;
+} */
+
+
+
+/* %$%$#%$#%$$$#$%$#%$%$#%$#%$#%$%$#%$#%$%$%%$#%$%$ */
+.dropdown-menu {
+    position: absolute;
+    top: -150%;
+    left: -60px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 60px;
+    padding: 1px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 25px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+   /*SELECT DROPDOWN  AND DATE AND TIME CSS START SELECT DROPDOWN  AND DATE AND TIME CSS START */
+.fully-headings {
+    display: flex;
+}
+.fully-headings .head-name {
+    width: 20%;
+    text-align: left;
+}
+.fully-headings .head-name h1 {
+    font-weight: 500;
+    line-height: 1.1;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 30px;
+}
+.fully-headings .date-name {
+    width: 99%;
+}
+.date-name .fully-date {
+    display: flex;
+    width: 100%;
+}
+
+.date-name .fully-date .end-date {
+    width: 29% !important;
+    text-align: center;
+}
+.date-name .fully-date .end-date input#start {
+    width: 90%;
+    padding: 5px 6px;
+    background: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px 0px;
+    box-shadow: 0px 2px 20px rgb( 0 0 0 /10%);
+}
+.start-date {
+    width: 30%;
+    text-align: left;
+}
+.date-name .fully-date .start-date input#start {
+    width: 100%;
+    padding: 5px 6px;
+    background: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px 0px;
+    box-shadow: 0px 2px 20px rgb( 0 0 0 /10%);
+}
+.select-taxi {
+    float: right;
+    text-align: center;
+        width: 37%;
+    display: block;
+    position: relative;
+    padding-left: 4%;
+}
+
+.select-taxi select#taxi {
+       width: 90%;
+    height: 35px;
+    padding: 5px 6px;
+    background: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px 0px;
+    box-shadow: 0px 2px 20px rgb( 0 0 0 /10%);
+} 
+.date-submit {
+    margin-right: 207px !important;
+    margin-top: 6% !important;
+    margin-left: -37% !important;
+}
+/**/
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+  .date-name .fully-date {
+    display: block !important;
+    width: 100% !important;
+}
+  .select-taxi {
+    width: 100% !important;
+    padding-left: 0% !important;
+}
+ .date-name .fully-date .start-date {
+    width: 90% !important;
+    text-align: left;
+    padding-left: 16px;
+} 
+ .date-name .fully-date .end-date {
+    width: 87% !important;
+    text-align: left;
+} 
+ .date-name .fully-date .end-date {
+    width: 91% !important;
+    text-align: left;
+    padding-left: 16px;
+}
+.fully-headings .date-submit {
+    width: 40% !important;
+    text-align: left;
+    margin: 13px 24px 15px 0px !important;
+    float: left;
+}
+.callout {
+    margin: 0 0 0px 0 !important;
+}
+.date-name .fully-date .start-date {
+    width: 29%;
+    text-align: right;
+}
+.date-name .fully-date .start-date input#start {
+    width: 100% !important;
+
+}
+.date-name .fully-date .start-date {
+    width: 95% !important;
+}
+.date-name .fully-date .end-date {
+    width: 100% !important;
+
+}
+.date-name .fully-date .end-date input#start {
+    width: 94% !important;
+}
+}
+
+
+
+
+/* ==================================== kilCss start  (common in every project ) ======================== */
+
+
+
+.success-text {
+	color: rgb(82, 190, 82);
+  font-size: large;
+}
+
+/* .error-text {
+	color: rgb(255, 69, 69);
+  font-size: large;
+} */
+
+.error-text {
+  font-size: large;
+	font-weight: bold;
+	color: rgb(255, 0, 0);
+	background: linear-gradient(45deg, #ff0707, #fe475f);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	animation: heartbeat 1s infinite;
+	text-align: center;
+  }
+  
+  @keyframes heartbeat {
+	0% {
+	  transform: scale(1);
+	}
+	50% {
+	  transform: scale(1.05);
+	}
+	100% {
+	  transform: scale(1);
+	}
+  }
+
+
+
+
+  /*  CSS  for alert msgs */
+
+.alert.alert-success {
+    position: relative;
+    background-color: white;
+    color: #007f3a;
+    padding-left: 40px;
+    border: none;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.alert.alert-success::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px; /* Adjust this value based on the desired spacing */
+    transform: translateY(-50%);
+    width: 50px; /* Adjust this value based on the width of your GIF */
+    height: 50px; /* Adjust this value based on the height of your GIF */
+    background-image: url('../img/verified.gif');
+    background-size: cover; /* Adjust this property based on your needs */
+}
+
+
+
+
+
+
+.alert.alert-danger {
+    position: relative;
+    background-color: white;
+    color: #d70000;
+    padding-left: 40px;
+    border: none;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.alert.alert-danger::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px; /* Adjust this value based on the desired spacing */
+    transform: translateY(-50%);
+    width: 50px; /* Adjust this value based on the width of your GIF */
+    height: 50px; /* Adjust this value based on the height of your GIF */
+    background-image: url('../img/warning.gif');
+    background-size: cover; /* Adjust this property based on your needs */
+}
+
+
+/* -------  End alert MSG  ------- */
+
+
+
+  /*  profile picture admin section */ 
+
+.profile-pic {
+	color: transparent;
+	transition: all 0.3s ease;
+	display: flex;
+	justify-content: left;
+	align-items: flex-start;
+	position: relative;
+  height: 146px;
+	transition: all 0.3s ease;
+  }
+  .profile-pic input {
+	display: none;
+  }
+  .profile-pic img {
+	position: absolute;
+	object-fit: cover;
+	width: 130px;
+	height: 130px;
+	box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+	border-radius: 100px;
+	z-index: 0;
+  border: 2px solid #05d5fa;
+  }
+  .profile-pic .-label {
+	cursor: pointer;
+	height: 130px;
+	width: 130px;
+  }
+  .profile-pic:hover .-label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 10000;
+	color: #fafafa;
+	transition: background-color 0.2s ease-in-out;
+	border-radius: 100px;
+	margin-bottom: 0;
+  border: 2px solid #05d5fa;
+  }
+  .profile-pic span {
+	display: inline-flex;
+	padding: 0.2em;
+	height: 2em;
+  }
+
+
+
+
+
+
+
+
+  
+  /* .form-group {
+    margin-bottom: 0.1rem !important;
+} */
+  .card .card-header {
+    background-color: #000 !important;
+    border-bottom: 1px solid #eaeaea;
+}
+
+  .table.table-bordered td, .table.table-bordered th {
+    border: 2px solid lightgrey !important;
+    text-align: center;
+}
+table#example thead tr th {
+    color: white;
+    text-align: center;
+}
+  .card-body {
+	padding: 1.5rem 1rem;
+}
+.card-header {
+	border-bottom: 1px solid #e6e6e6;
+	padding: 1rem 1.5rem;
+}
+.card-footer {
+	background-color: #fff;
+	border-top: 1px solid #e6e6e6;
+	padding: 1rem 1.5rem;
+}
+.card .card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+}
+.card .card-header .card-title {
+    margin-bottom: 0;
+}
+
+
+
+/*---------------------Active Inactive  Switch ---------------------------*/
+.custom-switch {
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    overflow: hidden;
+  }
+
+
+.custom-switch.custom-switch-on-success .custom-control-input:checked~.custom-control-label::before {
+    background-color: #28a745 !important ;
+    border-color: #145523;
+    /* animation: laserBefore 2s linear infinite; */
+    
+}
+
+.custom-switch.custom-switch-off-danger .custom-control-input~.custom-control-label::before {
+    background-color: #dc3545;
+    border-color: #921925;
+    /* animation: laserAfter 2s linear infinite; */
+}
+
+
+
+  @keyframes laserBefore {
+    100% {
+      transform: translateX(-30%);
+    }
+    0% {
+      transform: translateX(30%);
+    }
+  }
+
+
+  @keyframes laserAfter {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(30%);
+
+    }
+  }
+
+/*active inactive css end  ----  */
+
+
+
+
+/*--------------------- invoice status CSS ---------------------------*/
+
+.custom-switch1 {
+    position: relative;
+    display: inline-block;
+    padding: 5px 50px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    overflow: hidden;
+  }
+  
+  .custom-switch1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 255, 255, 0.5), rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.5));
+    z-index: -1;
+    opacity: 1;
+    animation: laser 2s linear infinite;
+  }
+
+
+ 
+  
+  @keyframes laser {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .custom-switch-paid {
+    background-color: green;
+  }
+  
+  .custom-switch-partial-paid {
+    background-color: rgb(34, 204, 247);
+  }
+  
+  .custom-switch-pending {
+    background-color: red;
+  }
+
+
+
+
+
+
+
+  /*------------------------------  for status Aprrove disapprove  ------------------  */
+/* CSS for status container */
+.status-container {
+  position: relative;
+}
+
+/* CSS for status overlay */
+.status-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Default color for overlay */
+  display: none; /* Initially hidden */
+}
+
+
+
+
+
+/* for sweet alert config button  */
+
+button.swal2-confirm.swal2-styled {
+  display: inline-block !important;
+  background-color: rgb(12 12 13) !important;
+}
+
+
+
+/* 
+OTP modal start css  */
+
+/* Unique class styles for OTP modal */
+.otp-modal .modal-dialog {
+  max-width: 500px; /* Adjust the width as needed */
+}
+
+.otp-modal-content {
+  border-radius: 15px;
+  width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #007bff;
+}
+
+.otp-modal-header {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  border-bottom: 1px solid #00c6ff;
+}
+
+.otp-modal-header .modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* .otp-modal-close {
+  color: white;
+} */
+
+button.close.otp-modal-close {
+  background: #ffffff;
+  color: black;
+  padding: 0px 5px;
+  height: 29px;
+  border: 2px solid lightgray;
+  width: 29px;
+  font-size: 20px;
+  line-height: 1.0;
+  position: absolute;
+  right: 16px;
+  top: 20px;
+}
+
+
+.otp-modal-body {
+  font-size: 1rem;
+  padding: 20px;
+}
+
+.otp-message {
+  font-size: 1rem;
+  color: #333;
+}
+
+.otp-input {
+  border-radius: 8px;
+  border: 1px solid #007bff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.otp-modal-footer {
+  border-top: 1px solid #007bff;
+}
+
+.otp-btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.otp-btn-primary {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.otp-btn-primary:hover {
+  background: linear-gradient(135deg, #00c6ff, #007bff);
+}
+
+.status-active {
+  color: green;
+}
+
+.status-inactive {
+  color: red;
+}
+
+
+.custom-footer-button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: calc(12px + 3 * (100vw - 300px) / 1620);
+  text-transform: none;
+  color: #fff;
+}
+
+.custom-footer-button:hover {
+  background: #054a84!important;
+  color: #fff;
+}
+
+
+.otps {
+  text-align: justify;
+  color: #303030;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 600;
+}
+
+/* otp modal end css */
+
+
+
+  /* -------------kil button class primvary start ------ */
+
+  .kilbutton {
+    background: #25ae88; /* Primary background color */
+    color: #fff; /* Text color */
+    padding: 8px 16px; /* Smaller padding */
+    font-size: 12px; /* Smaller font size */
+    font-weight: 500; /* Font weight */
+    border: 2px solid #1e8e6e; /* Border color for 3D effect */
+    text-transform: uppercase; /* Uppercase text */
+    border-radius: 20px; /* More rounded corners */
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+    letter-spacing: 0.5px; /* Slightly increased letter spacing */
+    white-space: nowrap; /* Prevent text wrapping */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Smaller shadow for 3D effect */
+}
+button#chattouser {
+  position: absolute;
+    left: 15%;
+    top: 67%;
+    font-size: 15px;
+    padding: 2px 14px;
+    background: #1c71b3;
+    border-color: #1c70b2;
+}
+.kilbutton1 {
+  background: #1c71b3;
+  color: #fff;
+  padding: 3px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 2px solid #1c71b3;
+  text-transform: capitalize;
+  border-radius: 1px;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 18px;
+}
+
+.kilbutton1:hover {
+  background: #0f5ca3; /* Darker shade for hover effect */
+  border-color: #053bf0; /* Darker border color for hover effect */
+  transform: translateY(-1px); /* Slight lift effect */
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+
+.kilbutton:hover {
+    background: #0f5ca3; /* Darker shade for hover effect */
+    border-color: #167a5b; /* Darker border color for hover effect */
+    transform: translateY(-1px); /* Slight lift effect */
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+
+
+.kilback {
+  display: inline-flex; /* Aligns items inline and centers them */
+  align-items: center; /* Vertically centers content */
+  font-size: 16px; /* Smaller font size */
+  color: #25ae88; /* Text color */
+  text-decoration: none; /* Remove underline */
+  padding: 8px 0px; /* Padding for better spacing */
+  /* border: 2px solid #25ae88; */
+  /* border-radius: 20px;  */
+  transition: background 0.3s, color 0.3s, transform 0.3s; /* Smooth transitions */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  */
+}
+
+.kilback:hover {
+  color: #25ae99; 
+  transform: translateY(-1px); 
+ 
+}
+
+.kilback i {
+  margin-right: 4px; /* Space between icon and text */
+  font-size: 16px; /* Adjust icon size */
+}
+
+
+
+  /* -------------kil button class primvary start ------ */
+
+
+
+/*  ------------    Kil Notification bell and section css  START  ---------  */
+
+/* 
+.notification-menu .dropdown-menu {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px 0;
+  background-color: #ffffff;
+}
+
+.notification-menu .not-head {
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.notification-menu .bell-notification {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+}
+
+.notification-menu .bell-notification:hover {
+  background-color: #f9f9f9;
+}
+
+.notification-menu .unread-notification {
+  background-color: #c9ebffe0;
+  font-weight: bold;
+}
+
+.notification-menu .not-footer {
+  padding: 10px;
+  text-align: center;
+}
+
+.notification-menu .not-footer a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.notification-menu .header-badge {
+  position: absolute !important;
+  top: -13px !important;
+  right: -2px !important;
+  left: 26px !important;
+  font-size: 8px !important;
+  padding: 6px 4px !important;
+  border-radius: 50% !important;
+  background-color: red !important;
+  color: white !important;
+}
+.notification-menu .dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notification-menu .dropdown-menu::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.notification-menu .dropdown-menu::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.notification-menu .dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
+
+
+/* --------   notification message ------------- */
+/* .custom-popup {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px; 
+}
+
+.custom-popup-header {
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 15px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+}
+
+.custom-popup-body {
+  padding: 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+.notification-date-time {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.swal2-close {
+  color: #aaa;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.swal2-close:hover {
+  color: #333;
+}
+
+ */
+
+
+/* -------------------------------------------   End kil notification css -------------  */
+
+
+/* ---------- Image crop start ----------- */
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+
+button:focus,
+input:focus{
+  outline: none;
+  box-shadow: none;
+}
+a,
+a:hover{
+  text-decoration: none;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+/*------------------  */
+.ci-user-picture {
+    min-width: 150px;
+    margin-right: 16px;
+}
+.ci-user-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.btn-default {
+    display: inline-block;
+    padding: 6px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.5s;
+    text-align: center;
+    text-transform: capitalize;
+}
+.bg-blue {
+    background-color: #054a84;
+    color: #fff !important;
+}
+.filepreviewprofile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+/*----modal--------*/
+.modal-header-bg {
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(269.44deg, #a31300 2.3%, #6b4203 99.19%);
+}
+.cropImageModal .modal-dialog{
+    max-width: 750px;
+    width: 90%;
+    margin: 0.5rem auto;
+}
+.up-photo-title{
+    padding: 8px 15px;
+    text-align: center;
+}
+
+#upload-demo{
+    position: relative;
+	width: 100%;
+	height: 250px;
+  padding-bottom:0;
+}
+.croppie-container h5 {
+    position: absolute;
+    bottom: 4px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    color: #fff;
+    z-index: 2;
+    font-size: 15px;
+}
+figure figcaption {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    width: 100%;
+    padding-left: 9px;
+    padding-bottom: 5px;
+    text-shadow: 0 0 10px #000;
+}
+.croppie-container .cr-image{
+    right: 0;
+}
+.croppie-container .cr-slider-wrap {
+    width: 275px;
+}
+.cr-slider-wrap p{
+    font-size: 13px;
+    color: #8D8D94;
+    text-align: left;
+}
+.cr-slider{
+    width: 275px;
+}
+.upload-action-btn {
+    margin-top: 60px;
+    padding-top: 40px;
+}
+
+.cr-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #b80960;
+    cursor: pointer;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+}
+  
+.cr-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #b80960;
+    cursor: pointer;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+}
+.cr-slider::-ms-thumb {
+    width: 18px;
+    height: 18px;
+    background: #b80960;
+    cursor: pointer;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+}
+
+a {
+    color: #1c71b3;
+    text-decoration: none !important;
+    background-color: transparent;
+}
+.cr-slider::-webkit-slider-runnable-track {
+    width: 275px;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: none;
+    background: #E0E0E0;
+    border-radius: 3px;
+    border:none;
+}
+.cr-slider:focus::-webkit-slider-runnable-track {
+    background: #E0E0E0;
+}
+.cr-slider::-moz-range-track {
+    width: 275px;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: none;
+    background: #E0E0E0;
+    border-radius: 3px;
+    border:none;
+}
+.cr-slider::-ms-track {
+    width: 275px;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: none;
+    background: #E0E0E0;
+    border-radius: 3px;
+    border:none;
+    color: transparent;
+}
+
+
+
+
+
+
+/* ---------- image crop end ---------- */
+
+
+/* ------------  Chat related css start ------------------  */
+
+
+.chat_list.highlight {
+  background-color: #f0f0f0 !important; /* Change this to your desired highlight color */
+}
+
+.chat_list.highlight .latest_message {
+  font-weight: bold !important;
+  color: rgb(7, 133, 218) !important;
+}
+
+
+
+.status_container {
+  display: flex;
+  align-items: center;
+}
+
+.status_dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px; /* Adds some space between the dot and the text */
+}
+
+.status_dot.online {
+  background-color: green;
+}
+
+.status_dot.offline {
+  background-color: red;
+}
+
+.active_chat{ 
+  /* background:#a3e0e4 !important; */
+  background: #05728f !important;
+  color: white;
+}
+.chat_ib h5 {
+  font-size: 15px;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+.unread_count {
+  background-color: #05728f; /* Red background to make it stand out */
+  color: white; /* White text color */
+  font-size: 12px; /* Adjust the font size */
+  font-weight: bold;
+  margin-left: 10px; /* Bold text */
+  border-radius: 50%; /* Makes it a circle */
+  padding: 4px; /* Adjust padding for a smaller circle */
+  position: absolute; /* Absolute position for proper placement */
+  display: inline-block; /* Ensure it's visible */
+  min-width: 20px; /* Minimum width for readability */
+  text-align: center; /* Center the text */
+  line-height: 1; /* Adjust line height */
+  z-index: 1; /* Ensure it stays on top of other elements */
+  visibility: visible; /* Make sure it's visible */
+  z-index: 10;
+
+}
+
+.unread_count::empty {
+  display: none;
+}
+
+.unread_count[data-count="0"] {
+  display: none;
+}
+
+.chat_list {
+  border-bottom: 1px solid #c4c4c4;
+  margin: 0;
+  padding: 18px 16px 10px;
+  box-shadow: 0px 2px 20px rgb(0 0 0 / 10%);
+  background: white;
+}
+.chat_list {
+  border-bottom: 1px solid #c4c4c4;
+  margin: 6px 1px;
+  padding: 18px 16px 10px; 
+}
+.chat_list.active_chat h5 {
+  color: #ffffff;
+}
+.inbox_msg {
+  border: 2px solid #c4c4c4;
+  box-shadow: 0px 2px 20px rgb(0 0 0 / 20%);
+}
+#typingNotification {
+  font-style: italic;
+  color: grey;
+  margin-top: 10px;
+}
+
+input#messageInput {
+  border: 2px solid #05728f;
+  margin: 6px 0px;
+  padding: 5px 10px;
+}
+.incoming_msg_img img {
+  width: 50px;
+  border-radius: 50%;
+  height: 36px;
+}
+.chat_img img {
+  width: 100%;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #05728f;
+}
+.msg_send_btn {
+  background: #05728f none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: 33px;
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  width: 33px;
+}
+.sent_msg video.chat_media {
+  width: 100%;
+  height: auto;
+  border-radius: 0px;
+}
+.received_withd_msg img.chat_media {
+  width: 100%;
+  height: auto;
+}
+.sent_msg img.chat_media {
+  width: 100%;
+  height: auto;
+}
+video.chat_media {
+  height: auto;
+}
+/* -------------- chat related css End ------------------ */
+  
+  /* =================================kilCss End  (common in every project ) ===============================*/
+
+
+
+
+
+  /* --------------- Kil Country code css start ------------------ */
+  .iti__country-name, .iti__flag-box {
+    margin-right: 6px;
+    color: black !important;
+}
+
+.iti--separate-dial-code .iti__selected-dial-code {
+  margin-left: 6px;
+  color: black;
+}
+
+
+.iti__selected-flag {
+  z-index: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 6px 0 8px;
+  height: 38px !important;
+}
+
+  /* --------------- Kil Country code css start ------------------ */
+
+
+
+
+  .form-control-select {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    overflow-y: auto;
+    max-height: 200px; /* Adjust height as needed */
+  }
+
+  .form-control-select label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-control-select input[type="checkbox"] {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .form-control-select #select-all {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .form-control-select hr {
+    margin: 5px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+
+
+
+/* ----------------------Kilvish multiple chexbox in select  Start -------------------  */
+
+/* Styling the dropdown button */
+.dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.kildropdown-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 100;
+  padding: 10px;
+}
+
+.kildropdown-content label {
+  display: block;
+  padding: 5px;
+}
+
+.kildropdown-content label:hover {
+  background-color: #f1f1f1;
+}
+
+/* ---------------------- Kilvish multiple chexbox in select  end -------------------  */
+
+
+
+/* ----------------------Kilvish popop filter multiple chexbox in select  Start -------------------  */
+
+/* Styling the dropdown button */
+.dropdown-container1 {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-button1 {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.kildropdown-content1 {
+  display: none;
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 100;
+  padding: 10px;
+}
+
+.kildropdown-content1 label {
+  display: block;
+  padding: 5px;
+}
+
+.kildropdown-content1 label:hover {
+  background-color: #f1f1f1;
+}
+
+/* ---------------------- Kilvish popop filter multiple chexbox in select  end -------------------  */

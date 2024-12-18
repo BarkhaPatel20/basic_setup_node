@@ -1,0 +1,604 @@
+
+
+
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+
+<meta name="csrf-token" content="<%= csrfToken %>">
+
+
+<style>
+   .card{
+      border-top: 4px solid #39444e;
+    border-bottom: 4px solid #39444e;
+}
+</style>
+
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+             <div class="row ">
+                <div class="col-lg-12">
+                    <div class="bread-boxes">
+                        <ol class="breadcrumb">
+                            <li><a href="/superadmin"> Home </a></li>
+                               <li class="active"><a href="#"> / Notification  </a></li>
+                            <!-- <li class="active"> / Add Video </li>         -->
+                          </ol>
+                    </div>
+                </div>
+                 <!--  <div class="col-lg-6">
+               <div class="headings headings-boxess mt-4">
+                  <div class="main-headers mt-0" style="margin-top: 0px !important;">
+                    <h4> <i class="fa fa-arrow-circle-o-left yellow_color"></i>  User Withdrawl Report </h4>
+                     </div>
+                </div>
+             </div> -->       
+            </div>
+
+            <!-- 1-3-block row start -->
+            <div class="row pt-3">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+                <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                 <a href="#">  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left yellow_color"></i> Add Notification  </h6> </a>
+                 </div>
+                    <div class="heads-rights">
+                    <!-- <a class="btn btn-success waves-effect waves-light " href="Owner_view_Owner.html"><i class="fa fa-user  mr-1"></i> View Owner   </a> -->
+                  </div>
+                  </div>
+                  <div class="user-form">
+
+
+
+                    <form id="kilfrom" method="post" action="/superadmin/notifications?_csrf=<%= csrfToken %>" enctype="multipart/form-data" >
+
+                  <div class="form-group row users-foarms">
+
+               <input type="hidden" name="userTimezone" id="userTimezone" >
+
+
+
+
+<!-- First Dropdown: Select User -->
+<div class="form-group col-md-4">
+  <label for="selectUser" class="form-control-label">Select User</label>
+  <div class="dropdown border selects-alls">
+    <button class="btn btn-default text-left dropdown-toggle form-control" type="button" data-toggle="dropdown">
+      <span class="dropdown-text-1">Select User</span>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu px-2" id="userDropdown">
+      <li>
+        <input type="text" class="form-control search-dropdown-1" placeholder="Search...">
+      </li>
+      <li><a href="#"><label><input type="checkbox" class="selectall-1" /><span class="select-text-1"> Select</span> All</label></a></li>
+      <li class="divider"></li>
+      
+      <!-- Dynamically populate users -->
+      <% users.forEach(function(user) { %>
+        <li>
+          <a class="option-link" href="#">
+            <label>
+              <input name="userSelection[]" type="checkbox" class="option justone-1" value="<%= user.user_id %>"  />
+              <%= user.first_name %>  <%= user.last_name %>
+            </label>
+          </a>
+        </li>
+      <% }) %>
+
+    </ul>
+  </div>
+</div>
+
+<!-- Second Dropdown: Select Owner -->
+<div class="form-group col-md-4">
+  <label for="selectOwner" class="form-control-label">Select Owner</label>
+  <div class="dropdown border selects-alls">
+    <button class="btn btn-default text-left dropdown-toggle form-control" type="button" data-toggle="dropdown">
+      <span class="dropdown-text-2">Select Owner</span>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu px-2" id="ownerDropdown">
+      <li>
+        <input type="text" class="form-control search-dropdown-2" placeholder="Search...">
+      </li>
+      <li><a href="#"><label><input type="checkbox" class="selectall-2" /><span class="select-text-2"> Select</span> All</label></a></li>
+      <li class="divider"></li>
+
+      <!-- Dynamically populate owners -->
+      <% owners.forEach(function(owner) { %>
+        <li>
+          <a class="option-link" href="#">
+            <label>
+              <input name="ownerSelection[]" type="checkbox" class="option justone-2" value="<%= owner.user_id %>"/>
+              <%= owner.first_name %>  <%= owner.last_name %>
+            </label>
+          </a>
+        </li>
+      <% }) %>
+
+    </ul>
+  </div>
+</div>
+
+
+
+                           <!-- Attachment File -->
+                            <div class="form-group col-md-4">
+                              <label for="emailAttachment" class="form-control-label">Attachment File</label>
+                              <input type="file" class="form-control" name="emailAttachment" id="emailAttachment"   onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)"  >
+                            </div>
+
+
+                         <div class="form-group col-md-12">
+                                <i class="fa fa-list icon-set"></i>
+                           <label for="exampleInputEmail" class="form-control-label"> Title </label>
+                           <input name="title" type="text" class="form-control" id="exampleInputfirst" placeholder="Enter Notification Title"  onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" required>
+                        </div>
+
+
+                         <div class="form-group col-md-12">
+                            <i class="fa fa-envelope icon-set"></i>
+                           <label for="msg" class="form-control-label"> Message </label>
+                           <textarea type="text" class="form-control" id="msg" placeholder="Enter Send Notification" name="message" onkeyup="validateKilvishInput(event)" onchange="validateKilvishInput(event)" required ></textarea>
+                        </div> 
+
+
+                      <!-- Notification Options -->
+                      <div class="form-group col-md-12">
+                        <input type="checkbox" id="emailNotification" name="sendEmail" checked>
+                        <label for="emailNotification">Send Email Notification</label><br>
+                        <input type="checkbox" id="inAppNotification" name="sendInApp" checked>
+                        <label for="inAppNotification">Send In-App Notification</label>
+                      </div>
+
+
+
+                        <div class="form-group col-md-12">
+                        <button type="submit" onclick="validateForm('#kilfrom')" class="btn btn-success waves-effect waves-light m-r-30">Submit</button>
+                        </div>
+                  </div>
+
+                  </form>
+                        <!-- alert msgs -->
+                        <% if ( output.includes('successfully') ) { %>
+                          <p class="success-text"><%= output %></p>
+                    <% } else { %>
+                          <p class="error-text"><%= output %></p>
+                    <% } %>
+              <!-- /alert msgs -->  
+
+
+
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <!-- 1-3-block row end -->
+
+
+            <!-- 1-3-block row start -->
+           <!--  <div class="row">
+               <div class="col-lg-12">
+                <div class="card mb-4" style="border-top:4px solid black;">
+               <div class="cards-headers py-3 px-3 d-flex flex-row align-items-center justify-content-between">
+                     <div class="heads-lefts">
+                  <h6 class=" font-weight-bold "><i class="fa fa-arrow-circle-o-left"></i> View Notification </h6>
+                 </div>
+                    <div class="heads-rights">
+                    <a class="btn btn-success waves-effect waves-light " href="user_addUser.html"><i class="fa fa-user  mr-1"></i> Add User  </a> 
+                  </div>
+                  </div>
+                  <div class="user-form">
+                     <div class="table-reponsive box">
+                        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                          <table id="example" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="example_info">
+                        <thead>
+                             <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 25.0781px;">Id</th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 60.0781px;">Notification Title </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 60.0781px;">Send Notification </th>
+                              <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 120.156px;">Action</th>
+                            </tr>
+                        </thead>
+                           <div class="table-responsive">
+                              </div>
+                              <tbody>
+                              <tr>
+                                  <td>1</td>
+                                 <td> Vehical Category <td>
+                                  <a href="#"><i class="fa fa-trash icon-5"></i> </a>
+                             </td>
+                              </tr> 
+                          
+                              </tbody>
+                            </table>
+                        </div>
+                      </div>
+                  </div>
+                   </div>
+                 </div> 
+               </div>
+            </div> -->
+            <!-- 1-3-block row end -->
+
+      
+         </div>
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+      </div>
+   </div>
+
+   
+   <%- include ("superfooter.ejs") %>
+
+   <script>
+
+
+
+
+
+   //-------------- Comman Kilvish Function for input validation start ---------------------
+   
+   
+   
+   
+   function validateRequiredFields(kil) {
+
+const form = document.querySelector(`${kil}`); 
+const inputs = form.querySelectorAll('input[required], select[required], textarea[required]'); // Get only required inputs
+const userCheckboxes = form.querySelectorAll('input[name="userSelection[]"]:checked');
+const ownerCheckboxes = form.querySelectorAll('input[name="ownerSelection[]"]:checked');
+
+let isValid = true;
+
+
+
+// Remove previous error messages and borders
+form.querySelectorAll('.error-message').forEach(errorMsg => errorMsg.remove());
+inputs.forEach(input => {
+    input.style.border = ''; // Reset borders
+});
+
+inputs.forEach(input => {
+    if (!input.value.trim()) {  // If the required field is empty
+        isValid = false;
+        input.style.border = '1px solid red'; // Set border to red for empty required fields
+        addErrorMessage(input.parentNode, "This Field is Required."); // Add error message
+    }
+});
+
+
+
+ // Check if at least one user or owner is selected
+ if (userCheckboxes.length === 0 && ownerCheckboxes.length === 0) {
+        isValid = false;
+        addErrorMessage(form.querySelector('.users-foarms'), "At least one user or owner must be selected."); // Add error message
+    }
+
+
+return isValid;
+}
+
+// Add real-time validation for each required field
+function addRealTimeValidation(kil) {
+const form = document.querySelector(`${kil}`); 
+const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+
+inputs.forEach(input => {
+ // Listen for 'input' and 'change' events on required fields
+ input.addEventListener('input', function () {
+     if (input.value.trim()) {
+         // If the input is filled, remove red border and error message
+         input.style.border = '';
+         const errorMessage = input.parentNode.querySelector('.error-message');
+         if (errorMessage) {
+             errorMessage.remove();
+         }
+     }
+ });
+ input.addEventListener('change', function () {
+     if (input.value.trim()) {
+         // For select fields, check if an option is selected
+         input.style.border = '';
+         const errorMessage = input.parentNode.querySelector('.error-message');
+         if (errorMessage) {
+             errorMessage.remove();
+         }
+     }
+ });
+});
+}
+
+
+
+
+// Combined validation function
+function validateForm(kil) {
+
+if(!validateRequiredFields(kil)){
+  event.preventDefault();
+}
+}
+
+// Add real-time validation once the document is loaded
+document.addEventListener('DOMContentLoaded', () => {
+addRealTimeValidation('#kilfrom');  // Activate real-time validation
+});
+
+
+function validateKilvishInput(event) {
+const inputField = event.target;
+
+// General valid character sets
+// let validCharacters = /^[a-zA-Z0-9@,._\s-]*$/;
+
+let validCharacters = /^[a-zA-Z\s]*$/; // only char, no special char no numbers 
+
+// Define allowed image file types
+const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/webp', 'image/svg+xml'];
+
+// Use parentNode for regular inputs, container for checkboxes
+const container = inputField.closest('.col-lg-12') || inputField.closest('.form-group') || inputField.closest('div');
+const inputParent = inputField.parentNode;
+
+// Remove previous error message and border
+let errorMessage = inputParent.querySelector('.error-message');
+if (errorMessage) errorMessage.remove();
+inputField.style.border = ''; // Reset border
+
+// Custom validations based on input name
+if (inputField.name === 'description') {
+    validCharacters = /^[a-zA-Z0-9@,._\s-'"*]*$/;
+
+    // Check length limit
+    if (inputField.value.length > 400) {
+        addErrorMessage(inputParent, 'Input exceeds the maximum length of 400 characters!');
+        inputField.style.border = '1px solid red';
+        inputField.value = inputField.value.substring(0, 400); // Truncate the input
+        return;
+    }
+} else if (inputField.name === 'type_security_deposits' || inputField.name === 'type_insurance_price') {
+    // Only numbers allowed, between 7 and 10 digits with decimal dot
+    validCharacters = /^\d{0,10}(\.\d{0,10})?$/;
+}else if (inputField.name === 'age') {
+    // Only numbers allowed, between 7 and 10 digits
+    validCharacters = /^\d{2,2}$/;
+      // Custom validation: Ensure age is 18 or above
+          if (inputField.value && parseInt(inputField.value) < 18 && event.type === 'change') {
+              addErrorMessage(inputParent, 'Age must be 18 or above!');
+              inputField.style.border = '1px solid red';
+              inputField.value = ''; // Clear the input field if age is below 18
+              return;
+          }else if(inputField.value && parseInt(inputField.value) < 18 ){
+            addErrorMessage(inputParent, 'Age must be 18 or above!');
+              inputField.style.border = '1px solid red';                 
+
+          }
+        }else if (inputField.name === 'model_name' || inputField.name ==='models[]') {
+           // Only numbers allowed, between 7 and 10 digits
+           validCharacters = /^[a-zA-Z0-9]{4,20}$/;
+        }else if(inputField.type ==='email'){
+           validCharacters = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email pattern
+        }else if(inputField.type ==='password'){
+
+                        const hasSequentialChars = (password) => {
+                             console.log("passworddddddd -", password)
+                             const length = password.length;
+                             
+                             // Check for ascending sequences (e.g., "123", "abc")
+                             for (let i = 0; i < length - 3; i++) {
+                                if (password.charCodeAt(i + 1) === password.charCodeAt(i) + 1 &&
+                                      password.charCodeAt(i + 2) === password.charCodeAt(i) + 2 &&
+                                      password.charCodeAt(i + 3) === password.charCodeAt(i) + 3) {
+                                      return true; // Ascending sequence found
+                                }
+                             }
+
+                             // Check for descending sequences (e.g., "321", "cba")
+                             for (let i = 0; i < length - 3; i++) {
+                                if (password.charCodeAt(i + 1) === password.charCodeAt(i) - 1 &&
+                                      password.charCodeAt(i + 2) === password.charCodeAt(i) - 2 &&
+                                      password.charCodeAt(i + 3) === password.charCodeAt(i) - 3) {
+                                      return true; // Descending sequence found
+                                }
+                             }
+                             
+                             return false; // No sequential characters
+                          };
+
+           
+
+           validCharacters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
+
+
+                                      // Check if password meets the required pattern
+                       if (!validCharacters.test(inputField.value)) {
+                          addErrorMessage(inputParent, 'Password must be at least 12 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.');
+                          inputField.style.border = '1px solid red';
+                          if (event.type === 'change') {   inputField.value = '';  }
+                          return; // Stop further validation
+                       }
+
+                       // Check for sequential characters
+                       if (hasSequentialChars(inputField.value)) {
+                          addErrorMessage(inputParent, 'Password should not contain sequential characters.');
+                          inputField.style.border = '1px solid red';
+                             if (event.type === 'change') {   inputField.value = '';  }
+                          return; // Stop further validation
+                       }
+
+
+                       // Function to check for sequential characters in the password
+             
+                                               
+
+
+
+        }
+          
+
+        
+
+
+
+// Handle file input validation
+if (inputField.type === 'file') {
+    const file = inputField.files[0];
+    if (file && !validImageTypes.includes(file.type)) {
+        addErrorMessage(inputParent, 'Please select a valid image file (JPEG, PNG, etc.)');
+        inputField.value = ''; // Clear the file input field
+        inputField.style.border = '1px solid red';
+        return;
+    }
+} else {
+    // For normal text/number input validation
+    if (event.type === 'keyup') {
+        if (!validCharacters.test(inputField.value)) {
+            addErrorMessage(inputParent, 'Invalid character entered!');
+            inputField.style.border = '1px solid red';
+            
+        }
+    }
+
+    if (event.type === 'change') {
+        if (!validCharacters.test(inputField.value)) {
+            // On invalid input during change event, clear the field and show an error
+            inputField.value = ''; // Clear invalid input
+            addErrorMessage(inputParent, 'Invalid character or format!');
+            inputField.style.border = '1px solid red';
+        } else {
+            // Clear error when value is corrected
+            inputField.style.border = '';
+            if (errorMessage) errorMessage.remove();
+        }
+    }
+}
+}
+
+// Function to display error messages under the input field or container for checkboxes
+function addErrorMessage(parent, message) {
+if (!parent.querySelector('.error-message')) {
+    const errorMessage = document.createElement('div');
+    errorMessage.className = 'error-message';
+    errorMessage.style.color = 'red';
+    errorMessage.style.fontSize = '12px';
+    errorMessage.innerText = message;
+    parent.appendChild(errorMessage);
+}
+}
+
+
+
+
+
+//-------------- Comman Kilvish Function for input validation End ---------------------
+
+
+   </script>
+
+
+   <script>
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_user'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_user'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            
+            document.cookie = 'rental_user_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+            const userTimezone = moment.tz.guess(); 
+
+            document.getElementById('userTimezone').value = userTimezone;
+       
+    });
+
+
+
+
+//================= Kilvish start  Multiple Options in Dropdown with Search ( one cdn in footer ) ===============================
+$(document).ready(function() {
+    // Search functionality for User
+    $('.search-dropdown-1').on('keyup', function() {
+        var searchTerm = $(this).val().toLowerCase();
+        $('#userDropdown li a').each(function() {
+            var text = $(this).text().toLowerCase();
+            $(this).closest('li').toggle(text.indexOf(searchTerm) > -1);
+        });
+    });
+
+    // Search functionality for Owner
+    $('.search-dropdown-2').on('keyup', function() {
+        var searchTerm = $(this).val().toLowerCase();
+        $('#ownerDropdown li a').each(function() {
+            var text = $(this).text().toLowerCase();
+            $(this).closest('li').toggle(text.indexOf(searchTerm) > -1);
+        });
+    });
+
+    // Select all Users
+    $('.selectall-1').on('click', function() {
+        var checked = $(this).prop('checked');
+        $('.justone-1').prop('checked', checked);
+        updateSelectedCount('.justone-1', '.dropdown-text-1');
+    });
+
+    // Select all Owners
+    $('.selectall-2').on('click', function() {
+        var checked = $(this).prop('checked');
+        $('.justone-2').prop('checked', checked);
+        updateSelectedCount('.justone-2', '.dropdown-text-2');
+    });
+
+    // Update selected count for Users
+    $('.justone-1').on('change', function() {
+        updateSelectedCount('.justone-1', '.dropdown-text-1');
+    });
+
+    // Update selected count for Owners
+    $('.justone-2').on('change', function() {
+        updateSelectedCount('.justone-2', '.dropdown-text-2');
+    });
+
+    // Update selected count function
+    function updateSelectedCount(selector, displaySelector) {
+        var selectedCount = $(selector + ':checked').length;
+        var displayText = selectedCount > 0 ? selectedCount + ' selected' : 'Select';
+        $(displaySelector).text(displayText);
+    }
+});
+
+
+//================= Kilvish End  Multiple Options in Dropdown with Search ( one cdn in footer ) ===============================
+
+
+
+
+document.getElementById("kilfrom").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    // Show SweetAlert2 loading popup
+    Swal.fire({
+        title: 'Sending Notifications...',
+        html: 'Please wait while the notifications are being processed.',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        didOpen: () => {
+            Swal.showLoading();
+            // Now submit the form after showing the loader
+            event.target.submit(); // Submit the form
+        }
+    });
+});
+
+
+
+   </script>

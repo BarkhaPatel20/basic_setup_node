@@ -1,0 +1,59 @@
+<%- include ("superheader.ejs") %>
+<%- include ("supersidebar.ejs") %>
+
+
+
+      <!-- Sidebar chat end-->
+      <div class="content-wrapper">
+        <!-- Container-fluid starts -->
+        <!-- Main content starts -->
+        <div class="container-fluid">
+           <div class="row">
+              <div class="main-header">
+                 <h4>Internal Server Error !</h4>
+                 <h6>
+                        <!-- alert msgs -->
+                        <% if ( output.includes('successfully') ) { %>
+                           <p class="success-text"><%= output %></p>
+                       <% } else { %>
+                           <p class="error-text"><%= output %></p>
+                       <% } %>
+               <!-- /alert msgs -->   
+                  </h6>         
+
+              </div>
+          
+           </div>
+
+           <img src="../images/icons/500.gif" style="height: 650px !important;">
+
+
+         
+
+
+      <!-- col 6 -->
+           </div>
+           <!-- 4-blocks row end -->
+
+
+
+
+        </div>
+        <!-- Main content ends -->
+        <!-- Container-fluid ends -->
+     </div>
+  </div>
+
+
+
+
+<%- include ("superfooter.ejs") %>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            document.cookie = 'rental_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'rental_user_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+</script> 

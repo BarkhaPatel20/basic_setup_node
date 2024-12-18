@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Streaming</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+
+<h1>Audio Streaming</h1>
+
+<div>
+  <button id="createRoomBtn">Create Room</button>
+  <input type="text" id="roomIdInput" placeholder="Enter Room ID to join">
+  <button id="joinRoomBtn">Join Room</button>
+</div>
+
+<div id="audioControls" style="display: none;">
+  <p>Room ID: <span id="roomIdDisplay"></span></p>
+  <button id="startStopAudioStreamBtn">Start Audio Stream (Host only)</button>
+</div>
+
+<script>
+  const socket = io.connect(window.location.origin);
+  let roomId = null;
+  let role = null;
+  let mediaRecorder = null;
+  let audioChunks = [];
+
+  // Handle room creation
+  document.getElementById('createRoomBtn').onclick = () => {
+    roomId = Math.floor(1000 + Math.random() * 9000).toString(); // Generate random 4-digit room ID
+    role = 'Host';
+    joinRoom(roomId, role);
+  };
+
+  // Handle room joining
+  document.getElementById('joinRoomBtn').onclick = () => {
+    roomId = document.getElementById('roomIdInput').value;
+    if (roomId) {
+      role = 'User';
+      joinRoom(roomId, role);
+    } else {
+      alert("Please enter a Room ID to join.");
+    }
+  };
+
+  // Join the room and set up UI
+  function joinRoom(roomId, role) {
+    socket.emit('joinRoom', { roomId, role });
+    document.getElementById('roomIdDisplay').innerText = roomId;
+    document.getElementById('audioControls').style.display = 'block';
+    if (role === 'Host') {
+      document.getElementById('startStopAudioStreamBtn').style.display = 'inline';
+    } else {
+      document.getElementById('startStopAudioStreamBtn').style.display = 'none';
+    }
+  }
+
+  // Handle audio streaming toggle (Host only)
+  document.getElementById('startStopAudioStreamBtn').onclick = async () => {
+    if (role !== 'Host') return;  // Only Host can stream audio
+
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      // Stop audio streaming
+      mediaRecorder.stop();
+      mediaRecorder = null;
+      document.getElementById('startStopAudioStreamBtn').innerText = 'Start Audio Stream';
+      console.log("Audio streaming stopped.");
+    } else {
+      // Start audio streaming
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunks.push(event.data);
+          }
+        };
+
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+          audioChunks = []; // Clear the audio chunks
+          const reader = new FileReader();
+          reader.readAsArrayBuffer(audioBlob);
+          reader.onloadend = () => {
+            socket.emit('audioStream', { roomId, audioData: reader.result });
+          };
+        };
+
+        mediaRecorder.start(500);  // Send audio data every 500ms
+        document.getElementById('startStopAudioStreamBtn').innerText = 'Stop Audio Stream';
+        console.log("Audio streaming started.");
+      } catch (error) {
+        console.error("Error accessing audio stream:", error);
+      }
+    }
+  };
+
+  // Handle receiving audio stream data (User only)
+  socket.on('audioStream', (data) => {
+    if (role === 'User' && data.roomId === roomId) { // Only play if the User is in the same room
+      console.log("Received audio stream:", data.audioData);
+      
+      const audioBuffer = new Blob([data.audioData], { type: 'audio/wav' });
+      const audioUrl = URL.createObjectURL(audioBuffer);
+      const audioElement = new Audio(audioUrl);
+      audioElement.play().catch(error => console.error("Audio play error:", error));
+    }
+  });
+</script>
+
+</body>
+</html>
